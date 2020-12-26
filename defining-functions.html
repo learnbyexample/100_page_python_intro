@@ -1,0 +1,151 @@
+<!DOCTYPE HTML><html lang=en class="sidebar-visible no-js light"><head><meta charset=UTF-8><title>Defining functions - 100 Page Python Intro</title><meta content="text/html; charset=utf-8"http-equiv=Content-Type><meta name=description content="Short, introductory guide for the Python programming language"><meta name=viewport content="width=device-width, initial-scale=1"><meta name=theme-color content=#ffffff><link rel=icon href=favicon.svg><link rel="shortcut icon"href=favicon.png><link rel=stylesheet href=css/variables.css><link rel=stylesheet href=css/general.css><link rel=stylesheet href=css/chrome.css><link rel=stylesheet href=FontAwesome/css/font-awesome.css><link rel=stylesheet href=fonts/fonts.css><link rel=stylesheet href=highlight.css><link rel=stylesheet href=tomorrow-night.css><link rel=stylesheet href=ayu-highlight.css><link rel=stylesheet href=style.css><body><script>
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script><script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script><script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script><script>
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script><nav id=sidebar class=sidebar aria-label="Table of contents"><div class=sidebar-scrollbox><ol class=chapter><li class="chapter-item expanded affix"><a href=cover.html>Cover</a><li class="chapter-item expanded affix"><a href=buy.html>Buy PDF/EPUB versions</a><li class="chapter-item expanded"><a href=preface.html><strong aria-hidden=true>1.</strong> Preface</a><li class="chapter-item expanded"><a href=introduction.html><strong aria-hidden=true>2.</strong> Introduction</a><li class="chapter-item expanded"><a href=numeric-data-types.html><strong aria-hidden=true>3.</strong> Numeric data types</a><li class="chapter-item expanded"><a href=strings-and-user-input.html><strong aria-hidden=true>4.</strong> Strings and user input</a><li class="chapter-item expanded"><a href=defining-functions.html class=active><strong aria-hidden=true>5.</strong> Defining functions</a></ol></div><div id=sidebar-resize-handle class=sidebar-resize-handle></div></nav><div id=page-wrapper class=page-wrapper><div class=page><div id=menu-bar-hover-placeholder></div><div id=menu-bar class="menu-bar sticky bordered"><div class=left-buttons><button id=sidebar-toggle class=icon-button type=button title="Toggle Table of Contents"aria-label="Toggle Table of Contents"aria-controls=sidebar><i class="fa fa-bars"></i></button><button id=theme-toggle class=icon-button type=button title="Change theme"aria-label="Change theme"aria-haspopup=true aria-expanded=false aria-controls=theme-list><i class="fa fa-paint-brush"></i></button><ul id=theme-list class=theme-popup aria-label=Themes role=menu><li role=none><button role=menuitem class=theme id=light>Light (default)</button><li role=none><button role=menuitem class=theme id=rust>Rust</button><li role=none><button role=menuitem class=theme id=coal>Coal</button><li role=none><button role=menuitem class=theme id=navy>Navy</button><li role=none><button role=menuitem class=theme id=ayu>Ayu</button></ul><button id=search-toggle class=icon-button type=button title="Search. (Shortkey: s)"aria-label="Toggle Searchbar"aria-expanded=false aria-keyshortcuts=S aria-controls=searchbar><i class="fa fa-search"></i></button></div><h1 class=menu-title>100 Page Python Intro</h1><div class=right-buttons><a href=https://github.com/learnbyexample/100_page_python_intro title="Git repository"aria-label="Git repository"> <i id=git-repository-button class="fa fa-github"></i> </a></div></div><div id=search-wrapper class=hidden><form id=searchbar-outer class=searchbar-outer><input type=search name=search id=searchbar name=searchbar placeholder="Search this book ..."aria-controls=searchresults-outer aria-describedby=searchresults-header></form><div id=searchresults-outer class="searchresults-outer hidden"><div id=searchresults-header class=searchresults-header></div><ul id=searchresults></ul></div></div><script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script><div id=content class=content><main><div class=sidetoc><nav class=pagetoc></nav></div><h1><a class=header href=#defining-functions id=defining-functions>Defining functions</a></h1><p>This chapter will discuss how to define your own functions, pass arguments to them and get back results. You'll also learn more about the <code>print()</code> built-in function.<h2><a class=header href=#def-keyword id=def-keyword>def keyword</a></h2><p>Use <code>def</code> keyword to define a function. The function name is specified after the keyword, followed by arguments inside parentheses and finally a <code>:</code> character to end the definition. It is a common mistake for beginners to miss the <code>:</code> character. Arguments are optional, as shown in the below program.<pre><code class=language-python># no_args.py
+def greeting():
+    print('-----------------------------')
+    print('         Hello World         ')
+    print('-----------------------------')
+
+greeting()
+</code></pre><p>The above code defines a function named <code>greeting</code> and contains three statements. Unlike many other programming languages, whitespaces are significant in Python. Instead of a pair of curly braces, indentation is used to distinguish the body of the function and statements outside of that function. Typically, 4 spaces is used, as shown above. The function call <code>greeting()</code> has the same indentation level as the function definition, so it is not part of the function. For readability, an empty line is used to separate the function definition and subsequent statements.<pre><code class=language-bash>$ python3.9 no_args.py
+-----------------------------
+         Hello World         
+-----------------------------
+</code></pre><blockquote><p><img src=./images/info.svg alt=info> Functions have to be declared before they can be called. As an exercise, call the function before declaration and see what happens for the above program.</blockquote><blockquote><p><img src=./images/info.svg alt=info> As per <a href=https://www.python.org/dev/peps/pep-0008/>PEP 8: Style Guide for Python Code</a>, it is recommended to use two blank lines around top level functions. However, I prefer to use a single blank line. For large projects, specialized tools like <a href=https://pypi.org/project/pylint/>pylint</a> and <a href=https://pypi.org/project/black/>black</a> are used to analyze and enforce coding styles/guidelines.</blockquote><blockquote><p><img src=./images/info.svg alt=info> To create a placeholder function, you can use the <code>pass</code> statement to indicate no operation. See <a href=https://docs.python.org/3/reference/simple_stmts.html#the-pass-statement>docs.python: pass statement</a> for details.</blockquote><h2><a class=header href=#accepting-arguments id=accepting-arguments>Accepting arguments</a></h2><p>Functions can accept one or more arguments, specified as comma separated variable names.<pre><code class=language-python># with_args.py
+def greeting(ip):
+    op_length = 10 + len(ip)
+    styled_line = '-' * op_length
+    print(styled_line)
+    print(f'{ip:^{op_length}}')
+    print(styled_line)
+
+greeting('hi')
+weather = 'Today would be a nice, sunny day'
+greeting(weather)
+</code></pre><p>In this script, the function from the previous example has been modified to accept an input string as the sole argument. The <code>len()</code> built-in function is used here to get the length of a string value. The code also showcases the usefulness of variables, string operators and string formatting.<pre><code class=language-bash>$ python3.9 with_args.py
+------------
+     hi     
+------------
+------------------------------------------
+     Today would be a nice, sunny day     
+------------------------------------------
+</code></pre><p>As an exercise, modify the above program as suggested below and observe the results you get.<ul><li>add print statements for <code>ip</code>, <code>op_length</code> and <code>styled_line</code> variables after the function calls<li>pass a numeric value to the <code>greeting()</code> function<li>don't pass any argument while calling the <code>greeting()</code> function</ul><blockquote><p><img src=./images/info.svg alt=info> The argument variables, and those that are defined within the body, are local to the function and would result in an exception if used outside the function. See also <a href=https://docs.python.org/3/tutorial/classes.html#scopes-and-namespaces-example>docs.python: Scopes and Namespaces</a> and <a href=https://docs.python.org/3/reference/simple_stmts.html#the-global-statement>docs.python: global statement</a>.</blockquote><blockquote><p><img src=./images/info.svg alt=info> Python being a dynamically typed language, it is up to you to sanitize input for correctness. See also <a href=https://docs.python.org/3/library/typing.html>docs.python: Support for type hints</a> and <a href=https://realpython.com/python-type-checking/>realpython: Python Type Checking Guide</a>.</blockquote><h2><a class=header href=#default-valued-arguments id=default-valued-arguments>Default valued arguments</a></h2><p>A default value can be specified during the function definition. Such arguments can be skipped during the function call, in which case they'll use the default value. Here's an example:<pre><code class=language-python># default_args.py
+def greeting(ip, style='-', spacing=10):
+    op_length = spacing + len(ip)
+    styled_line = style * op_length
+    print(styled_line)
+    print(f'{ip:^{op_length}}')
+    print(styled_line)
+
+greeting('hi')
+greeting('bye', spacing=5)
+greeting('hello', style='=')
+greeting('good day', ':', 2)
+</code></pre><p>There are various ways in which you can call functions with default values. If you specify the argument name, they can be passed in any order. But, if you pass values positionally, the order has to be same as the declaration.<pre><code class=language-bash>$ python3.9 default_args.py
+------------
+     hi     
+------------
+--------
+  bye   
+--------
+===============
+     hello     
+===============
+::::::::::
+ good day 
+::::::::::
+</code></pre><p>As an exercise, modify the above script for the below requirements.<ul><li>make the spacing work for multicharacter <code>style</code> argument<li>accept another argument with a default value of single space character that determines the character to be used around the centered <code>ip</code> value</ul><h2><a class=header href=#return-value id=return-value>Return value</a></h2><p>The default return value of a function is <code>None</code>, which is typically used to indicate the absence of a meaningful value. The <code>print()</code> function, for example, has a <code>None</code> return value. Functions like <code>int()</code>, <code>len()</code> and <code>type()</code> have specific return values, as seen in prior examples.<pre><code class=language-python>>>> print('hi')
+hi
+>>> value = print('hi')
+hi
+
+>>> value
+>>> print(value)
+None
+>>> type(value)
+&LTclass 'NoneType'>
+</code></pre><p>Use the <code>return</code> statement to explicitly give back a value to the function caller. You can use this keyword by itself as well, the expression is optional.<pre><code class=language-python>>>> def num_square(n):
+...     return n * n
+... 
+>>> num_square(5)
+25
+>>> num_square(3.14)
+9.8596
+
+>>> op = num_square(-42)
+>>> type(op)
+&LTclass 'int'>
+</code></pre><blockquote><p><img src=./images/info.svg alt=info> On encountering a <code>return</code> statement, the function will be terminated and further statements, if any, present as part of the function body will not be executed.</blockquote><blockquote><p><img src=./images/info.svg alt=info> A common beginner confusion is mixing up <code>print()</code> and <code>return</code>. See <a href=https://stackoverflow.com/questions/7664779/what-is-the-formal-difference-between-print-and-return>stackoverflow: What is the formal difference between “print” and “return”?</a> for examples and explanations.</blockquote><h2><a class=header href=#a-closer-look-at-the-print-function id=a-closer-look-at-the-print-function>A closer look at the print() function</a></h2><p>The <code>help</code> documentation for the <code>print()</code> function is shown below.<p><img src=./images/help_print.png alt="help print"><p>As you can see, there are four default valued arguments. But, what does <code>value, ...,</code> mean? It indicates that the <code>print()</code> function can accept arbitrary number of arguments. Here's some examples:<pre><code class=language-python># newline character is appended even if no arguments are passed
+>>> print()
+
+>>> print('hi')
+hi
+>>> print('hi', 5)
+hi 5
+
+>>> word1 = 'loaf'
+>>> word2 = 'egg'
+>>> print(word1, word2, 'apple roast nut')
+loaf egg apple roast nut
+</code></pre><p>If you observe closely, you'll notice that a <strong>space</strong> character is inserted between the arguments. That separator can be changed by using the <code>sep</code> argument.<pre><code class=language-python>>>> print('hi', 5, sep='')
+hi5
+>>> print('hi', 5, sep=':')
+hi:5
+>>> print('best', 'years', sep='.\n')
+best.
+years
+</code></pre><p>Similarly, you can change the string that gets appended to something else.<pre><code class=language-python>>>> print('hi', end='----\n')
+hi----
+>>> print('hi', 'bye', sep='-', end='\n======\n')
+hi-bye
+======
+</code></pre><blockquote><p><img src=./images/info.svg alt=info> The <code>file</code> and <code>flush</code> arguments will be discussed later. Writing your own function to accept arbitrary number of arguments will also be discussed later.</blockquote><h2><a class=header href=#docstrings id=docstrings>Docstrings</a></h2><p>Triple quoted strings are also used for multiline comments and to document various part of a Python script. This is achieved by adding help content within triple quotes at the start of a function, class, etc. Such literals are known as documentation strings, or <strong>docstrings</strong> for short. The <code>help()</code> function reads these docstrings to display the documentation. There are also numerous third-party tools that make use of docstrings.<p>Here's an example:<pre><code class=language-python>>>> def num_square(n):
+...     """
+...     Returns the square of a number.
+...     """
+...     return n * n
+... 
+>>> help(num_square)
+</code></pre><p>Calling <code>help(num_square)</code> will give you the documentation as shown below.<pre><code class=language-bash>num_square(n)
+    Returns the square of a number.
+</code></pre><blockquote><p><img src=./images/info.svg alt=info> See <a href=https://docs.python.org/3/tutorial/controlflow.html#documentation-strings>docs.python: Documentation Strings</a> for usage guidelines and other details.</blockquote></main><nav class=nav-wrapper aria-label="Page navigation"><a rel=prev href=strings-and-user-input.html class="mobile-nav-chapters previous"title="Previous chapter"aria-label="Previous chapter"aria-keyshortcuts=Left> <i class="fa fa-angle-left"></i> </a><div style="clear: both"></div></nav></div></div><nav class=nav-wide-wrapper aria-label="Page navigation"><a rel=prev href=strings-and-user-input.html class="nav-chapters previous"title="Previous chapter"aria-label="Previous chapter"aria-keyshortcuts=Left> <i class="fa fa-angle-left"></i> </a></nav></div><script>
+            window.playground_copyable = true;
+        </script><script src=elasticlunr.min.js charset=utf-8></script><script src=mark.min.js charset=utf-8></script><script src=searcher.js charset=utf-8></script><script src=clipboard.min.js charset=utf-8></script><script src=highlight.js charset=utf-8></script><script src=book.js charset=utf-8></script><script src=sidebar.js></script>

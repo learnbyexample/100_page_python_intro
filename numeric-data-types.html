@@ -1,0 +1,113 @@
+<!DOCTYPE HTML><html lang=en class="sidebar-visible no-js light"><head><meta charset=UTF-8><title>Numeric data types - 100 Page Python Intro</title><meta content="text/html; charset=utf-8"http-equiv=Content-Type><meta name=description content="Short, introductory guide for the Python programming language"><meta name=viewport content="width=device-width, initial-scale=1"><meta name=theme-color content=#ffffff><link rel=icon href=favicon.svg><link rel="shortcut icon"href=favicon.png><link rel=stylesheet href=css/variables.css><link rel=stylesheet href=css/general.css><link rel=stylesheet href=css/chrome.css><link rel=stylesheet href=FontAwesome/css/font-awesome.css><link rel=stylesheet href=fonts/fonts.css><link rel=stylesheet href=highlight.css><link rel=stylesheet href=tomorrow-night.css><link rel=stylesheet href=ayu-highlight.css><link rel=stylesheet href=style.css><body><script>
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script><script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script><script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script><script>
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script><nav id=sidebar class=sidebar aria-label="Table of contents"><div class=sidebar-scrollbox><ol class=chapter><li class="chapter-item expanded affix"><a href=cover.html>Cover</a><li class="chapter-item expanded affix"><a href=buy.html>Buy PDF/EPUB versions</a><li class="chapter-item expanded"><a href=preface.html><strong aria-hidden=true>1.</strong> Preface</a><li class="chapter-item expanded"><a href=introduction.html><strong aria-hidden=true>2.</strong> Introduction</a><li class="chapter-item expanded"><a href=numeric-data-types.html class=active><strong aria-hidden=true>3.</strong> Numeric data types</a><li class="chapter-item expanded"><a href=strings-and-user-input.html><strong aria-hidden=true>4.</strong> Strings and user input</a><li class="chapter-item expanded"><a href=defining-functions.html><strong aria-hidden=true>5.</strong> Defining functions</a></ol></div><div id=sidebar-resize-handle class=sidebar-resize-handle></div></nav><div id=page-wrapper class=page-wrapper><div class=page><div id=menu-bar-hover-placeholder></div><div id=menu-bar class="menu-bar sticky bordered"><div class=left-buttons><button id=sidebar-toggle class=icon-button type=button title="Toggle Table of Contents"aria-label="Toggle Table of Contents"aria-controls=sidebar><i class="fa fa-bars"></i></button><button id=theme-toggle class=icon-button type=button title="Change theme"aria-label="Change theme"aria-haspopup=true aria-expanded=false aria-controls=theme-list><i class="fa fa-paint-brush"></i></button><ul id=theme-list class=theme-popup aria-label=Themes role=menu><li role=none><button role=menuitem class=theme id=light>Light (default)</button><li role=none><button role=menuitem class=theme id=rust>Rust</button><li role=none><button role=menuitem class=theme id=coal>Coal</button><li role=none><button role=menuitem class=theme id=navy>Navy</button><li role=none><button role=menuitem class=theme id=ayu>Ayu</button></ul><button id=search-toggle class=icon-button type=button title="Search. (Shortkey: s)"aria-label="Toggle Searchbar"aria-expanded=false aria-keyshortcuts=S aria-controls=searchbar><i class="fa fa-search"></i></button></div><h1 class=menu-title>100 Page Python Intro</h1><div class=right-buttons><a href=https://github.com/learnbyexample/100_page_python_intro title="Git repository"aria-label="Git repository"> <i id=git-repository-button class="fa fa-github"></i> </a></div></div><div id=search-wrapper class=hidden><form id=searchbar-outer class=searchbar-outer><input type=search name=search id=searchbar name=searchbar placeholder="Search this book ..."aria-controls=searchresults-outer aria-describedby=searchresults-header></form><div id=searchresults-outer class="searchresults-outer hidden"><div id=searchresults-header class=searchresults-header></div><ul id=searchresults></ul></div></div><script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script><div id=content class=content><main><div class=sidetoc><nav class=pagetoc></nav></div><h1><a class=header href=#numeric-data-types id=numeric-data-types>Numeric data types</a></h1><p>Python is a dynamically typed language. The interpreter infers the data type of a value based on pre-determined rules. In the previous chapter, <strong>string</strong> values were coded using single quotes around a sequence of characters. Similarly, there are rules by which you can declare different numeric data types.<h2><a class=header href=#int id=int>int</a></h2><p>Integer numbers are made up of digits <code>0</code> to <code>9</code> and can be prefixed with <strong>unary</strong> operators like <code>+</code> or <code>-</code>. There is no restriction to the size of numbers that can be used, only limited by the memory available on your system. Here's some examples:<pre><code class=language-python>>>> 42
+42
+>>> 0
+0
+>>> +100
+100
+>>> -5
+-5
+</code></pre><p>For readability purposes, you can use underscores in between the digits.<pre><code class=language-python>>>> 1_000_000_000
+1000000000
+</code></pre><blockquote><p><img src=./images/warning.svg alt=warning> Underscore cannot be used as the first or last character, and cannot be used consecutively.</blockquote><h2><a class=header href=#float id=float>float</a></h2><p>Here's some examples for floating-point numbers.<pre><code class=language-python>>>> 3.14
+3.14
+>>> -1.12
+-1.12
+</code></pre><p>Python also supports the exponential notation. See <a href=https://en.wikipedia.org/wiki/Scientific_notation#E_notation>wikipedia: E scientific notation</a> for details about this form of expressing numbers.<pre><code class=language-python>>>> 543.15e20
+5.4315e+22
+>>> 1.5e-5
+1.5e-05
+</code></pre><p>Unlike integers, floating-point numbers have a limited precision. Python will automatically convert very small or very large floating-point numbers to the exponential notation.<pre><code class=language-python>>>> 0.0000000001234567890123456789
+1.2345678901234568e-10
+>>> 31415926535897935809629384623048923.649234324234
+3.1415926535897936e+34
+</code></pre><blockquote><p><img src=./images/info.svg alt=info> You might also get seemingly strange results as shown below. See <a href=https://docs.python.org/3/tutorial/floatingpoint.html>docs.python: Floating Point Arithmetic Issues and Limitations</a> and <a href=https://stackoverflow.com/questions/588004/is-floating-point-math-broken>stackoverflow: Is floating point math broken?</a> for details and workarounds.</blockquote><pre><code class=language-python>>>> 3.14 + 2
+5.140000000000001
+</code></pre><h2><a class=header href=#arithmetic-operators id=arithmetic-operators>Arithmetic operators</a></h2><p>All arithmetic operators you'd typically expect are available. If any operand is a floating-point number, result will be of <code>float</code> data type. Use <code>+</code> for addition, <code>-</code> for subtraction, <code>*</code> for multiplication and <code>**</code> for exponentiation. As mentioned before, REPL is quite useful for learning purposes. It makes for a good calculator for number crunching as well. You can also use <code>_</code> to refer to the result of the previous expression (this is applicable only in the REPL, not in Python scripts).<pre><code class=language-python>>>> 25 + 17
+42
+>>> 10 - 8
+2
+>>> 25 * 3.3
+82.5
+>>> 32 ** 42
+1645504557321206042154969182557350504982735865633579863348609024
+
+>>> 5 + 2
+7
+>>> _ * 3
+21
+</code></pre><p>There are two operators for division. Use <code>/</code> if you want a floating-point result. Using <code>//</code> between two integers will give only the integer portion of the result (no rounding).<pre><code class=language-python>>>> 4.5 / 1.5
+3.0
+>>> 5 / 3
+1.6666666666666667
+>>> 5 // 3
+1
+</code></pre><p>Use modulo operator <code>%</code> to get the remainder. Sign of the result is same as the sign of the second operand.<pre><code class=language-python>>>> 5 % 3
+2
+
+>>> -5 % 3
+1
+>>> 5 % -3
+-1
+>>> 6.5 % -3
+-2.5
+</code></pre><blockquote><p><img src=./images/info.svg alt=info> See <a href=https://docs.python.org/3/reference/expressions.html#binary-arithmetic-operations>docs.python: Binary arithmetic operations</a> and <a href=https://stackoverflow.com/questions/3883004/the-modulo-operation-on-negative-numbers-in-python>stackoverflow: modulo operation on negative numbers</a> for more details.</blockquote><p>Arithmetic operator precedence follows the familiar <strong>PEMDAS</strong> or <strong>BODMAS</strong> abbreviations. Precedence, higher to lower is listed below:<ul><li>Expression inside parentheses<li>exponentiation<li>multiplication, division, modulo<li>addition, subtraction</ul><p>Expression is evaluated left-to-right when operators have the same precedence. Unary operator precedence is between exponentiation and multiplication/division operators. See <a href=https://docs.python.org/3/reference/expressions.html#operator-precedence>docs.python: Operator precedence</a> for complete details.<h2><a class=header href=#integer-formats id=integer-formats>Integer formats</a></h2><p>The integer examples so far have been coded using base 10, i.e. <strong>decimal</strong> format. Python has provision for representing <strong>binary</strong>, <strong>octal</strong> and <strong>hexadecimal</strong> formats as well. To distinguish between these different formats, a prefix is used.<ul><li><code>0b</code> or <code>0B</code> for binary<li><code>0o</code> or <code>0O</code> for octal<li><code>0x</code> or <code>0X</code> for hexadecimal</ul><p>All four formats fall under the <code>int</code> data type. Underscores can be used for readability for any of these formats.<pre><code class=language-python>>>> 0b1000_1111
+143
+>>> 0o10
+8
+>>> 0x10
+16
+
+>>> 5 + 0xa
+15
+</code></pre><p>As a consequence, decimal format numbers cannot be prefixed by <code>0</code>, other than <code>0</code> itself.<pre><code class=language-python>>>> 00000
+0
+
+>>> 09
+  File "&LTstdin>", line 1
+    09
+     ^
+SyntaxError: leading zeros in decimal integer literals are not permitted;
+             use an 0o prefix for octal integers
+</code></pre><p>If code execution hits a snag, you'll get an error message along with the code snippet that the interpreter thinks caused the issue. In Python parlance, an <strong>exception</strong> has occurred. The exception has a name (<code>SyntaxError</code> in the above example) followed by the error message. See <a>Exception handling</a> chapter for more details.<h2><a class=header href=#other-numeric-types id=other-numeric-types>Other numeric types</a></h2><p>Python's standard data type also includes complex type (imaginary part is suffixed with the character <code>j</code>). Others like <code>decimal</code> and <code>fractions</code> are provided as modules.<ul><li><a href=https://docs.python.org/3/library/stdtypes.html#typesnumeric>docs.python: complex</a><li><a href=https://docs.python.org/3/library/decimal.html>docs.python: decimal</a><li><a href=https://docs.python.org/3/library/fractions.html>docs.python: fractions</a></ul><blockquote><p><img src=./images/warning.svg alt=warning> Some of the numeric types can have alphabets like <code>e</code>, <code>b</code>, <code>j</code>, etc in their values. As Python is a dynamically typed language, you cannot use variable names beginning with a number. Otherwise, it would be impossible to evaluate an expression like <code>result = initial_value + 0x12 - 2j</code>.</blockquote><blockquote><p><img src=./images/info.svg alt=info> There are many third-party libraries that are useful for number crunching in mathematical context, engineering applications, etc. See my list <a href=https://learnbyexample.github.io/py_resources/domain.html#scientific-computing>py_resources: Scientific computing</a> for curated resources.</blockquote></main><nav class=nav-wrapper aria-label="Page navigation"><a rel=prev href=introduction.html class="mobile-nav-chapters previous"title="Previous chapter"aria-label="Previous chapter"aria-keyshortcuts=Left> <i class="fa fa-angle-left"></i> </a><a rel=next href=strings-and-user-input.html class="mobile-nav-chapters next"title="Next chapter"aria-label="Next chapter"aria-keyshortcuts=Right> <i class="fa fa-angle-right"></i> </a><div style="clear: both"></div></nav></div></div><nav class=nav-wide-wrapper aria-label="Page navigation"><a rel=prev href=introduction.html class="nav-chapters previous"title="Previous chapter"aria-label="Previous chapter"aria-keyshortcuts=Left> <i class="fa fa-angle-left"></i> </a><a rel=next href=strings-and-user-input.html class="nav-chapters next"title="Next chapter"aria-label="Next chapter"aria-keyshortcuts=Right> <i class="fa fa-angle-right"></i> </a></nav></div><script>
+            window.playground_copyable = true;
+        </script><script src=elasticlunr.min.js charset=utf-8></script><script src=mark.min.js charset=utf-8></script><script src=searcher.js charset=utf-8></script><script src=clipboard.min.js charset=utf-8></script><script src=highlight.js charset=utf-8></script><script src=book.js charset=utf-8></script><script src=sidebar.js></script>
