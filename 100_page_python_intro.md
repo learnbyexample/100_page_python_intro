@@ -176,6 +176,8 @@ I'll stress again the importance of following along the code snippets by manuall
 
 >![info](./images/info.svg) Depending on the command line shell you are using, you might have the `readline` library that makes it easier to use the REPL. For example, `up` and `down` arrow keys to browse code history, re-execute them (after editing if necessary), search history, autocomplete based on first few characters and so on. See [wikipedia: GNU readline](https://en.wikipedia.org/wiki/GNU_Readline) and [wiki.archlinux: readline](https://wiki.archlinux.org/index.php/readline) for more information.
 
+>![info](./images/info.svg) You can use `python3.9 -q` to avoid *version and copyright messages* when you start an interactive shell. Use `python3.9 -h` or visit [docs.python: Command line and environment](https://docs.python.org/3/using/cmdline.html) for documentation on cli options.
+
 ## Documentation and getting help
 
 The offical Python website has an extensive documentation located at [https://docs.python.org/3/](https://docs.python.org/3/). This includes a tutorial, which is much more comprehensive than the contents presented in this book, several guides for specific modules like `re` and `argparse` and various other information.
@@ -1125,9 +1127,9 @@ def absolute(num):
     return num if num >= 0 else -num
 ```
 
-Or, just use the `abs()` built-in function, which has support for complex numbers, fractions, etc.
+Or, just use the `abs()` built-in function, which has support for complex numbers, fractions, etc. Unlike the above program, `abs()` will also handle `-0.0` correctly.
 
->![info](./images/info.svg) See [stackoverflow: ternary conditional operator](https://stackoverflow.com/questions/394809/does-python-have-a-ternary-conditional-operator) for other ways to emulate the ternary operation in Python.
+>![info](./images/info.svg) See [stackoverflow: ternary conditional operator](https://stackoverflow.com/questions/394809/does-python-have-a-ternary-conditional-operator) for other ways to emulate the ternary operation in Python. `True` and `False` boolean values are equivalent to `1` and `0` in integer context. So, for example, the above ternary expression can also be written as `(-num, num)[num >= 0]`.
 
 ## for loop
 
@@ -1501,6 +1503,8 @@ If you notice the `__pycache__` directory after you import your own module, **do
 
 >To speed up loading modules, Python caches the compiled version of each module in the `__pycache__` directory under the name `module.version.pyc`, where the version encodes the format of the compiled file; it generally contains the Python version number. For example, in CPython release 3.3 the compiled version of spam.py would be cached as `__pycache__/spam.cpython-33.pyc`. This naming convention allows compiled modules from different releases and different versions of Python to coexist.
 
+You can use `python3.9 -B` if you do not wish the `__pycache__` directory to be created.
+
 ## Explore modules
 
 * [docs.python: The Python Standard Library](https://docs.python.org/3/library/index.html)
@@ -1569,8 +1573,9 @@ Once you are done with your work, use `deactivate` command to exit the virtual e
 
 See also:
 
-* [realpython: Python Virtual Environments Primer](https://realpython.com/blog/python/python-virtual-environments-a-primer/)
+* [meribold: Virtual Environments Demystified](https://meribold.org/python/2018/02/13/virtual-environments-9487/)
 * [calmcode.io: virtualenv](https://calmcode.io/virtualenv/intro.html) — video
+* [realpython: Python Virtual Environments Primer](https://realpython.com/blog/python/python-virtual-environments-a-primer/)
 * [stackoverflow: What is the difference between venv, pyvenv, pyenv, virtualenv, virtualenvwrapper, pipenv, etc?](https://stackoverflow.com/questions/41573587/what-is-the-difference-between-venv-pyvenv-pyenv-virtualenv-virtualenvwrappe)
 
 ## Creating your own package
@@ -1579,4 +1584,606 @@ The [packaging.python: Packaging Python Projects](https://packaging.python.org/t
 
 * [stackoverflow: What is setup.py?](https://stackoverflow.com/questions/1471994/what-is-setup-py)
 * [Practical Python Programming: Packaging and Distribution](https://dabeaz-course.github.io/practical-python/Notes/09_Packages/00_Overview.html)
+
+# Exception handling
+
+This chapter will discuss different types of errors and how to handle some of the them within the program gracefully. You'll also see how to raise exceptions on your own.
+
+## Syntax errors
+
+Quoting from [docs.python: Errors and Exceptions](https://docs.python.org/3/tutorial/errors.html):
+
+>There are (at least) two distinguishable kinds of errors: *syntax errors* and *exceptions*
+
+Here's an example program with syntax errors:
+
+```ruby
+# syntax_error.py
+print('hello')
+
+def main():
+    num = 5
+    total = num + 09 
+    print(total)
+
+main)
+```
+
+The above code is using an unsupported syntax for a numerical value. Note that the syntax check happens before any code is executed, which is why you don't see the output for the `print('hello')` statement. Can you spot the rest of the syntax issues in the above program?
+
+```bash
+$ python3.9 syntax_error.py
+  File "/home/learnbyexample/Python/programs/syntax_error.py", line 5
+    total = num + 09 
+                   ^
+SyntaxError: leading zeros in decimal integer literals are not permitted;
+             use an 0o prefix for octal integers
+```
+
+## try-except
+
+Exceptions happen when something goes wrong during the code execution. For example, passing a wrong data type to a function, dividing a number by `0` and so on. Such errors are typically difficult or impossible to determine just by looking at the code.
+
+```ruby
+>>> int('42')
+42
+>>> int('42x')
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+ValueError: invalid literal for int() with base 10: '42x'
+
+>>> 3.14 / 0
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+ZeroDivisionError: float division by zero
+```
+
+When an exception occurs, the program stops executing and displays the line that caused the error. You also get an error type, such as `ValueError` and `ZeroDivisionError` seen in the above example, followed by a message. This may differ for user defined error types.
+
+You could implement alternatives to be followed for certain types of errors instead of premature end to the program execution. For example, you could allow the user to correct their input data. In some cases, you want the program to end, but display a user friendly message instead of developer friendly traceback.
+
+Put the code likely to generate an exception inside `try` block and provide alternate path(s) inside one or more `except` blocks. Here's an example to get a positive integer number from the user, and continue doing so if the input was invalid.
+
+```ruby
+# try_except.py
+from math import factorial
+
+while True:
+    try:
+        num = int(input('Enter a positive integer: '))
+        print(f'{num}! = {factorial(num)}')
+        break
+    except ValueError:
+        print('Not a positive integer, try again')
+```
+
+It so happens that both `int()` and `factorial()` generate `ValueError` in the above example. If you wish to take the same alternate path for multiple errors, you can pass a `tuple` to `except` instead of a single error type. Here's a sample run:
+
+```bash
+$ python3.9 try_except.py
+Enter a positive integer: 3.14
+Not a positive integer, try again
+Enter a positive integer: hi
+Not a positive integer, try again
+Enter a positive integer: -2
+Not a positive integer, try again
+Enter a positive integer: 5
+5! = 120
+```
+
+You can also capture the error message using the `as` keyword (which you have seen previously with `import` statement, and will come up again in later chapters). Here's an example:
+
+```ruby
+>>> try:
+...     num = 5 / 0
+... except ZeroDivisionError as e:
+...     print(f'oops something went wrong! the error msg is:\n"{e}"')
+... 
+oops something went wrong! the error msg is:
+"division by zero"
+```
+
+>![info](./images/info.svg) See [docs.python: built-in exceptions](https://docs.python.org/3/library/exceptions.html#bltin-exceptions) for documentation on built-in exceptions.
+
+>![warning](./images/warning.svg) Passing an error type to `except` is optional, it is not recommended however. See [stackoverflow: avoid bare exceptions](https://stackoverflow.com/questions/14797375/should-i-always-specify-an-exception-type-in-except-statements) for details.
+
+>![info](./images/info.svg) There are static code analysis tools like [pylint](https://pypi.org/project/pylint/), "which looks for programming errors, helps enforcing a coding standard, sniffs for code smells and offers simple refactoring suggestions". See [awesome-python: code-analysis](https://github.com/vinta/awesome-python#code-analysis) for more such tools.
+
+## else
+
+The `else` clause behaves similarly to the `else` clause seen with loops. If there's no exception raised in the `try` block, then the code in the `else` block will be executed. This block should be defined after the `except` block(s). As per the [documentation](https://docs.python.org/3/tutorial/errors.html#handling-exceptions):
+
+>The use of the `else` clause is better than adding additional code to the `try` clause because it avoids accidentally catching an exception that wasn’t raised by the code being protected by the `try ... except` statement.
+
+```ruby
+# try_except_else.py
+while True:
+    try:
+        num = int(input('Enter an integer number: '))
+    except ValueError:
+        print('Not an integer, try again')
+    else:
+        print(f'Square of {num} is {num ** 2}')
+        break
+```
+
+Here's a sample run:
+
+```bash
+$ python3.9 try_except_else.py
+Enter an integer number: hi
+Not an integer, try again
+Enter an integer number: 3.14
+Not an integer, try again
+Enter an integer number: 42x
+Not an integer, try again
+Enter an integer number: -2
+Square of -2 is 4
+```
+
+## raise
+
+You can also manually `raise` exceptions if needed. It accepts an optional error type, which can be either a built-in or a user defined one (see [docs.python: User-defined Exceptions](https://docs.python.org/3/tutorial/errors.html#user-defined-exceptions)). And you can optionally specify an error message. Here's an example:
+
+```ruby
+>>> def sum2nums(n1, n2):
+...     types_allowed = (int, float)
+...     if type(n1) not in types_allowed or type(n2) not in types_allowed:
+...         raise TypeError('Argument should be an integer or a float value')
+...     return n1 + n2
+... 
+>>> sum2nums(3.14, -2)
+1.1400000000000001
+>>> sum2nums(3.14, 'a')
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "<stdin>", line 4, in sum2nums
+TypeError: Argument should be an integer or a float value
+```
+
+## finally
+
+You can add code in `finally` block that should always be the last thing done by the `try` statement, irrespective of whether an exception has occurred. This should be declared after `except` and the optional `else` blocks.
+
+```ruby
+# try_except_finally.py
+try:
+    num = int(input('Enter a positive integer: '))
+    if num < 0:
+        raise ValueError
+except ValueError:
+    print('Not a positive integer, run the program again')
+else:
+    print(f'Square root of {num} is {num ** 0.5:.3f}')
+finally:
+    print('\nThanks for using the program, have a nice day')
+```
+
+Here's some sample runs when the user enters some value:
+
+```bash
+$ python3.9 try_except_finally.py
+Enter a positive integer: -2
+Not a positive integer, run the program again
+
+Thanks for using the program, have a nice day
+$ python3.9 try_except_finally.py
+Enter a positive integer: 2
+Square root of 2 is 1.414
+Thanks for using the program, have a nice day
+```
+
+Here's an example where something goes wrong, but not handled by the `try` statement. Note that `finally` block is still executed.
+
+```bash
+# here, user presses Ctrl+D instead of entering a value
+# you'll get KeyboardInterrupt if the user presses Ctrl+C
+$ python3.9 try_except_finally.py
+Enter a positive integer: 
+Thanks for using the program, have a nice day
+Traceback (most recent call last):
+  File "/home/learnbyexample/Python/programs/try_except_finally.py",
+       line 2, in <module>
+    num = int(input('Enter a positive integer: '))
+EOFError
+```
+
+See [docs.python: Defining Clean-up Actions](https://docs.python.org/3/tutorial/errors.html#defining-clean-up-actions) for details like what happens if an exception occurs within an `else` clause, presence of `break/continue/return` etc. The documentation also gives examples of where `finally` is typically used.
+
+## Exercises
+
+* Identify the syntax errors in the following code snippets. Try to spot them manually.
+
+    ```ruby
+    # snippet 1:
+    def greeting()
+        print('hello')
+    # snippet 2:
+    num = 5
+    if num = 4:
+        print('what is going on?!')
+    # snippet 3:
+    greeting = “hi”
+    ```
+
+* In case you didn't complete the exercises from [Importing your own module](#importing-your-own-module) section, you should be able to do it now.
+* Write a function `num(ip)` that accepts a single argument and returns the corresponding integer or floating-point number contained in the argument. Only `int`, `float` and `str` should be accepted as valid input data type. Provide custom error message if the input cannot be converted to a valid number. Examples are shown below.
+
+    ```ruby
+    >>> num(0x1f)
+    31
+    >>> num(3.32)
+    3.32
+    >>> num('3.982e5')
+    398200.0
+    >>> num(['1', '2.3'])
+    TypeError: not a valid input
+    >>> num('foo')
+    ValueError: could not convert string to int or float
+    ```
+
+# Debugging
+
+>Debugging is twice as hard as writing the code in the first place. Therefore, if you write the code as cleverly as possible, you are, by definition, not smart enough to debug it. — Brian W. Kernighan
+
+>There are 2 hard problems in computer science: cache invalidation, naming things, and off-by-1 errors. — Leon Bambrick
+
+>Debuggers don't remove bugs. They only show them in slow motion. — Unknown
+
+Above quotes chosen from [this collection at softwareengineering.stackexchange](https://softwareengineering.stackexchange.com/questions/39/whats-your-favourite-quote-about-programming).
+
+## General tips
+
+Knowing how to debug your programs is crucial and should be ideally taught right from the start instead of a chapter at the end of a beginner's learning resource. [Think Python](https://greenteapress.com/wp/think-python-2e/) is an awesome example for such a resource material.
+
+Debugging is often a frustrating experience. Taking a break helps. It is common to find or solve issues in your dreams too (I've had my share of these, especially during college and intense work days).
+
+If you are stuck with a problem, reduce the code as much as possible so that you are left with minimal code necessary to reproduce the issue. Talking about the problem to a friend/colleague/inanimate-objects/etc can help too — famously termed as [Rubber duck debugging](https://rubberduckdebugging.com/). I have often found the issue while formulating a question to be asked on forums like stackoverflow/reddit because writing down your problem is another way to bring clarity than just having a vague idea in your mind.
+
+Here's some awesome articles on this challenging topic:
+
+* [What does debugging a program look like?](https://jvns.ca/blog/2019/06/23/a-few-debugging-resources/)
+* [How to debug small programs](https://ericlippert.com/2014/03/05/how-to-debug-small-programs/)
+* [Debugging guide](https://uchicago-cs.github.io/debugging-guide/)
+* [Problem solving skills](https://ryanstutorials.net/problem-solving-skills/)
+
+Here's an interesting snippet (modified to keep it small) from a collection of [interesting bug stories](https://stackoverflow.com/questions/169713/whats-the-toughest-bug-you-ever-found-and-fixed).
+
+>A jpeg parser choked whenever the CEO came into the room, because he always had a shirt with a square pattern on it, which triggered some special case of contrast and block boundary algorithms.
+
+See also [curated list of absurd software bug stories](https://500mile.email/).
+
+## Common beginner mistakes
+
+The previous chapter already covered syntax errors. This section will discuss more Python gotchas.
+
+Python allows you to redefine built-in functions, modules, classes etc (see [stackoverflow: metaprogramming](https://stackoverflow.com/questions/514644/what-exactly-is-metaprogramming)). Unless that's your intention, do not use [keywords](https://docs.python.org/3/reference/lexical_analysis.html#keywords), [built-in functions](https://docs.python.org/3/library/functions.html) and modules as your variable name, function name, program filename, etc. Here's an example:
+
+```ruby
+# normal behavior
+>>> str(2)
+'2'
+
+# unintentional use of 'str' as variable name
+>>> str = input("what is your name? ")
+what is your name? learnbyexample
+# 'str' is no longer usable as built-in function
+>>> str(2)
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+TypeError: 'str' object is not callable
+```
+
+Here's another example:
+
+```ruby
+>>> len = 5
+>>> len('hi')
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+TypeError: 'int' object is not callable
+```
+
+>![info](./images/info.svg) As an exercise, create an empty file named as `math.py`. In the same directory, create another program file that imports the `math` module and then uses some feature, say `print(math.pi)`. What happens if you execute this program?
+
+See also:
+
+* [Think Python: Debugging chapter](https://greenteapress.com/thinkpython2/html/thinkpython2021.html)
+* [inventwithpython: common runtime errors](https://inventwithpython.com/blog/2012/07/09/16-common-python-runtime-errors-beginners-find/) and [common python gotchas](https://inventwithpython.com/beyond/chapter8.html)
+* [pythonforbiologists: common beginner errors](https://pythonforbiologists.com/29-common-beginner-errors-on-one-page/)
+* [stackoverflow: common pitfalls in Python](https://stackoverflow.com/questions/1011431/common-pitfalls-in-python)
+
+## pdb
+
+Python comes with a handy built-in library `pdb` that you can use from the CLI to debug small programs. See [docs.python: pdb](https://docs.python.org/3/library/pdb.html) for documentation. Here's some of the frequently used commands (only short form is shown, see documentation for long form and more details).
+
+* `l` prints code around the current statement the debugger is at, useful to visualize the progress of debug effort
+* `ll` prints entire code for the current function or frame
+* `s` execute current line, steps inside function calls
+* `n` execute current line, treats function as a single execution step
+* `c` continue execution until the next breakpoint
+* `p expression` print value of an expression in the current context, usually used to see the current value of a variable
+* `h` list of available commands
+    * `h c` help on `c` command
+* `q` quit the debugger
+
+Here's an example invocation of the debugger for the `num_funcs.py` program seen earlier in the [Importing your own module](#importing-your-own-module) section. Only the `n` command is used below. The line with `>` prefix tells you about the program file being debugged, current line number and function name. The line with `->` prefix is the code present at the current line. `(Pdb)` is the prompt for this interactive session. You can also see the output of `print()` function for the last `n` command in the illustration below.
+
+```bash
+$ python3.9 -m pdb num_funcs.py
+> /home/learnbyexample/Python/programs/num_funcs.py(1)<module>()
+-> def sqr(n):
+(Pdb) n
+> /home/learnbyexample/Python/programs/num_funcs.py(4)<module>()
+-> def fact(n):
+(Pdb) n
+> /home/learnbyexample/Python/programs/num_funcs.py(10)<module>()
+-> num = 5
+(Pdb) n
+> /home/learnbyexample/Python/programs/num_funcs.py(11)<module>()
+-> print(f'square of {num} is {sqr(num)}')
+(Pdb) n
+square of 5 is 25
+> /home/learnbyexample/Python/programs/num_funcs.py(12)<module>()
+-> print(f'factorial of {num} is {fact(num)}')
+```
+
+Continuation of the above debugging session is shown below, this time with `s` command to step into the function. Use `r` while you are still inside the function to skip until the function encounters a `return` statement. Examples for `p` and `ll` commands are also shown below.
+
+```bash
+(Pdb) s
+--Call--
+> /home/learnbyexample/Python/programs/num_funcs.py(4)fact()
+-> def fact(n):
+(Pdb) ll
+  4  ->	def fact(n):
+  5  	    total = 1
+  6  	    for i in range(2, n+1):
+  7  	        total *= i
+  8  	    return total
+(Pdb) n
+> /home/learnbyexample/Python/programs/num_funcs.py(5)fact()
+-> total = 1
+(Pdb) p n
+5
+(Pdb) r
+--Return--
+> /home/learnbyexample/Python/programs/num_funcs.py(8)fact()->120
+-> return total
+(Pdb) n
+factorial of 5 is 120
+--Return--
+> /home/learnbyexample/Python/programs/num_funcs.py(12)<module>()->None
+-> print(f'factorial of {num} is {fact(num)}')
+```
+
+If you continue beyond the last instruction, you can restart from the beginning if you wish. Use `q` to end the session.
+
+```bash
+(Pdb) n
+--Return--
+> <string>(1)<module>()->None
+(Pdb) n
+The program finished and will be restarted
+> /home/learnbyexample/Python/programs/num_funcs.py(1)<module>()
+-> def sqr(n):
+(Pdb) q
+```
+
+>![info](./images/info.svg) You can call [breakpoint()](https://docs.python.org/3/library/functions.html?#breakpoint) or [pdb.set_trace()](https://docs.python.org/3/library/pdb.html#pdb.set_trace) to set breakpoints in the code and use it in combination with `c` command.
+
+See also:
+
+* [awesome-python: Debugging tools](https://github.com/vinta/awesome-python#debugging-tools)
+* [pdb tutorial](https://github.com/spiside/pdb-tutorial)
+* [docs.python: Basic Logging Tutorial](https://docs.python.org/3/howto/logging.html)
+
+## IDLE debugging
+
+Sites like [Pythontutor](http://www.pythontutor.com/visualize.html#mode=edit) allow you to visually debug a program — you can execute a program step by step and see the current value of variables. Similar feature is typically provided by IDEs. Under the hood, these visualizations would likely be using the `pdb` module discussed in the previous section.
+
+This section will show an example with `IDLE`. Before you can run the program, first select **Debugger** option under **Debug** menu. You can also use `idle3.9 -d` to launch IDLE in debug mode directly. You'll see a new window pop up as shown below:
+
+![Debug window.png](./images/debug_window.png)
+
+Then, with debug mode active, run the program. Use the buttons and options to go over the code. Variable values will be automatically available, as shown below.
+
+![IDLE debug in action](./images/debug_in_action.png)
+
+>![info](./images/info.svg) You can right-click on a line from the text editor to set/clear breakpoints.
+
+>![info](./images/info.svg) See [realpython: Debug With IDLE](https://realpython.com/python-debug-idle/) for a more detailed tutorial.
+
+# Testing
+
+>Testing can only prove the presence of bugs, not their absence. — Edsger W. Dijkstra
+
+>There, it should work now. — All programmers
+
+Above quotes chosen from [this collection at softwareengineering.stackexchange](https://softwareengineering.stackexchange.com/questions/39/whats-your-favourite-quote-about-programming).
+
+## General tips
+
+Another crucial aspect in the programming journey is knowing how to write tests. In bigger projects, usually there are separate engineers (often in much larger number than developers) to test the code. Even in those cases, writing a few sanity test cases yourself can help you develop faster knowing that the changes aren't breaking basic functionality.
+
+There's no single consensus on test methodologies. There is [Unit testing](https://en.wikipedia.org/wiki/Unit_testing), [Integration testing](https://en.wikipedia.org/wiki/Integration_testing), [Test-driven development (TDD)](https://en.wikipedia.org/wiki/Test-driven_development) and so on. Often, a combination of these is used. These days, machine learning is also being considered to reduce the testing time, see [Testing Firefox more efficiently with machine learning](https://hacks.mozilla.org/2020/07/testing-firefox-more-efficiently-with-machine-learning/) for an example.
+
+When I start a project, I usually try to write the programs incrementally. Say I need to iterate over files from a directory. I will make sure that portion is working (usually with `print()` statements), then add another feature — say file reading and test that and so on. This reduces the burden of testing a large program at once at the end. And depending upon the nature of the program, I'll add a few sanity tests at the end. For example, for my [command_help](https://github.com/learnbyexample/command_help) project, I copy pasted a few test runs of the program with different options and arguments into a separate file and wrote a program to perform these tests programmatically whenever the source code is modified.
+
+## assert
+
+For simple cases, the `assert` statement is good enough. If the expression passed to `assert` evaluates to `False`, the `AssertionError` exception will be raised. You can optionally pass a message, separated by a comma after the expression to be tested. See [docs.python: assert](https://docs.python.org/3/reference/simple_stmts.html#the-assert-statement) for documentation.
+
+```ruby
+# passing case
+>>> assert 2 < 3
+
+# failing case
+>>> num = -2
+>>> assert num >= 0, 'only positive integer allowed'
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+AssertionError: only positive integer allowed
+```
+
+Here's a sample program (solution for one of the exercises from [Control structures](#control-structures) chapter).
+
+```ruby
+# nested_braces.py
+def max_nested_braces(expr):
+    max_count = count = 0
+    for char in expr:
+        if char == '{':
+            count += 1
+            if count > max_count:
+                max_count = count
+        elif char == '}':
+            if count == 0:
+                return -1
+            count -= 1
+
+    if count != 0:
+        return -1
+    return max_count
+
+def test_cases():
+    assert max_nested_braces('a*b') == 0
+    assert max_nested_braces('a*b+{}') == 1
+    assert max_nested_braces('a*{b+c}') == 1
+    assert max_nested_braces('{a+2}*{b+c}') == 1
+    assert max_nested_braces('a*{b+c*{e*3.14}}') == 2
+    assert max_nested_braces('{{a+2}*{b+c}+e}') == 2
+    assert max_nested_braces('{{a+2}*{b+{c*d}}+e}') == 3
+    assert max_nested_braces('{{a+2}*{{b+{c*d}}+e*d}}') == 4
+    assert max_nested_braces('a*b{') == -1
+    assert max_nested_braces('a*{b+c}}') == -1
+    assert max_nested_braces('}a+b{') == -1
+    assert max_nested_braces('a*{b+c*{e*3.14}}}') == -1
+    assert max_nested_braces('{{a+2}*{{b}+{c*d}}+e*d}}') == -1
+
+if __name__ == '__main__':
+    test_cases()
+    print('all tests passed')
+```
+
+`max_count = count = 0` is a terse way to initialize multiple variables to the same value. Okay to use for immutable types (will be discussed later) like `int`, `float` and `str`.
+
+If everything goes right, you should see the following output.
+
+```bash
+$ python3.9 nested_braces.py
+all tests passed
+```
+
+>As an exercise, randomly change the logic of `max_nested_braces` function and see if any of the tests fail.
+
+>![info](./images/info.svg) `assert` statements can be skipped by using `python3.9 -O`
+
+Writing tests helps you in many ways. It could help you guard against typos and accidental editing. Often, you'll need to tweak a program in future to correct some bugs or add a feature — tests would again help to give you confidence that you haven't messed up already working cases. Another use case is **refactoring**, where you rewrite a portion of the program (sometimes entire) without changing its functionality.
+
+Here's an alternate implementation of `max_nested_braces(expr)` function from the above program using regular expressions.
+
+```ruby
+# nested_braces_re.py
+# only the function is shown below
+import re
+
+def max_nested_braces(expr):
+    count = 0
+    while True:
+        expr, no_of_subs = re.subn(r'\{[^{}]*\}', '', expr)
+        if no_of_subs == 0:
+            break
+        count += 1
+
+    if re.search(r'[{}]', expr):
+        return -1
+    return count
+```
+
+## pytest
+
+For large projects, simple `assert` statements aren't enough to adequately write and manage tests. You'll require built-in module [unittest](https://docs.python.org/3/library/unittest.html) or popular third-party modules like [pytest](https://doc.pytest.org/en/latest/contents.html). See [python test automation frameworks](https://github.com/atinfo/awesome-test-automation/blob/master/python-test-automation.md) for more resources.
+
+This section will show a few introductory examples with `pytest`. If you visit a project on PyPI, the [pytest page](https://pypi.org/project/pytest/) for example, you can copy the installation command as shown in the image below. You can also check out the statistics link ([https://libraries.io/pypi/pytest](https://libraries.io/pypi/pytest) for example) as a minimal sanity check that you are installing the correct module.
+
+![PyPI copy command](./images/pypi_copy_cmd.png)
+
+```bash
+# virtual environment
+$ pip install pytest
+
+# normal environment
+$ python3.9 -m pip install --user pytest
+```
+
+After installation, you'll have `pytest` usable as a command line application by itself. The two programs discussed in the previous section can be run without any modification as shown below. This is because `pytest` will automatically use function names starting with `test` for its purpose. See [doc.pytest: Conventions for Python test discovery](https://doc.pytest.org/en/latest/goodpractices.html#test-discovery) for full details.
+
+```bash
+# -v is verbose option, use -q for quiet version
+$ pytest -v nested_braces.py
+=================== test session starts ====================
+platform linux -- Python 3.9.0, pytest-6.2.1, py-1.10.0,
+    pluggy-0.13.1 -- /usr/local/bin/python3.9
+cachedir: .pytest_cache
+rootdir: /home/learnbyexample/Python/programs
+collected 1 item                                           
+
+nested_braces.py::test_cases PASSED                  [100%]
+
+==================== 1 passed in 0.03s =====================
+```
+
+Here's an example where `pytest` is imported as well.
+
+```ruby
+# exception_testing.py
+import pytest
+
+def sum2nums(n1, n2):
+    types_allowed = (int, float)
+    assert type(n1) in types_allowed, 'only int/float allowed'
+    assert type(n2) in types_allowed, 'only int/float allowed'
+    return n1 + n2
+
+def test_valid_values():
+    assert sum2nums(3, -2) == 1
+    # see https://stackoverflow.com/q/5595425
+    from math import isclose
+    assert isclose(sum2nums(-3.14, 2), -1.14)
+
+def test_exception():
+    with pytest.raises(AssertionError) as e:
+        sum2nums('hi', 3)
+    assert 'only int/float allowed' in str(e.value)
+
+    with pytest.raises(AssertionError) as e:
+        sum2nums(3.14, 'a')
+    assert 'only int/float allowed' in str(e.value)
+```
+
+`pytest.raises()` allows you to check if exceptions are raised for the given test cases. You can optionally check the error message as well. The [`with` context manager](https://docs.python.org/3/reference/compound_stmts.html#with) will be discussed in a later chapter. Note that the above program doesn't actually call any executable code, since `pytest` will automatically run the test functions.
+
+```bash
+$ pytest -v exception_testing.py
+=================== test session starts ====================
+platform linux -- Python 3.9.0, pytest-6.2.1, py-1.10.0,
+    pluggy-0.13.1 -- /usr/local/bin/python3.9
+cachedir: .pytest_cache
+rootdir: /home/learnbyexample/Python/programs
+collected 2 items                                          
+
+exception_testing.py::test_valid_values PASSED       [ 50%]
+exception_testing.py::test_exception PASSED          [100%]
+
+==================== 2 passed in 0.02s =====================
+```
+
+The above illustrations are trivial examples. Here's some advanced learning resources:
+
+* [realpython: Getting started with testing in Python](https://realpython.com/python-testing/)
+* [calmcode: pytest](https://calmcode.io/pytest/introduction.html) — video
+* [obeythetestinggoat](https://www.obeythetestinggoat.com/) — TDD for the Web, with Python, Selenium, Django, JavaScript and pals
+* [testdriven: Modern Test-Driven Development in Python](https://testdriven.io/blog/modern-tdd/) — TDD guide and has a real world application example
+* [Serious Python](https://nostarch.com/seriouspython) — deployment, scalability, testing, and more
 
