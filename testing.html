@@ -1,0 +1,156 @@
+<!DOCTYPE HTML><html lang=en class="sidebar-visible no-js light"><head><meta charset=UTF-8><title>Testing - 100 Page Python Intro</title><meta content="text/html; charset=utf-8"http-equiv=Content-Type><meta name=description content="Short, introductory guide for the Python programming language"><meta name=viewport content="width=device-width, initial-scale=1"><meta name=theme-color content=#ffffff><link rel=icon href=favicon.svg><link rel="shortcut icon"href=favicon.png><link rel=stylesheet href=css/variables.css><link rel=stylesheet href=css/general.css><link rel=stylesheet href=css/chrome.css><link rel=stylesheet href=FontAwesome/css/font-awesome.css><link rel=stylesheet href=fonts/fonts.css><link rel=stylesheet href=highlight.css><link rel=stylesheet href=tomorrow-night.css><link rel=stylesheet href=ayu-highlight.css><link rel=stylesheet href=style.css><body><script>
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script><script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script><script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script><script>
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script><nav id=sidebar class=sidebar aria-label="Table of contents"><div class=sidebar-scrollbox><ol class=chapter><li class="chapter-item expanded affix"><a href=cover.html>Cover</a><li class="chapter-item expanded affix"><a href=buy.html>Buy PDF/EPUB versions</a><li class="chapter-item expanded"><a href=preface.html><strong aria-hidden=true>1.</strong> Preface</a><li class="chapter-item expanded"><a href=introduction.html><strong aria-hidden=true>2.</strong> Introduction</a><li class="chapter-item expanded"><a href=numeric-data-types.html><strong aria-hidden=true>3.</strong> Numeric data types</a><li class="chapter-item expanded"><a href=strings-and-user-input.html><strong aria-hidden=true>4.</strong> Strings and user input</a><li class="chapter-item expanded"><a href=defining-functions.html><strong aria-hidden=true>5.</strong> Defining functions</a><li class="chapter-item expanded"><a href=control-structures.html><strong aria-hidden=true>6.</strong> Control structures</a><li class="chapter-item expanded"><a href=importing-and-creating-modules.html><strong aria-hidden=true>7.</strong> Importing and creating modules</a><li class="chapter-item expanded"><a href=installing-modules-and-virtual-environments.html><strong aria-hidden=true>8.</strong> Installing modules and Virtual environments</a><li class="chapter-item expanded"><a href=exception-handling.html><strong aria-hidden=true>9.</strong> Exception handling</a><li class="chapter-item expanded"><a href=debugging.html><strong aria-hidden=true>10.</strong> Debugging</a><li class="chapter-item expanded"><a href=testing.html class=active><strong aria-hidden=true>11.</strong> Testing</a></ol></div><div id=sidebar-resize-handle class=sidebar-resize-handle></div></nav><div id=page-wrapper class=page-wrapper><div class=page><div id=menu-bar-hover-placeholder></div><div id=menu-bar class="menu-bar sticky bordered"><div class=left-buttons><button id=sidebar-toggle class=icon-button type=button title="Toggle Table of Contents"aria-label="Toggle Table of Contents"aria-controls=sidebar><i class="fa fa-bars"></i></button><button id=theme-toggle class=icon-button type=button title="Change theme"aria-label="Change theme"aria-haspopup=true aria-expanded=false aria-controls=theme-list><i class="fa fa-paint-brush"></i></button><ul id=theme-list class=theme-popup aria-label=Themes role=menu><li role=none><button role=menuitem class=theme id=light>Light (default)</button><li role=none><button role=menuitem class=theme id=rust>Rust</button><li role=none><button role=menuitem class=theme id=coal>Coal</button><li role=none><button role=menuitem class=theme id=navy>Navy</button><li role=none><button role=menuitem class=theme id=ayu>Ayu</button></ul><button id=search-toggle class=icon-button type=button title="Search. (Shortkey: s)"aria-label="Toggle Searchbar"aria-expanded=false aria-keyshortcuts=S aria-controls=searchbar><i class="fa fa-search"></i></button></div><h1 class=menu-title>100 Page Python Intro</h1><div class=right-buttons><a href=https://github.com/learnbyexample/100_page_python_intro title="Git repository"aria-label="Git repository"> <i id=git-repository-button class="fa fa-github"></i> </a></div></div><div id=search-wrapper class=hidden><form id=searchbar-outer class=searchbar-outer><input type=search name=search id=searchbar name=searchbar placeholder="Search this book ..."aria-controls=searchresults-outer aria-describedby=searchresults-header></form><div id=searchresults-outer class="searchresults-outer hidden"><div id=searchresults-header class=searchresults-header></div><ul id=searchresults></ul></div></div><script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script><div id=content class=content><main><div class=sidetoc><nav class=pagetoc></nav></div><h1><a class=header href=#testing id=testing>Testing</a></h1><blockquote><p>Testing can only prove the presence of bugs, not their absence. — Edsger W. Dijkstra</blockquote><blockquote><p>There, it should work now. — All programmers</blockquote><p>Above quotes chosen from <a href=https://softwareengineering.stackexchange.com/questions/39/whats-your-favourite-quote-about-programming>this collection at softwareengineering.stackexchange</a>.<h2><a class=header href=#general-tips id=general-tips>General tips</a></h2><p>Another crucial aspect in the programming journey is knowing how to write tests. In bigger projects, usually there are separate engineers (often in much larger number than developers) to test the code. Even in those cases, writing a few sanity test cases yourself can help you develop faster knowing that the changes aren't breaking basic functionality.<p>There's no single consensus on test methodologies. There is <a href=https://en.wikipedia.org/wiki/Unit_testing>Unit testing</a>, <a href=https://en.wikipedia.org/wiki/Integration_testing>Integration testing</a>, <a href=https://en.wikipedia.org/wiki/Test-driven_development>Test-driven development (TDD)</a> and so on. Often, a combination of these is used. These days, machine learning is also being considered to reduce the testing time, see <a href=https://hacks.mozilla.org/2020/07/testing-firefox-more-efficiently-with-machine-learning/>Testing Firefox more efficiently with machine learning</a> for an example.<p>When I start a project, I usually try to write the programs incrementally. Say I need to iterate over files from a directory. I will make sure that portion is working (usually with <code>print()</code> statements), then add another feature — say file reading and test that and so on. This reduces the burden of testing a large program at once at the end. And depending upon the nature of the program, I'll add a few sanity tests at the end. For example, for my <a href=https://github.com/learnbyexample/command_help>command_help</a> project, I copy pasted a few test runs of the program with different options and arguments into a separate file and wrote a program to perform these tests programmatically whenever the source code is modified.<h2><a class=header href=#assert id=assert>assert</a></h2><p>For simple cases, the <code>assert</code> statement is good enough. If the expression passed to <code>assert</code> evaluates to <code>False</code>, the <code>AssertionError</code> exception will be raised. You can optionally pass a message, separated by a comma after the expression to be tested. See <a href=https://docs.python.org/3/reference/simple_stmts.html#the-assert-statement>docs.python: assert</a> for documentation.<pre><code class=language-python># passing case
+>>> assert 2 < 3
+
+# failing case
+>>> num = -2
+>>> assert num >= 0, 'only positive integer allowed'
+Traceback (most recent call last):
+  File "&LTstdin>", line 1, in &LTmodule>
+AssertionError: only positive integer allowed
+</code></pre><p>Here's a sample program (solution for one of the exercises from <a href=./control-structures.html#control-structures>Control structures</a> chapter).<pre><code class=language-python># nested_braces.py
+def max_nested_braces(expr):
+    max_count = count = 0
+    for char in expr:
+        if char == '{':
+            count += 1
+            if count > max_count:
+                max_count = count
+        elif char == '}':
+            if count == 0:
+                return -1
+            count -= 1
+
+    if count != 0:
+        return -1
+    return max_count
+
+def test_cases():
+    assert max_nested_braces('a*b') == 0
+    assert max_nested_braces('a*b+{}') == 1
+    assert max_nested_braces('a*{b+c}') == 1
+    assert max_nested_braces('{a+2}*{b+c}') == 1
+    assert max_nested_braces('a*{b+c*{e*3.14}}') == 2
+    assert max_nested_braces('{{a+2}*{b+c}+e}') == 2
+    assert max_nested_braces('{{a+2}*{b+{c*d}}+e}') == 3
+    assert max_nested_braces('{{a+2}*{{b+{c*d}}+e*d}}') == 4
+    assert max_nested_braces('a*b{') == -1
+    assert max_nested_braces('a*{b+c}}') == -1
+    assert max_nested_braces('}a+b{') == -1
+    assert max_nested_braces('a*{b+c*{e*3.14}}}') == -1
+    assert max_nested_braces('{{a+2}*{{b}+{c*d}}+e*d}}') == -1
+
+if __name__ == '__main__':
+    test_cases()
+    print('all tests passed')
+</code></pre><p><code>max_count = count = 0</code> is a terse way to initialize multiple variables to the same value. Okay to use for immutable types (will be discussed later) like <code>int</code>, <code>float</code> and <code>str</code>.<p>If everything goes right, you should see the following output.<pre><code class=language-bash>$ python3.9 nested_braces.py
+all tests passed
+</code></pre><blockquote><p>As an exercise, randomly change the logic of <code>max_nested_braces</code> function and see if any of the tests fail.</blockquote><blockquote><p><img src=./images/info.svg alt=info> <code>assert</code> statements can be skipped by using <code>python3.9 -O</code></blockquote><p>Writing tests helps you in many ways. It could help you guard against typos and accidental editing. Often, you'll need to tweak a program in future to correct some bugs or add a feature — tests would again help to give you confidence that you haven't messed up already working cases. Another use case is <strong>refactoring</strong>, where you rewrite a portion of the program (sometimes entire) without changing its functionality.<p>Here's an alternate implementation of <code>max_nested_braces(expr)</code> function from the above program using regular expressions.<pre><code class=language-python># nested_braces_re.py
+# only the function is shown below
+import re
+
+def max_nested_braces(expr):
+    count = 0
+    while True:
+        expr, no_of_subs = re.subn(r'\{[^{}]*\}', '', expr)
+        if no_of_subs == 0:
+            break
+        count += 1
+
+    if re.search(r'[{}]', expr):
+        return -1
+    return count
+</code></pre><h2><a class=header href=#pytest id=pytest>pytest</a></h2><p>For large projects, simple <code>assert</code> statements aren't enough to adequately write and manage tests. You'll require built-in module <a href=https://docs.python.org/3/library/unittest.html>unittest</a> or popular third-party modules like <a href=https://doc.pytest.org/en/latest/contents.html>pytest</a>. See <a href=https://github.com/atinfo/awesome-test-automation/blob/master/python-test-automation.md>python test automation frameworks</a> for more resources.<p>This section will show a few introductory examples with <code>pytest</code>. If you visit a project on PyPI, the <a href=https://pypi.org/project/pytest/>pytest page</a> for example, you can copy the installation command as shown in the image below. You can also check out the statistics link (<a href=https://libraries.io/pypi/pytest>https://libraries.io/pypi/pytest</a> for example) as a minimal sanity check that you are installing the correct module.<p><img src=./images/pypi_copy_cmd.png alt="PyPI copy command"><pre><code class=language-bash># virtual environment
+$ pip install pytest
+
+# normal environment
+$ python3.9 -m pip install --user pytest
+</code></pre><p>After installation, you'll have <code>pytest</code> usable as a command line application by itself. The two programs discussed in the previous section can be run without any modification as shown below. This is because <code>pytest</code> will automatically use function names starting with <code>test</code> for its purpose. See <a href=https://doc.pytest.org/en/latest/goodpractices.html#test-discovery>doc.pytest: Conventions for Python test discovery</a> for full details.<pre><code class=language-bash># -v is verbose option, use -q for quiet version
+$ pytest -v nested_braces.py
+=================== test session starts ====================
+platform linux -- Python 3.9.0, pytest-6.2.1, py-1.10.0,
+    pluggy-0.13.1 -- /usr/local/bin/python3.9
+cachedir: .pytest_cache
+rootdir: /home/learnbyexample/Python/programs
+collected 1 item                                           
+
+nested_braces.py::test_cases PASSED                  [100%]
+
+==================== 1 passed in 0.03s =====================
+</code></pre><p>Here's an example where <code>pytest</code> is imported as well.<pre><code class=language-python># exception_testing.py
+import pytest
+
+def sum2nums(n1, n2):
+    types_allowed = (int, float)
+    assert type(n1) in types_allowed, 'only int/float allowed'
+    assert type(n2) in types_allowed, 'only int/float allowed'
+    return n1 + n2
+
+def test_valid_values():
+    assert sum2nums(3, -2) == 1
+    # see https://stackoverflow.com/q/5595425
+    from math import isclose
+    assert isclose(sum2nums(-3.14, 2), -1.14)
+
+def test_exception():
+    with pytest.raises(AssertionError) as e:
+        sum2nums('hi', 3)
+    assert 'only int/float allowed' in str(e.value)
+
+    with pytest.raises(AssertionError) as e:
+        sum2nums(3.14, 'a')
+    assert 'only int/float allowed' in str(e.value)
+</code></pre><p><code>pytest.raises()</code> allows you to check if exceptions are raised for the given test cases. You can optionally check the error message as well. The <a href=https://docs.python.org/3/reference/compound_stmts.html#with><code>with</code> context manager</a> will be discussed in a later chapter. Note that the above program doesn't actually call any executable code, since <code>pytest</code> will automatically run the test functions.<pre><code class=language-bash>$ pytest -v exception_testing.py
+=================== test session starts ====================
+platform linux -- Python 3.9.0, pytest-6.2.1, py-1.10.0,
+    pluggy-0.13.1 -- /usr/local/bin/python3.9
+cachedir: .pytest_cache
+rootdir: /home/learnbyexample/Python/programs
+collected 2 items                                          
+
+exception_testing.py::test_valid_values PASSED       [ 50%]
+exception_testing.py::test_exception PASSED          [100%]
+
+==================== 2 passed in 0.02s =====================
+</code></pre><p>The above illustrations are trivial examples. Here's some advanced learning resources:<ul><li><a href=https://realpython.com/python-testing/>realpython: Getting started with testing in Python</a><li><a href=https://calmcode.io/pytest/introduction.html>calmcode: pytest</a> — video<li><a href=https://www.obeythetestinggoat.com/>obeythetestinggoat</a> — TDD for the Web, with Python, Selenium, Django, JavaScript and pals<li><a href=https://testdriven.io/blog/modern-tdd/>testdriven: Modern Test-Driven Development in Python</a> — TDD guide and has a real world application example<li><a href=https://nostarch.com/seriouspython>Serious Python</a> — deployment, scalability, testing, and more</ul></main><nav class=nav-wrapper aria-label="Page navigation"><a rel=prev href=debugging.html class="mobile-nav-chapters previous"title="Previous chapter"aria-label="Previous chapter"aria-keyshortcuts=Left> <i class="fa fa-angle-left"></i> </a><div style="clear: both"></div></nav></div></div><nav class=nav-wide-wrapper aria-label="Page navigation"><a rel=prev href=debugging.html class="nav-chapters previous"title="Previous chapter"aria-label="Previous chapter"aria-keyshortcuts=Left> <i class="fa fa-angle-left"></i> </a></nav></div><script>
+            window.playground_copyable = true;
+        </script><script src=elasticlunr.min.js charset=utf-8></script><script src=mark.min.js charset=utf-8></script><script src=searcher.js charset=utf-8></script><script src=clipboard.min.js charset=utf-8></script><script src=highlight.js charset=utf-8></script><script src=book.js charset=utf-8></script><script src=sidebar.js></script>

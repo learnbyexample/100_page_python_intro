@@ -1,0 +1,175 @@
+<!DOCTYPE HTML><html lang=en class="sidebar-visible no-js light"><head><meta charset=UTF-8><title>Exception handling - 100 Page Python Intro</title><meta content="text/html; charset=utf-8"http-equiv=Content-Type><meta name=description content="Short, introductory guide for the Python programming language"><meta name=viewport content="width=device-width, initial-scale=1"><meta name=theme-color content=#ffffff><link rel=icon href=favicon.svg><link rel="shortcut icon"href=favicon.png><link rel=stylesheet href=css/variables.css><link rel=stylesheet href=css/general.css><link rel=stylesheet href=css/chrome.css><link rel=stylesheet href=FontAwesome/css/font-awesome.css><link rel=stylesheet href=fonts/fonts.css><link rel=stylesheet href=highlight.css><link rel=stylesheet href=tomorrow-night.css><link rel=stylesheet href=ayu-highlight.css><link rel=stylesheet href=style.css><body><script>
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script><script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script><script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script><script>
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script><nav id=sidebar class=sidebar aria-label="Table of contents"><div class=sidebar-scrollbox><ol class=chapter><li class="chapter-item expanded affix"><a href=cover.html>Cover</a><li class="chapter-item expanded affix"><a href=buy.html>Buy PDF/EPUB versions</a><li class="chapter-item expanded"><a href=preface.html><strong aria-hidden=true>1.</strong> Preface</a><li class="chapter-item expanded"><a href=introduction.html><strong aria-hidden=true>2.</strong> Introduction</a><li class="chapter-item expanded"><a href=numeric-data-types.html><strong aria-hidden=true>3.</strong> Numeric data types</a><li class="chapter-item expanded"><a href=strings-and-user-input.html><strong aria-hidden=true>4.</strong> Strings and user input</a><li class="chapter-item expanded"><a href=defining-functions.html><strong aria-hidden=true>5.</strong> Defining functions</a><li class="chapter-item expanded"><a href=control-structures.html><strong aria-hidden=true>6.</strong> Control structures</a><li class="chapter-item expanded"><a href=importing-and-creating-modules.html><strong aria-hidden=true>7.</strong> Importing and creating modules</a><li class="chapter-item expanded"><a href=installing-modules-and-virtual-environments.html><strong aria-hidden=true>8.</strong> Installing modules and Virtual environments</a><li class="chapter-item expanded"><a href=exception-handling.html class=active><strong aria-hidden=true>9.</strong> Exception handling</a><li class="chapter-item expanded"><a href=debugging.html><strong aria-hidden=true>10.</strong> Debugging</a><li class="chapter-item expanded"><a href=testing.html><strong aria-hidden=true>11.</strong> Testing</a></ol></div><div id=sidebar-resize-handle class=sidebar-resize-handle></div></nav><div id=page-wrapper class=page-wrapper><div class=page><div id=menu-bar-hover-placeholder></div><div id=menu-bar class="menu-bar sticky bordered"><div class=left-buttons><button id=sidebar-toggle class=icon-button type=button title="Toggle Table of Contents"aria-label="Toggle Table of Contents"aria-controls=sidebar><i class="fa fa-bars"></i></button><button id=theme-toggle class=icon-button type=button title="Change theme"aria-label="Change theme"aria-haspopup=true aria-expanded=false aria-controls=theme-list><i class="fa fa-paint-brush"></i></button><ul id=theme-list class=theme-popup aria-label=Themes role=menu><li role=none><button role=menuitem class=theme id=light>Light (default)</button><li role=none><button role=menuitem class=theme id=rust>Rust</button><li role=none><button role=menuitem class=theme id=coal>Coal</button><li role=none><button role=menuitem class=theme id=navy>Navy</button><li role=none><button role=menuitem class=theme id=ayu>Ayu</button></ul><button id=search-toggle class=icon-button type=button title="Search. (Shortkey: s)"aria-label="Toggle Searchbar"aria-expanded=false aria-keyshortcuts=S aria-controls=searchbar><i class="fa fa-search"></i></button></div><h1 class=menu-title>100 Page Python Intro</h1><div class=right-buttons><a href=https://github.com/learnbyexample/100_page_python_intro title="Git repository"aria-label="Git repository"> <i id=git-repository-button class="fa fa-github"></i> </a></div></div><div id=search-wrapper class=hidden><form id=searchbar-outer class=searchbar-outer><input type=search name=search id=searchbar name=searchbar placeholder="Search this book ..."aria-controls=searchresults-outer aria-describedby=searchresults-header></form><div id=searchresults-outer class="searchresults-outer hidden"><div id=searchresults-header class=searchresults-header></div><ul id=searchresults></ul></div></div><script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script><div id=content class=content><main><div class=sidetoc><nav class=pagetoc></nav></div><h1><a class=header href=#exception-handling id=exception-handling>Exception handling</a></h1><p>This chapter will discuss different types of errors and how to handle some of the them within the program gracefully. You'll also see how to raise exceptions on your own.<h2><a class=header href=#syntax-errors id=syntax-errors>Syntax errors</a></h2><p>Quoting from <a href=https://docs.python.org/3/tutorial/errors.html>docs.python: Errors and Exceptions</a>:<blockquote><p>There are (at least) two distinguishable kinds of errors: <em>syntax errors</em> and <em>exceptions</em></blockquote><p>Here's an example program with syntax errors:<pre><code class=language-python># syntax_error.py
+print('hello')
+
+def main():
+    num = 5
+    total = num + 09 
+    print(total)
+
+main)
+</code></pre><p>The above code is using an unsupported syntax for a numerical value. Note that the syntax check happens before any code is executed, which is why you don't see the output for the <code>print('hello')</code> statement. Can you spot the rest of the syntax issues in the above program?<pre><code class=language-bash>$ python3.9 syntax_error.py
+  File "/home/learnbyexample/Python/programs/syntax_error.py", line 5
+    total = num + 09 
+                   ^
+SyntaxError: leading zeros in decimal integer literals are not permitted;
+             use an 0o prefix for octal integers
+</code></pre><h2><a class=header href=#try-except id=try-except>try-except</a></h2><p>Exceptions happen when something goes wrong during the code execution. For example, passing a wrong data type to a function, dividing a number by <code>0</code> and so on. Such errors are typically difficult or impossible to determine just by looking at the code.<pre><code class=language-python>>>> int('42')
+42
+>>> int('42x')
+Traceback (most recent call last):
+  File "&LTstdin>", line 1, in &LTmodule>
+ValueError: invalid literal for int() with base 10: '42x'
+
+>>> 3.14 / 0
+Traceback (most recent call last):
+  File "&LTstdin>", line 1, in &LTmodule>
+ZeroDivisionError: float division by zero
+</code></pre><p>When an exception occurs, the program stops executing and displays the line that caused the error. You also get an error type, such as <code>ValueError</code> and <code>ZeroDivisionError</code> seen in the above example, followed by a message. This may differ for user defined error types.<p>You could implement alternatives to be followed for certain types of errors instead of premature end to the program execution. For example, you could allow the user to correct their input data. In some cases, you want the program to end, but display a user friendly message instead of developer friendly traceback.<p>Put the code likely to generate an exception inside <code>try</code> block and provide alternate path(s) inside one or more <code>except</code> blocks. Here's an example to get a positive integer number from the user, and continue doing so if the input was invalid.<pre><code class=language-python># try_except.py
+from math import factorial
+
+while True:
+    try:
+        num = int(input('Enter a positive integer: '))
+        print(f'{num}! = {factorial(num)}')
+        break
+    except ValueError:
+        print('Not a positive integer, try again')
+</code></pre><p>It so happens that both <code>int()</code> and <code>factorial()</code> generate <code>ValueError</code> in the above example. If you wish to take the same alternate path for multiple errors, you can pass a <code>tuple</code> to <code>except</code> instead of a single error type. Here's a sample run:<pre><code class=language-bash>$ python3.9 try_except.py
+Enter a positive integer: 3.14
+Not a positive integer, try again
+Enter a positive integer: hi
+Not a positive integer, try again
+Enter a positive integer: -2
+Not a positive integer, try again
+Enter a positive integer: 5
+5! = 120
+</code></pre><p>You can also capture the error message using the <code>as</code> keyword (which you have seen previously with <code>import</code> statement, and will come up again in later chapters). Here's an example:<pre><code class=language-python>>>> try:
+...     num = 5 / 0
+... except ZeroDivisionError as e:
+...     print(f'oops something went wrong! the error msg is:\n"{e}"')
+... 
+oops something went wrong! the error msg is:
+"division by zero"
+</code></pre><blockquote><p><img src=./images/info.svg alt=info> See <a href=https://docs.python.org/3/library/exceptions.html#bltin-exceptions>docs.python: built-in exceptions</a> for documentation on built-in exceptions.</blockquote><blockquote><p><img src=./images/warning.svg alt=warning> Passing an error type to <code>except</code> is optional, it is not recommended however. See <a href=https://stackoverflow.com/questions/14797375/should-i-always-specify-an-exception-type-in-except-statements>stackoverflow: avoid bare exceptions</a> for details.</blockquote><blockquote><p><img src=./images/info.svg alt=info> There are static code analysis tools like <a href=https://pypi.org/project/pylint/>pylint</a>, "which looks for programming errors, helps enforcing a coding standard, sniffs for code smells and offers simple refactoring suggestions". See <a href=https://github.com/vinta/awesome-python#code-analysis>awesome-python: code-analysis</a> for more such tools.</blockquote><h2><a class=header href=#else id=else>else</a></h2><p>The <code>else</code> clause behaves similarly to the <code>else</code> clause seen with loops. If there's no exception raised in the <code>try</code> block, then the code in the <code>else</code> block will be executed. This block should be defined after the <code>except</code> block(s). As per the <a href=https://docs.python.org/3/tutorial/errors.html#handling-exceptions>documentation</a>:<blockquote><p>The use of the <code>else</code> clause is better than adding additional code to the <code>try</code> clause because it avoids accidentally catching an exception that wasn’t raised by the code being protected by the <code>try ... except</code> statement.</blockquote><pre><code class=language-python># try_except_else.py
+while True:
+    try:
+        num = int(input('Enter an integer number: '))
+    except ValueError:
+        print('Not an integer, try again')
+    else:
+        print(f'Square of {num} is {num ** 2}')
+        break
+</code></pre><p>Here's a sample run:<pre><code class=language-bash>$ python3.9 try_except_else.py
+Enter an integer number: hi
+Not an integer, try again
+Enter an integer number: 3.14
+Not an integer, try again
+Enter an integer number: 42x
+Not an integer, try again
+Enter an integer number: -2
+Square of -2 is 4
+</code></pre><h2><a class=header href=#raise id=raise>raise</a></h2><p>You can also manually <code>raise</code> exceptions if needed. It accepts an optional error type, which can be either a built-in or a user defined one (see <a href=https://docs.python.org/3/tutorial/errors.html#user-defined-exceptions>docs.python: User-defined Exceptions</a>). And you can optionally specify an error message. Here's an example:<pre><code class=language-python>>>> def sum2nums(n1, n2):
+...     types_allowed = (int, float)
+...     if type(n1) not in types_allowed or type(n2) not in types_allowed:
+...         raise TypeError('Argument should be an integer or a float value')
+...     return n1 + n2
+... 
+>>> sum2nums(3.14, -2)
+1.1400000000000001
+>>> sum2nums(3.14, 'a')
+Traceback (most recent call last):
+  File "&LTstdin>", line 1, in &LTmodule>
+  File "&LTstdin>", line 4, in sum2nums
+TypeError: Argument should be an integer or a float value
+</code></pre><h2><a class=header href=#finally id=finally>finally</a></h2><p>You can add code in <code>finally</code> block that should always be the last thing done by the <code>try</code> statement, irrespective of whether an exception has occurred. This should be declared after <code>except</code> and the optional <code>else</code> blocks.<pre><code class=language-python># try_except_finally.py
+try:
+    num = int(input('Enter a positive integer: '))
+    if num < 0:
+        raise ValueError
+except ValueError:
+    print('Not a positive integer, run the program again')
+else:
+    print(f'Square root of {num} is {num ** 0.5:.3f}')
+finally:
+    print('\nThanks for using the program, have a nice day')
+</code></pre><p>Here's some sample runs when the user enters some value:<pre><code class=language-bash>$ python3.9 try_except_finally.py
+Enter a positive integer: -2
+Not a positive integer, run the program again
+
+Thanks for using the program, have a nice day
+$ python3.9 try_except_finally.py
+Enter a positive integer: 2
+Square root of 2 is 1.414
+Thanks for using the program, have a nice day
+</code></pre><p>Here's an example where something goes wrong, but not handled by the <code>try</code> statement. Note that <code>finally</code> block is still executed.<pre><code class=language-bash># here, user presses Ctrl+D instead of entering a value
+# you'll get KeyboardInterrupt if the user presses Ctrl+C
+$ python3.9 try_except_finally.py
+Enter a positive integer: 
+Thanks for using the program, have a nice day
+Traceback (most recent call last):
+  File "/home/learnbyexample/Python/programs/try_except_finally.py",
+       line 2, in &LTmodule>
+    num = int(input('Enter a positive integer: '))
+EOFError
+</code></pre><p>See <a href=https://docs.python.org/3/tutorial/errors.html#defining-clean-up-actions>docs.python: Defining Clean-up Actions</a> for details like what happens if an exception occurs within an <code>else</code> clause, presence of <code>break/continue/return</code> etc. The documentation also gives examples of where <code>finally</code> is typically used.<h2><a class=header href=#exercises id=exercises>Exercises</a></h2><ul><li><p>Identify the syntax errors in the following code snippets. Try to spot them manually.</p> <pre><code class=language-ruby># snippet 1:
+def greeting()
+    print('hello')
+# snippet 2:
+num = 5
+if num = 4:
+    print('what is going on?!')
+# snippet 3:
+greeting = “hi”
+</code></pre><li><p>In case you didn't complete the exercises from <a href=./importing-and-creating-modules.html#importing-your-own-module>Importing your own module</a> section, you should be able to do it now.<li><p>Write a function <code>num(ip)</code> that accepts a single argument and returns the corresponding integer or floating-point number contained in the argument. Only <code>int</code>, <code>float</code> and <code>str</code> should be accepted as valid input data type. Provide custom error message if the input cannot be converted to a valid number. Examples are shown below.</p> <pre><code class=language-ruby>>>> num(0x1f)
+31
+>>> num(3.32)
+3.32
+>>> num('3.982e5')
+398200.0
+>>> num(['1', '2.3'])
+TypeError: not a valid input
+>>> num('foo')
+ValueError: could not convert string to int or float
+</code></pre></ul></main><nav class=nav-wrapper aria-label="Page navigation"><a rel=prev href=installing-modules-and-virtual-environments.html class="mobile-nav-chapters previous"title="Previous chapter"aria-label="Previous chapter"aria-keyshortcuts=Left> <i class="fa fa-angle-left"></i> </a><a rel=next href=debugging.html class="mobile-nav-chapters next"title="Next chapter"aria-label="Next chapter"aria-keyshortcuts=Right> <i class="fa fa-angle-right"></i> </a><div style="clear: both"></div></nav></div></div><nav class=nav-wide-wrapper aria-label="Page navigation"><a rel=prev href=installing-modules-and-virtual-environments.html class="nav-chapters previous"title="Previous chapter"aria-label="Previous chapter"aria-keyshortcuts=Left> <i class="fa fa-angle-left"></i> </a><a rel=next href=debugging.html class="nav-chapters next"title="Next chapter"aria-label="Next chapter"aria-keyshortcuts=Right> <i class="fa fa-angle-right"></i> </a></nav></div><script>
+            window.playground_copyable = true;
+        </script><script src=elasticlunr.min.js charset=utf-8></script><script src=mark.min.js charset=utf-8></script><script src=searcher.js charset=utf-8></script><script src=clipboard.min.js charset=utf-8></script><script src=highlight.js charset=utf-8></script><script src=book.js charset=utf-8></script><script src=sidebar.js></script>
