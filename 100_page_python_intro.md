@@ -774,7 +774,7 @@ As an exercise, modify the above program as suggested below and observe the resu
 
 ## Default valued arguments
 
-A default value can be specified during the function definition. Such arguments can be skipped during the function call, in which case they'll use the default value. Here's an example:
+A default value can be specified during the function definition. Such arguments can be skipped during the function call, in which case they'll use the default value. They are also known as **keyword arguments**. Here's an example:
 
 ```ruby
 # default_args.py
@@ -1936,11 +1936,11 @@ Continuation of the above debugging session is shown below, this time with `s` c
 > /home/learnbyexample/Python/programs/num_funcs.py(4)fact()
 -> def fact(n):
 (Pdb) ll
-  4  ->	def fact(n):
-  5  	    total = 1
-  6  	    for i in range(2, n+1):
-  7  	        total *= i
-  8  	    return total
+  4  -> def fact(n):
+  5         total = 1
+  6         for i in range(2, n+1):
+  7             total *= i
+  8         return total
 (Pdb) n
 > /home/learnbyexample/Python/programs/num_funcs.py(5)fact()
 -> total = 1
@@ -2182,8 +2182,912 @@ exception_testing.py::test_exception PASSED          [100%]
 The above illustrations are trivial examples. Here's some advanced learning resources:
 
 * [realpython: Getting started with testing in Python](https://realpython.com/python-testing/)
-* [calmcode: pytest](https://calmcode.io/pytest/introduction.html) — video
+* `pytest` — [calmcode video series](https://calmcode.io/pytest/introduction.html) and [Testing Python Applications](https://stribny.name/blog/pytest/)
 * [obeythetestinggoat](https://www.obeythetestinggoat.com/) — TDD for the Web, with Python, Selenium, Django, JavaScript and pals
 * [testdriven: Modern Test-Driven Development in Python](https://testdriven.io/blog/modern-tdd/) — TDD guide and has a real world application example
 * [Serious Python](https://nostarch.com/seriouspython) — deployment, scalability, testing, and more
+
+# Tuple and Sequence operations
+
+This chapter will discuss the `tuple` data type and some of the common sequence operations. Data types like `str`, `range`, `list` and `tuple` fall under **Sequence** types. [Binary Sequence Types](https://docs.python.org/3/library/stdtypes.html#binaryseq) aren't discussed in this book. Some of the operations behave differently or do not apply for certain types, see [docs.python: Common Sequence Operations](https://docs.python.org/3/library/stdtypes.html#common-sequence-operations) for details.
+
+>![info](./images/info.svg) See also [docs.python: collections](https://docs.python.org/3/library/collections.html) for specialized container data types.
+
+## Sequences and iterables
+
+Quoting from [docs.python glossary: **sequence**](https://docs.python.org/3/glossary.html#term-sequence):
+
+>An iterable which supports efficient element access using integer indices via the `__getitem__()` special method and defines a `__len__()` method that returns the length of the sequence. Some built-in sequence types are list, str, tuple, and bytes. Note that dict also supports `__getitem__()` and `__len__()`, but is considered a mapping rather than a sequence because the lookups use arbitrary immutable keys rather than integers.
+
+Quoting from [docs.python glossary: **iterable**](https://docs.python.org/3/glossary.html#term-iterable):
+
+>An object capable of returning its members one at a time. Examples of iterables include all sequence types (such as list, str, and tuple) and some non-sequence types like dict, file objects...
+
+## Initialization
+
+Tuples are declared as a collection of zero or more objects, separated by a comma within `()` parentheses characters. Each element can be specified as a value by itself or as an expression. The outer parentheses are optional if comma separation is present. Here's some examples:
+
+```ruby
+# can also use: empty_tuple = tuple()
+>>> empty_tuple = ()
+>>> type(empty_tuple)
+<class 'tuple'>
+
+# note the trailing comma, otherwise it will result in a 'str' data type
+# same as 'apple', since parentheses are optional here
+>>> one_element = ('apple',)
+
+# multiple elements example
+>>> dishes = ('Aloo tikki', 'Baati', 'Khichdi', 'Makki roti', 'Poha')
+
+# mixed data type example, uses expressions as well
+>>> mixed = (1+2, 'two', (-3, -4), empty_tuple)
+>>> mixed
+(3, 'two', (-3, -4), ())
+```
+
+You can use the `tuple()` built-in function to convert from an iterable data type to `tuple`. Here's some examples:
+
+```ruby
+>>> chars = tuple('hello')
+>>> chars
+('h', 'e', 'l', 'l', 'o')
+
+>>> tuple(range(3, 10, 3))
+(3, 6, 9)
+```
+
+>![info](./images/info.svg) Tuples are immutable, but individual elements can be either mutable or immutable. As an exercise, given `chars = tuple('hello')`, see what's the output of the expression `chars[0]` and the statement `chars[0] = 'H'`.
+
+## Slicing
+
+One or more elements can be retrieved from a sequence using the slicing notation (this wouldn't work for an iterable like `dict` or `set`). It works similarly to the `start/stop/step` logic seen with the `range()` function. The default `step` is `1`. Default value for `start` and `stop` depends on whether the `step` is positive or negative.
+
+```ruby
+>>> primes = (2, 3, 5, 7, 11)
+
+# index starts with 0
+>>> primes[0]
+2
+
+# start=2 and stop=4, default step=1
+# note that the element at index 4 (stop value) isn't part of the output
+>>> primes[2:4]
+(5, 7)
+# default start=0
+>>> primes[:3]
+(2, 3, 5)
+# default stop=len(seq)
+>>> primes[3:]
+(7, 11)
+
+# copy of the sequence, same as primes[::1]
+>>> primes[:]
+(2, 3, 5, 7, 11)
+```
+
+You can use negative index to get elements from the end of the sequence. `seq[-n]` is equivalent to `seq[len(seq) - n]`.
+
+```ruby
+>>> primes = (2, 3, 5, 7, 11)
+
+# len(primes) - 1 = 4, so this is same as primes[4]
+>>> primes[-1]
+11
+
+# seq[-n:] will give the last n elements
+>>> primes[-1:]
+(11,)
+>>> primes[-2:]
+(7, 11)
+```
+
+Here's some examples with different `step` values.
+
+```ruby
+>>> primes = (2, 3, 5, 7, 11)
+
+# same as primes[0:5:2]
+>>> primes[::2]
+(2, 5, 11)
+
+# retrieve elements in reverse direction
+# note that the element at index 1 (stop value) isn't part of the output
+>>> primes[3:1:-1]
+(7, 5)
+# reversed sequence
+# would help you with the palindrome exercise from Control structures chapter
+>>> primes[::-1]
+(11, 7, 5, 3, 2)
+```
+
+As an exercise, given `primes = (2, 3, 5, 7, 11)`,
+
+* what happens if you use `primes[5]` or `primes[-6]`?
+* what happens if you use `primes[:5]` or `primes[-6:]`?
+* is it possible to get the same output as `primes[::-1]` by using an explicit number for `stop` value? If not, why not?
+
+## Sequence unpacking
+
+You can map the individual elements of an iterable to multiple variables. This is known as **sequence unpacking** and it is handy in many situations.
+
+```ruby
+>>> details = ('2018-10-25', 'car', 2346)
+>>> purchase_date, vehicle, qty = details
+>>> purchase_date
+'2018-10-25'
+>>> vehicle
+'car'
+>>> qty
+2346
+```
+
+Here's how you can easily swap variable values.
+
+```ruby
+>>> num1 = 3.14
+>>> num2 = 42
+>>> num3 = -100
+
+# RHS is a single tuple data type (recall that parentheses are optional)
+>>> num1, num2, num3 = num3, num1, num2
+>>> print(f'{num1 = }; {num2 = }; {num3 = }')
+num1 = -100; num2 = 3.14; num3 = 42
+```
+
+Unpacking isn't limited to single value assignments. You can use a `*` prefix to assign all the remaining values, if any is left, to a `list` variable.
+
+```ruby
+>>> values = ('first', 6.2, -3, 500, 'last')
+
+>>> x, *y = values
+>>> x
+'first'
+>>> y
+[6.2, -3, 500, 'last']
+
+>>> a, *b, c = values
+>>> a
+'first'
+>>> b
+[6.2, -3, 500]
+>>> c
+'last'
+```
+
+As an exercise, what do you think will happen for these cases, given `nums = (1, 2)`:
+
+* `a, b, c = nums`
+* `a, *b, c = nums`
+* `*a, *b = nums`
+
+## Returning multiple values
+
+Tuples are also the preferred way to return multiple values from a function. Here's some examples:
+
+```ruby
+>>> def min_max(iter):
+...     return min(iter), max(iter)
+... 
+>>> min_max('visualization')
+('a', 'z')
+>>> small, big = min_max((-3, 10, -42, 53.2))
+>>> small
+-42
+>>> big
+53.2
+```
+
+The `min_max(iter)` user-defined function above returns both the **minimum** and **maximum** values of a given iterable input. `min()` and `max()` are built-in functions. You can either save the output as a `tuple` or unpack into multiple variables. You'll see built-in functions that return `tuple` as output later in this chapter.
+
+>![warning](./images/warning.svg) The use of both [min()](https://docs.python.org/3/library/functions.html#min) and [max()](https://docs.python.org/3/library/functions.html#max) in the above example is for illustration purpose only. As an exercise, write a custom logic that iterates only once over the input sequence and calculates both minimum/maximum simultaneously.
+
+## Iteration
+
+You have already seen examples with `for` loop that iterates over a sequence data type. Here's a refresher:
+
+```ruby
+>>> nums = (3, 6, 9)
+>>> for n in nums:
+...     print(f'square of {n} is {n ** 2}')
+... 
+square of 3 is 9
+square of 6 is 36
+square of 9 is 81
+```
+
+In the above example, you get one element per each iteration. If you need the **index** of the elements as well, you can use the `enumerate()` built-in function. You'll get a `tuple` value per each iteration, containing index (starting with `0` by default) and the value at that index. Here's some examples:
+
+```ruby
+>>> nums = (42, 3.14, -2)
+
+>>> for t in enumerate(nums):
+...     print(t)
+... 
+(0, 42)
+(1, 3.14)
+(2, -2)
+
+>>> for idx, val in enumerate(nums):
+...     print(f'{idx}: {val:>5}')
+... 
+0:    42
+1:  3.14
+2:    -2
+```
+
+>![info](./images/info.svg) The `enumerate()` built-in function has a `start=0` default valued argument. As an exercise, change the above snippet to start the index from `1` instead of `0`.
+
+## Arbitrary number of arguments
+
+As seen before, the `print()` function can accept zero or more values separated by a comma. Here's a portion of the documentation as a refresher:
+
+```bash
+print(value, ..., sep=' ', end='\n', file=sys.stdout, flush=False)
+```
+
+You can write your own functions to accept arbitrary number of arguments as well. The syntax is similar to the sequence unpacking examples seen earlier in the chapter. A `*` prefix to an argument name will allow it to accept zero or more values. Such an argument will be packed as a `tuple` data type and it should always be specified after positional arguments (if any). Idiomatically, `args` is used as the `tuple` variable name. Here's an example:
+
+```ruby
+>>> def many(a, *args):
+...     print(f'{a = }; {args = }')
+... 
+>>> many()
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+TypeError: many() missing 1 required positional argument: 'a'
+>>> many(1)
+a = 1; args = ()
+>>> many(1, 'two', 3)
+a = 1; args = ('two', 3)
+```
+
+Here's a more practical example:
+
+```ruby
+>>> def sum_nums(*args):
+...     total = 0
+...     for n in args:
+...         total += n
+...     return total
+... 
+>>> sum_nums()
+0
+>>> sum_nums(3, -8)
+-5
+>>> sum_nums(1, 2, 3, 4, 5)
+15
+```
+
+As an exercise,
+
+* add a default valued argument `initial` which should be used to initialize `total` instead of `0` in the above `sum_nums()` function. For example, `sum_nums(3, -8)` should give `-5` and `sum_nums(1, 2, 3, 4, 5, initial=5)` should give `20`.
+* what would happen if you call the above function like `sum_nums(initial=5, 2)`?
+* what would happen if you have `nums = (1, 2)` and call the above function like `sum_nums(*nums, total=3)`?
+* in what ways does this function differ from the `sum()` built-in function?
+
+>![info](./images/info.svg) See also [docs.python: Arbitrary Argument Lists](https://docs.python.org/3/tutorial/controlflow.html#arbitrary-argument-lists).
+
+>![info](./images/info.svg) Section [Arbitrary keyword arguments](#arbitrary-keyword-arguments) will discuss how to define functions that accept arbitrary number of keyword arguments.
+
+## zip
+
+Use [zip()](https://docs.python.org/3/library/functions.html#zip) to iterate over two or more iterables simultaneously. Every iteration, you'll get a `tuple` with an item from each of the iterables. Iteration will stop when any of the input iterables is exhausted, use [itertools.zip_longest()](https://docs.python.org/3/library/itertools.html#itertools.zip_longest) if you want to go on until the longest iterable is exhausted.
+
+Here's an example:
+
+```ruby
+>>> odd = (1, 3, 5)
+>>> even = (2, 4, 6)
+>>> for i, j in zip(odd, even):
+...     print(i + j)
+... 
+3
+7
+11
+```
+
+As an exercise, write a function that returns the sum of product of corresponding elements of two sequences (for example, the result should be `44` for `(1, 3, 5)` and `(2, 4, 6)`).
+
+## Tuple methods
+
+While this book won't discuss [Object-Oriented Programming (OOP)](https://en.wikipedia.org/wiki/Object-oriented_programming) in any detail, you'll still see plenty examples for *using* them. You've already seen a few examples with modules. See [Practical Python Programming](https://dabeaz-course.github.io/practical-python/Notes/Contents.html) and [Fluent Python](https://www.oreilly.com/library/view/fluent-python/9781491946237/) if you want to learn about Python OOP in depth. See also [docs.python: Data model](https://docs.python.org/3/reference/datamodel.html).
+
+Data types in Python are all internally implemented as **classes**. You can use the [dir()](https://docs.python.org/3/library/functions.html#dir) built-in function to get a list of valid attributes for an object.
+
+```ruby
+# you can also use tuple objects such as 'odd' and 'even' declared earlier
+>>> dir(tuple)
+['__add__', '__class__', '__class_getitem__', '__contains__', '__delattr__',
+ '__dir__', '__doc__', '__eq__', '__format__', '__ge__', '__getattribute__',
+ '__getitem__', '__getnewargs__', '__gt__', '__hash__', '__init__',
+ '__init_subclass__', '__iter__', '__le__', '__len__', '__lt__', '__mul__',
+ '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__rmul__',
+ '__setattr__', '__sizeof__', '__str__', '__subclasshook__', 'count', 'index']
+
+>>> even = (2, 4, 6)
+# same as: len(even)
+>>> even.__len__()
+3
+```
+
+The non-dunder names (last two items) in the above listing will be discussed in this section. But first, a refresher on the `in` membership operator is shown below.
+
+```ruby
+>>> num = 5
+>>> num in (10, 21, 33)
+False
+
+>>> num = 21
+>>> num in (10, 21, 33)
+True
+```
+
+The `count()` method returns the number of times a value is present in the `tuple` object.
+
+```ruby
+>>> nums = (1, 4, 6, 22, 3, 5, 2, 1, 51, 3, 1)
+>>> nums.count(3)
+2
+>>> nums.count(31)
+0
+```
+
+The `index()` method will give the index of the first occurrence of a value. It will raise `ValueError` if the value isn't present, which you can avoid by using the `in` operator first. Or, you can use the `try-except` statement to handle the exception as needed.
+
+```ruby
+>>> nums = (1, 4, 6, 22, 3, 5, 2, 1, 51, 3, 1)
+
+>>> nums.index(3)
+4
+
+>>> n = 31
+>>> nums.index(n)
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+ValueError: tuple.index(x): x not in tuple
+>>> if n in nums:
+...     print(nums.index(n))
+... else:
+...     print(f'{n} not present in "nums" tuple')
+... 
+31 not present in "nums" tuple
+```
+
+>![info](./images/info.svg) The `list` and `str` sequence types have many more methods and they will be discussed separately in later chapters.
+
+# List
+
+List is a container data type, similar to `tuple` but **mutable**. Lists are typically used to store and manipulate ordered collection of values.
+
+>![info](./images/info.svg) [Tuple and Sequence operations](#tuple-and-sequence-operations) chapter is a prerequisite for this one.
+
+## Initialization and Slicing
+
+Lists are declared as a comma separated values within `[]` square brackets. Unlike `tuple` there's no ambiguity in using `[]` characters, so there's no special requirement of trailing comma for a single element `list` object. You can use a trailing comma if you wish, which is helpful to easily change a `list` declared across multiple lines.
+
+```ruby
+# 1D example
+>>> vowels = ['a', 'e', 'i', 'o', 'u']
+>>> vowels[0]
+'a'
+# same as vowels[4] since len(vowels) - 1 = 4
+>>> vowels[-1]
+'u'
+
+# 2D example
+>>> student = ['learnbyexample', 2021, ['Linux', 'Vim', 'Python']]
+>>> student[1]
+2021
+>>> student[2]
+['Linux', 'Vim', 'Python']
+>>> student[2][-1]
+'Python'
+```
+
+Since `list` is a mutable data type, you can modify the object after initialization. You can either change a single element or multiple elements using slicing notation.
+
+```ruby
+>>> nums = [1, 4, 6, 22, 3, 5]
+
+>>> nums[0] = 100
+>>> nums
+[100, 4, 6, 22, 3, 5]
+
+>>> nums[-3:] = [-1, -2, -3]
+>>> nums
+[100, 4, 6, -1, -2, -3]
+
+# list will automatically shrink/expand as needed
+>>> nums[1:4] = [2000]
+>>> nums
+[100, 2000, -2, -3]
+>>> nums[1:2] = [3.14, 4.13, 6.78]
+>>> nums
+[100, 3.14, 4.13, 6.78, -2, -3]
+```
+
+## List methods and operations
+
+This section will discuss some of the `list` methods and operations. See [docs.python: list methods](https://docs.python.org/3/tutorial/datastructures.html#more-on-lists) for documentation. As mentioned earlier, you can use `dir(list)` to view the available methods of an object.
+
+Use the `append()` method to add a single element to the end of a `list` object. If you need to append multiple items, you can pass an iterable to the `extend()` method. As an exercise, check what happens if you pass an iterable to the `append()` method and a non-iterable value to the `extend()` method. What happens if you pass multiple values to both these methods?
+
+```ruby
+>>> books = []
+>>> books.append('Cradle')
+>>> books.append('Mistborn')
+>>> books
+['Cradle', 'Mistborn']
+
+>>> items = [3, 'apple', 100.23]
+>>> items.extend([4, 'mango'])
+>>> items
+[3, 'apple', 100.23, 4, 'mango']
+>>> items.extend((-1, -2))
+>>> items.extend(range(3))
+>>> items.extend('hi')
+>>> items
+[3, 'apple', 100.23, 4, 'mango', -1, -2, 0, 1, 2, 'h', 'i']
+```
+
+The `count()` method will give the number of times a value is present.
+
+```ruby
+>>> nums = [1, 4, 6, 22, 3, 5, 2, 1, 51, 3, 1]
+>>> nums.count(3)
+2
+>>> nums.count(31)
+0
+```
+
+The `index()` method will give the index of the first occurrence of a value. As seen with `tuple`, this method will raise `ValueError` if the value isn't present.
+
+```ruby
+>>> nums = [1, 4, 6, 22, 3, 5, 2, 1, 51, 3, 1]
+
+>>> nums.index(3)
+4
+```
+
+The `pop()` method removes the last element of a `list` by default. You can pass an index to delete that specific item and the list will be automatically re-arranged. Return value is the element being deleted.
+
+```ruby
+>>> primes = [2, 3, 5, 7, 11]
+>>> last = primes.pop()
+>>> last
+11
+>>> primes
+[2, 3, 5, 7]
+>>> primes.pop(2)
+5
+>>> primes
+[2, 3, 7]
+
+>>> student = ['learnbyexample', 2021, ['Linux', 'Vim', 'Python']]
+>>> student.pop(1)
+2021
+>>> student[-1].pop(1)
+'Vim'
+>>> student
+['learnbyexample', ['Linux', 'Python']]
+>>> student.pop()
+['Linux', 'Python']
+>>> student
+['learnbyexample']
+```
+
+To remove multiple elements using slicing notation, use the `del` statement. Unlike the `pop()` method, there is no return value.
+
+```ruby
+>>> nums = [1.2, -0.2, 0, 2, 4, 23]
+>>> del nums[0]
+>>> nums
+[-0.2, 0, 2, 4, 23]
+>>> del nums[2:4]
+>>> nums
+[-0.2, 0, 23]
+
+>>> nums_2d = [[1, 3, 2, 10], [1.2, -0.2, 0, 2], [100, 200]]
+>>> del nums_2d[0][1:3]
+>>> del nums_2d[1]
+>>> nums_2d
+[[1, 10], [100, 200]]
+```
+
+The `pop()` method deletes an element based on its index. Use the `remove()` method to delete an element based on its value. You'll get `ValueError` if the value isn't found.
+ 
+```ruby
+>>> even_numbers = [2, 4, 6, 8, 10]
+>>> even_numbers.remove(8)
+>>> even_numbers
+[2, 4, 6, 10]
+```
+
+The `clear()` method removes all the elements. You might wonder why not just assign an empty `list`? If you have observed closely, all of the methods seen so far modified the `list` object in-place. This is useful if you are passing a `list` object to a function and expect the function to modify the object itself instead of returning a new object. More on that later.
+
+```ruby
+>>> nums = [1.2, -0.2, 0, 2, 4, 23]
+>>> nums.clear()
+>>> nums
+[]
+```
+
+You've already seen how to add element(s) at the end of a `list` using `append()` and `extend()` methods. The `insert()` method is the opposite of `pop()` method. You can provide a value to be inserted at the given index. As an exercise, check what happens if you pass a `list` value. Also, what happens if you pass more than one value?
+
+```ruby
+>>> books = ['Sourdough', 'Sherlock Holmes', 'To Kill a Mocking Bird']
+>>> books.insert(2, 'The Martian')
+>>> books
+['Sourdough', 'Sherlock Holmes', 'The Martian', 'To Kill a Mocking Bird']
+```
+
+The `reverse()` method reverses a `list` in-place. If you use slicing notation, you'll get a new object.
+
+```ruby
+>>> primes = [2, 3, 5, 7, 11]
+>>> primes.reverse()
+>>> primes
+[11, 7, 5, 3, 2]
+
+>>> primes[::-1]
+[2, 3, 5, 7, 11]
+>>> primes
+[11, 7, 5, 3, 2]
+```
+
+Here's some examples with comparison operators. Quoting from [documentation](https://docs.python.org/3/reference/expressions.html#value-comparisons):
+
+>For two collections to compare equal, they must be of the same type, have the same length, and each pair of corresponding elements must compare equal (for example, `[1,2] == (1,2)` is false because the type is not the same).
+>
+>Collections that support order comparison are ordered the same as their first unequal elements (for example, `[1,2,x] <= [1,2,y]` has the same value as `x <= y`). If a corresponding element does not exist, the shorter collection is ordered first (for example, `[1,2] < [1,2,3]` is true).
+
+```ruby
+>>> primes = [2, 3, 5, 7, 11]
+>>> nums = [2, 3, 5, 11, 7]
+>>> primes == nums
+False
+>>> primes == [2, 3, 5, 7, 11]
+True
+
+>>> [1, 1000] < [2, 3]
+True
+>>> [1000, 2] < [1, 2, 3]
+False
+
+>>> ['a', 'z'] > ['a', 'x']
+True
+>>> [1, 2, 3] > [10, 2]
+False
+>>> [1, 2, 3] > [1, 2]
+True
+```
+
+## Sorting and company
+
+The `sort()` method will order the `list` object in-place. The [sorted()](https://docs.python.org/3/library/functions.html#sorted) built-in function provides the same functionality for iterable types and returns an ordered `list`.
+
+```ruby
+>>> nums = [1, 5.3, 321, 0, 1, 2]
+
+# ascending order
+>>> nums.sort()
+>>> nums
+[0, 1, 1, 2, 5.3, 321]
+
+# descending order
+>>> nums.sort(reverse=True)
+>>> nums
+[321, 5.3, 2, 1, 1, 0]
+
+>>> sorted('fuliginous')
+['f', 'g', 'i', 'i', 'l', 'n', 'o', 's', 'u', 'u']
+```
+
+The `key` argument accepts the name of a built-in/user-defined function (i.e. function object) for custom sorting. If two elements are deemed equal based on the result of the function, the original order will be maintained (known as **stable sorting**). Here's some examples:
+
+```ruby
+# based on the absolute value of an element
+# note that the input order is maintained for all three values of "4"
+>>> sorted([-1, -4, 309, 4.0, 34, 0.2, 4], key=abs)
+[0.2, -1, -4, 4.0, 4, 34, 309]
+
+# based on the length of an element
+>>> words = ('morello', 'irk', 'fuliginous', 'crusado', 'seam')
+>>> sorted(words, key=len, reverse=True)
+['fuliginous', 'morello', 'crusado', 'seam', 'irk']
+```
+
+If the custom user-defined function required is just a single expression, you can create anonymous functions with [lambda expressions](https://docs.python.org/3/tutorial/controlflow.html#lambda-expressions) instead of a full-fledged function. As an exercise, read [docs.python: Sorting](https://docs.python.org/3/howto/sorting.html) and implement the below examples using `operator` module instead of `lambda` expressions.
+
+```ruby
+# based on second element of each item
+>>> items = [('car', 20), ('jeep', 3), ('cycle', 5)]
+>>> sorted(items, key=lambda e: e[1], reverse=True)
+[('car', 20), ('cycle', 5), ('jeep', 3)]
+
+# based on number of words, assuming space as the word separator
+>>> dishes = ('Poha', 'Aloo tikki', 'Baati', 'Khichdi', 'Makki roti')
+>>> sorted(dishes, key=lambda s: s.count(' '), reverse=True)
+['Aloo tikki', 'Makki roti', 'Poha', 'Baati', 'Khichdi']
+```
+
+You can use sequence types like `list` or `tuple` to specify multiple sorting conditions. Make sure to read the sequence comparison examples from previous section before trying to understand the following examples.
+
+```ruby
+>>> dishes = ('Poha', 'Aloo tikki', 'Baati', 'Khichdi', 'Makki roti')
+
+# word-count and dish-names, both descending order
+>>> sorted(dishes, key=lambda s: (s.count(' '), s), reverse=True)
+['Makki roti', 'Aloo tikki', 'Poha', 'Khichdi', 'Baati']
+
+# word-count descending order, dish-names ascending order
+# the main trick is to negate the numerical value
+>>> sorted(dishes, key=lambda s: (-s.count(' '), s))
+['Aloo tikki', 'Makki roti', 'Baati', 'Khichdi', 'Poha']
+```
+
+As an exercise, given `nums = [1, 4, 5, 2, 51, 3, 6, 22]`, determine and implement the sorting condition based on the required output shown below:
+
+* `[4, 2, 6, 22, 1, 5, 51, 3]`
+* `[2, 4, 6, 22, 1, 3, 5, 51]`
+* `[22, 6, 4, 2, 51, 5, 3, 1]`
+
+Here's some examples with `min()` and `max()` functions.
+
+```ruby
+>>> nums = [321, 0.5, 899.232, 5.3, 2, 1, -1]
+>>> min(nums)
+-1
+>>> max(nums)
+899.232
+>>> min(nums, key=abs)
+0.5
+```
+
+## Random items
+
+You have already seen a few examples with `random` module in earlier chapters. This section will show a few examples with methods that act on sequence data types.
+
+First up, getting a random element from a non-empty sequence using the `choice()` method.
+
+```ruby
+>>> import random
+
+>>> random.choice([4, 5, 2, 76])
+76
+>>> random.choice('hello')
+'e'
+```
+
+The `shuffle()` method randomizes the elements of a `list` in-place.
+
+```ruby
+>>> items = ['car', 20, 3, 'jeep', -3.14, 'hi']
+
+>>> random.shuffle(items)
+>>> items
+['car', 3, -3.14, 'jeep', 'hi', 20]
+```
+
+Use the `sample()` method to get a `list` of specified number of random elements. As an exercise, see what happens if you pass a slice size greater than the number of elements present in the input sequence.
+
+```ruby
+>>> random.sample((4, 5, 2, 76), k=3)
+[4, 76, 2]
+
+>>> random.sample(range(1000), k=5)
+[490, 26, 9, 745, 919]
+```
+
+## Map, Filter and Reduce
+
+Many operations on container objects can be defined in terms of these three concepts. For example, if you want to sum the square of all even numbers:
+
+* separating out even numbers is **Filter** (i.e. only elements that satisfy a condition are retained)
+* square of such numbers is **Map** (i.e. each element is transformed by a mapping function)
+* final sum is **Reduce** (i.e. you get one value out of multiple values)
+
+One or more of these operations may be absent depending on the problem statement. A function for the first of these steps could look like:
+
+```ruby
+>>> def get_evens(iter):
+...     op = []
+...     for n in iter:
+...         if n % 2 == 0:
+...             op.append(n)
+...     return op
+... 
+>>> get_evens([100, 53, 32, 0, 11, 5, 2])
+[100, 32, 0, 2]
+```
+
+Function after the second step could be:
+
+```ruby
+>>> def sqr_evens(iter):
+...     op = []
+...     for n in iter:
+...         if n % 2 == 0:
+...             op.append(n * n)
+...     return op
+... 
+>>> sqr_evens([100, 53, 32, 0, 11, 5, 2])
+[10000, 1024, 0, 4]
+```
+
+And finally, the function after the third step could be:
+
+```ruby
+>>> def sum_sqr_evens(iter):
+...     total = 0
+...     for n in iter:
+...         if n % 2 == 0:
+...             total += n * n
+...     return total
+... 
+>>> sum_sqr_evens([100, 53, 32, 0, 11, 5, 2])
+11028
+```
+
+Here's some examples with [sum()](https://docs.python.org/3/library/functions.html#sum), [all()](https://docs.python.org/3/library/functions.html#all) and [any()](https://docs.python.org/3/library/functions.html#any) built-in reduce functions.
+
+```ruby
+>>> sum([321, 0.5, 899.232, 5.3, 2, 1, -1])
+1228.032
+
+>>> conditions = [True, False, True]
+>>> all(conditions)
+False
+>>> any(conditions)
+True
+>>> conditions[1] = True
+>>> all(conditions)
+True
+
+>>> nums = [321, 1, 1, 0, 5.3, 2]
+>>> all(nums)
+False
+>>> any(nums)
+True
+```
+
+>![info](./images/info.svg) Python also provides [map()](https://docs.python.org/3/library/functions.html#map), [filter()](https://docs.python.org/3/library/functions.html#filter) and [functools.reduce()](https://docs.python.org/3/library/functools.html#functools.reduce) for such problems. But, see [Comprehensions and Generator expressions](#comprehensions-and-generator-expressions) chapter before deciding to use them.
+
+## Exercises
+
+* Write a function that returns the product of a sequence of numbers. Empty sequence or sequence containing non-numerical values should raise `TypeError`.
+    * `product([-4, 2.3e12, 77.23, 982, 0b101])` should give `-3.48863356e+18`
+    * `product(range(2, 6))` should give `120`
+    * `product(())` and `product(['a', 'b'])` should raise `TypeError`
+* Write a function that removes dunder names from `dir()` output.
+
+    ```ruby
+    >>> remove_dunder(list)
+    ['append', 'clear', 'copy', 'count', 'extend', 'index',
+     'insert', 'pop', 'remove', 'reverse', 'sort']
+    >>> remove_dunder(tuple)
+    ['count', 'index']
+    ```
+
+# Mutability
+
+`int`, `float`, `str` and `tuple` are immutable data types. On the other hand, types like `list` and `dict` are mutable. This chapter will discuss what happens when you pass a variable to a function or when you assign them to another value/variable.
+
+## id
+
+The [id()](https://docs.python.org/3/library/functions.html#id) built-in function returns the *identity* (reference) of an object. Here's some examples to show what happens when you assign a variable to another value/variable.
+
+```ruby
+>>> num1 = 5
+>>> id(num1)
+140204812958128
+# here, num1 gets a new identity
+>>> num1 = 10
+>>> id(num1)
+140204812958288
+
+# num2 will have the same reference as num1
+>>> num2 = num1
+>>> id(num2)
+140204812958288
+
+# num2 gets a new reference, num1 won't be affected
+>>> num2 = 4
+>>> id(num2)
+140204812958096
+>>> num1
+10
+```
+
+## Pass by reference
+
+Variables in Python store references to an object, not their values. When you pass a `list` object to a function, you are passing the reference to this object. Since `list` is mutable, any in-place changes made to this object within the function will also be reflected in the original variable that was passed to the function. Here's an example:
+
+```ruby
+>>> def rotate(ip):
+...     ip.insert(0, ip.pop())
+... 
+>>> nums = [321, 1, 1, 0, 5.3, 2]
+>>> rotate(nums)
+>>> nums
+[2, 321, 1, 1, 0, 5.3]
+```
+
+This is true even for slices of a sequence containing mutable objects. Also, as shown in the example below, `tuple` doesn't prevent mutable elements from being changed.
+
+```ruby
+>>> nums_2d = ([1, 3, 2, 10], [1.2, -0.2, 0, 2], [100, 200])
+>>> last_two = nums_2d[-2:]
+
+>>> last_two[0][-1] = 'apple'
+>>> last_two[1][-1] = 'ball'
+
+>>> last_two
+([1.2, -0.2, 0, 'apple'], [100, 'ball'])
+>>> nums_2d
+([1, 3, 2, 10], [1.2, -0.2, 0, 'apple'], [100, 'ball'])
+```
+
+As an exercise, use `id()` function to verify that the identity of last two elements of `nums_2d` variable in the above example is the same as the identity of both the elements of `last_two` variable.
+
+## Slicing notation copy
+
+If you wish to copy whole/part of a `list` object such that changing the copy version doesn't affect the original `list`, the solution will depend on the presence of mutable elements.
+
+Here's an example where all the elements are immutable. In this case, using slice notation is safe for copying.
+
+```ruby
+>>> items = [3, 'apple', 100.23, 'fig']
+>>> items_copy = items[:]
+
+>>> id(items)
+140204765864256
+>>> id(items_copy)
+140204765771968
+
+# the individual elements will still have the same reference
+>>> id(items[0]) == id(items_copy[0])
+True
+
+>>> items_copy[0] += 1000
+>>> items_copy
+[1003, 'apple', 100.23, 'fig']
+>>> items
+[3, 'apple', 100.23, 'fig']
+```
+
+On the other hand, if the `list` has mutable objects, using slice notation won't stop the copy from modifying the original.
+
+```ruby
+>>> nums_2d = [[1, 3, 2, 10], [1.2, -0.2, 0, 2], [100, 200]]
+>>> nums_2d_copy = nums_2d[:]
+
+>>> nums_2d_copy[0][0] = 'oops'
+
+>>> nums_2d_copy
+[['oops', 3, 2, 10], [1.2, -0.2, 0, 2], [100, 200]]
+>>> nums_2d
+[['oops', 3, 2, 10], [1.2, -0.2, 0, 2], [100, 200]]
+```
+
+## copy.deepcopy
+
+The [copy](https://docs.python.org/3/library/copy.html#module-copy) built-in module has a `deepcopy()` method if you wish to recursively create new copy of all the elements of a mutable object.
+
+```ruby
+>>> import copy
+
+>>> nums_2d = [[1, 3, 2, 10], [1.2, -0.2, 0, 2], [100, 200]]
+>>> nums_2d_deepcopy = copy.deepcopy(nums_2d)
+
+>>> nums_2d_deepcopy[0][0] = 'yay'
+
+>>> nums_2d_deepcopy
+[['yay', 3, 2, 10], [1.2, -0.2, 0, 2], [100, 200]]
+>>> nums_2d
+[[1, 3, 2, 10], [1.2, -0.2, 0, 2], [100, 200]]
+```
+
+As an exercise, create a deepcopy of only the first two elements of `nums_2d` object from the above example.
 
