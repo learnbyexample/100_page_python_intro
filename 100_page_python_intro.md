@@ -628,7 +628,7 @@ You can use `b`, `o` and `x` to display integer values in binary, octal and hexa
 'Approx pi: 3.14'
 ```
 
->![info](./images/info.svg) See [docs.python: The String format() Method](https://docs.python.org/3/tutorial/inputoutput.html#the-string-format-method) and the sections that follow for more details about the above features. The [String methods](#string-methods) chapter will discuss more about the string processing methods.
+>![info](./images/info.svg) See [docs.python: The String format() Method](https://docs.python.org/3/tutorial/inputoutput.html#the-string-format-method) and the sections that follow for more details about the above features. The [Text processing](#text-processing) chapter will discuss more about the string processing methods.
 
 >![info](./images/info.svg) In case you don't know what a *method* is, see [stackoverflow: What's the difference between a method and a function?](https://stackoverflow.com/questions/155609/whats-the-difference-between-a-method-and-a-function)
 
@@ -3090,4 +3090,402 @@ The [copy](https://docs.python.org/3/library/copy.html#module-copy) built-in mod
 ```
 
 As an exercise, create a deepcopy of only the first two elements of `nums_2d` object from the above example.
+
+# Dict
+
+Dictionaries can be thought of as a collection of **key-value** pairs or a **named list of items**. It used to be unordered, but recent Python versions ensure that the insertion order is maintained.
+
+## Initialization and accessing elements
+
+A `dict` data type is declared within `{}` characters and each item requires two values — an immutable data type for key, followed by `:` character and finally a value of any data type. The elements are separated by a comma character, just like the other container types.
+
+To access an element, the syntax is `dict_variable[key]`. Retrieving an item takes a constant amount of time, irrespective of the size of the `dict` (see [Hashtables](https://greenteapress.com/thinkpython2/html/thinkpython2022.html#sec255) for details). Dictionaries are mutable, so you can change an item's value, add items, remove items, etc.
+
+```ruby
+>>> marks = {'Rahul': 86, 'Ravi': 92, 'Rohit': 75, 'Rajan': 79}
+
+>>> marks['Rohit']
+75
+>>> marks['Rahul'] += 5
+>>> marks['Ram'] = 67 
+>>> del marks['Rohit']
+
+# note that the insertion order is maintained
+>>> marks
+{'Rahul': 91, 'Ravi': 92, 'Rajan': 79, 'Ram': 67}
+```
+
+Here's an example with `list` and `tuple` keys.
+
+```ruby
+>>> list_key = {[1, 2]: 42}
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+TypeError: unhashable type: 'list'
+
+>>> items = {('car', 2): 'honda', ('car', 5): 'tesla', ('bike', 10): 'hero'}
+>>> items[('bike', 10)]
+'hero'
+```
+
+You can also use the [dict()](https://docs.python.org/3/library/functions.html#func-dict) function for initialization in various ways. If all the keys are of `str` data type, you can use the same syntax as keyword arguments seen earlier with function definitions. You can also pass a container type having two values per element, such as a `list` of `tuples` as shown below.
+
+```ruby
+>>> marks = dict(Rahul=86, Ravi=92, Rohit=75, Rajan=79)
+>>> marks
+{'Rahul': 86, 'Ravi': 92, 'Rohit': 75, 'Rajan': 79}
+
+>>> items = [('jeep', 20), ('car', 3), ('cycle', 5)]
+>>> dict(items)
+{'jeep': 20, 'car': 3, 'cycle': 5}
+```
+
+Another way to initialize is to use the `fromkeys()` method that accepts an iterable and an optional value (default is `None`). The same value will be assigned to all the keys, so be careful if you want to use a mutable object, since the same reference will be used as well.
+
+```ruby
+>>> colors = ('red', 'blue', 'green')
+
+>>> dict.fromkeys(colors)
+{'red': None, 'blue': None, 'green': None}
+>>> dict.fromkeys(colors, 255)
+{'red': 255, 'blue': 255, 'green': 255}
+```
+
+## get and setdefault
+
+If you try to access a `dict` key that doesn't exist, you'll get a `KeyError` exception. If you do not want an exception to occur, you can use the `get()` method. By default it'll return a `None` value for keys that do not exist, which you can change by providing a default value as the second argument.
+
+```ruby
+>>> marks = dict(Rahul=86, Ravi=92, Rohit=75, Rajan=79)
+
+>>> marks['Ron']
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+KeyError: 'Ron'
+
+>>> marks.get('Ravi')
+92
+>>> value = marks.get('Ron')
+>>> print(value)
+None
+>>> marks.get('Ron', 0)
+0
+```
+
+Here's a more practical example:
+
+```ruby
+>>> vehicles = ['car', 'jeep', 'car', 'bike', 'bus', 'car', 'bike']
+>>> hist = {}
+>>> for v in vehicles:
+...     hist[v] = hist.get(v, 0) + 1
+... 
+>>> hist
+{'car': 3, 'jeep': 1, 'bike': 2, 'bus': 1}
+```
+
+Using `get()` method will not automatically add keys that do not exist yet to the `dict` object. You can use `setdefault()` method, which behaves similarly to `get()` except that keys will get created if not found. See also [docs.python: collections.defaultdict](https://docs.python.org/3/library/collections.html#collections.defaultdict).
+
+```ruby
+>>> marks = dict(Rahul=86, Ravi=92, Rohit=75, Rajan=79)
+
+>>> marks.get('Ram', 40)
+40
+>>> marks
+{'Rahul': 86, 'Ravi': 92, 'Rohit': 75, 'Rajan': 79}
+
+>>> marks.setdefault('Ram', 40)
+40
+>>> marks
+{'Rahul': 86, 'Ravi': 92, 'Rohit': 75, 'Rajan': 79, 'Ram': 40}
+```
+
+## Iteration
+
+The default `for` loop over a `dict` object will give you a key for each iteration.
+
+```ruby
+>>> fruits = dict(banana=12, papaya=5, mango=10, fig=100)
+
+>>> for k in fruits:
+...     print(f'{k}:{fruits[k]}')
+... 
+banana:12
+papaya:5
+mango:10
+fig:100
+
+# you'll also get only the keys if you apply list(), tuple() or set()
+>>> list(fruits)
+['banana', 'papaya', 'mango', 'fig']
+```
+
+As an exercise,
+
+* given `fruits` dictionary as defined in the above code snippet, what do you think will happen when you use `a, *b, c = fruits`?
+* given `nums = [1, 4, 6, 22, 3, 5, 4, 3, 6, 2, 1, 51, 3, 1]`, keep only first occurrences of a value from this list without changing the order of elements. You can do it with `dict` features presented so far. `[1, 4, 6, 22, 3, 5, 2, 51]` should be the output. See [Using dict to eliminate duplicates while retaining order](https://twitter.com/raymondh/status/944125570534621185) if you are not able to solve it.
+
+## Dict methods and operations
+
+The `in` operator checks if a key is present in the given dictionary. The `keys()` method returns all the keys and `values()` method returns all the values. These methods return a custom set-like object, but with insertion order maintained.
+
+```ruby
+>>> marks = dict(Rahul=86, Ravi=92, Rohit=75, Rajan=79)
+
+>>> 'Ravi' in marks
+True
+>>> 'Ram' in marks
+False
+
+>>> marks.keys()
+dict_keys(['Rahul', 'Ravi', 'Rohit', 'Rajan'])
+
+>>> marks.values()
+dict_values([86, 92, 75, 79])
+```
+
+The `items()` method can be used to get a key-value `tuple` for each iteration.
+
+```ruby
+>>> fruits = dict(banana=12, papaya=5, mango=10, fig=100)
+
+# set-like object
+>>> fruits.items()
+dict_items([('banana', 12), ('papaya', 5), ('mango', 10), ('fig', 100)])
+
+>>> for fruit, qty in fruits.items():
+...     print(f'{fruit}\t: {qty}')
+... 
+banana  : 12
+papaya  : 5
+mango   : 10
+fig     : 100
+```
+
+The `del` statement example seen earlier removes the given key without returning the value associated with it. You can use the `pop()` method to get the value as well. The `popitem()` method removes the last added item and returns the key-value pair as a `tuple`.
+
+```ruby
+>>> marks = dict(Rahul=86, Ravi=92, Rohit=75, Rajan=79)
+
+>>> marks.pop('Ravi')
+92
+>>> marks
+{'Rahul': 86, 'Rohit': 75, 'Rajan': 79}
+
+>>> marks.popitem()
+('Rajan', 79)
+>>> marks
+{'Rahul': 86, 'Rohit': 75}
+```
+
+The `update()` method allows you to add/update items from another dictionary or a container with key-value pair elements.
+
+```ruby
+>>> marks = dict(Rahul=86, Ravi=92, Rohit=75, Rajan=79)
+>>> marks.update(dict(Jo=89, Joe=75, Ravi=100))
+# note that 'Ravi' has '100' as the updated value
+>>> marks
+{'Rahul': 86, 'Ravi': 100, 'Rohit': 75, 'Rajan': 79, 'Jo': 89, 'Joe': 75}
+
+>>> fruits = dict(banana=12, papaya=5, mango=10, fig=100)
+>>> fruits.update([('onion', 3), ('pea', 10)])
+>>> fruits
+{'banana': 12, 'papaya': 5, 'mango': 10, 'fig': 100, 'onion': 3, 'pea': 10}
+```
+
+The `|` operator is similar to the `update()` method, except that you get a new `dict` object instead of in-place modification.
+
+```ruby
+>>> d1 = {'banana': 12, 'papaya': 5, 'mango': 20}
+>>> d2 = {'mango': 10, 'fig': 100}
+
+# this used to be done using unpacking, i.e. {**d1, **d2}
+>>> d1 | d2
+{'banana': 12, 'papaya': 5, 'mango': 10, 'fig': 100}
+```
+
+## Arbitrary keyword arguments
+
+To accept arbitrary number of keyword arguments, use `**var_name` in the function definition. This has to be declared the last, after all the other types of arguments. Idiomatically, `**kwargs` is used as the variable name. See [stackoverflow: Decorators demystified](https://stackoverflow.com/questions/739654/how-to-make-function-decorators-and-chain-them-together/1594484#1594484) for a practical use case of arbitrary keyword arguments.
+
+```ruby
+>>> def many(**kwargs):
+...     print(f'{kwargs = }')
+... 
+>>> many()
+kwargs = {}
+>>> many(num=5)
+kwargs = {'num': 5}
+>>> many(car=5, jeep=25)
+kwargs = {'car': 5, 'jeep': 25}
+```
+
+Turning it around, when you have a function defined with keyword arguments, you can unpack a dictionary while calling the function.
+
+```ruby
+>>> def greeting(phrase='hello', style='='):
+...     print(f'{phrase:{style}^{len(phrase)+6}}')
+... 
+>>> greeting()
+===hello===
+>>> d = {'style': '-', 'phrase': 'have a nice day'}
+>>> greeting(**d)
+---have a nice day---
+```
+
+# Set
+
+`set` is a mutable, unordered collection of objects. `frozenset` is similar to `set`, but immutable. See [docs.python: set, frozenset](https://docs.python.org/3/library/stdtypes.html#set-types-set-frozenset) for more details.
+
+## Initialization
+
+Sets are declared as a collection of objects separated by a comma within `{}` curly brace characters. The [set()](https://docs.python.org/3/library/functions.html#func-set) function can be used to initialize an empty `set` and to convert iterables.
+
+```ruby
+>>> empty_set = set()
+>>> empty_set
+set()
+
+>>> nums = {-0.1, 3, 2, -5, 7, 1, 6.3, 5}
+# note that the order is not the same as declaration
+>>> nums
+{-0.1, 1, 2, 3, 5, 6.3, 7, -5}
+
+# duplicates are automatically removed
+>>> set([3, 2, 11, 3, 5, 13, 2])
+{2, 3, 5, 11, 13}
+>>> set('initialize')
+{'a', 'n', 't', 'l', 'e', 'i', 'z'}
+```
+
+`set` doesn't allow mutable objects as elements.
+
+```ruby
+>>> {1, 3, [1, 2], 4}
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+TypeError: unhashable type: 'list'
+
+>>> {1, 3, (1, 2), 4}
+{3, 1, (1, 2), 4}
+```
+
+## Set methods and operations
+
+The `in` operator checks if a value is present in the given `set`. Since `set` uses hashtable (similar to `dict` keys), the lookup time is constant and much faster than ordered collections like `list` or `tuple` for large data sets.
+
+```ruby
+>>> colors = {'red', 'blue', 'green'}
+>>> 'blue' in colors
+True
+>>> 'orange' in colors
+False
+```
+
+Here's some examples for `set` operations like union, intersection, etc. You can either use methods or operators, both will give you a new `set` object instead of in-place modification. The difference is that these methods can accept any iterable, not restricted to `set` objects.
+
+```ruby
+>>> color_1 = {'teal', 'light blue', 'green', 'yellow'}
+>>> color_2 = {'light blue', 'black', 'dark green', 'yellow'}
+
+# union of two sets: color_1 | color_2
+>>> color_1.union(color_2)
+{'light blue', 'green', 'dark green', 'black', 'teal', 'yellow'}
+
+# common items: color_1 & color_2
+>>> color_1.intersection(color_2)
+{'light blue', 'yellow'}
+
+# items from color_1 not present in color_2: color_1 - color_2
+>>> color_1.difference(color_2)
+{'teal', 'green'}
+# items from color_2 not present in color_1: color_2 - color_1
+>>> color_2.difference(color_1)
+{'dark green', 'black'}
+
+# items present in one of the sets, but not both
+# i.e. union of above two operations: color_1 ^ color_2
+>>> color_1.symmetric_difference(color_2)
+{'green', 'dark green', 'black', 'teal'}
+```
+
+As mentioned in [Dict](#dict) chapter, methods like `keys()`, `values()` and `items()` return a set-like object. You can apply `set` operators on them.
+
+```ruby
+>>> marks_1 = dict(Rahul=86, Ravi=92, Rohit=75)
+>>> marks_2 = dict(Jo=89, Rohit=78, Joe=75, Ravi=100)
+
+>>> marks_1.keys() & marks_2.keys()
+{'Ravi', 'Rohit'}
+>>> marks_1.keys() - marks_2.keys()
+{'Rahul'}
+```
+
+Methods like `add()`, `update()`, `symmetric_difference_update()`, `intersection_update()` and `difference_update()` will do the modifications in-place.
+
+```ruby
+>>> color_1 = {'teal', 'light blue', 'green', 'yellow'}
+>>> color_2 = {'light blue', 'black', 'dark green', 'yellow'}
+
+# union
+>>> color_1.update(color_2)
+>>> color_1
+{'light blue', 'green', 'dark green', 'black', 'teal', 'yellow'}
+
+# adding a single value
+>>> color_2.add('orange')
+>>> color_2
+{'black', 'yellow', 'dark green', 'light blue', 'orange'}
+```
+
+The `pop()` method will return a random element being removed. Use the `remove()` method if you want to delete an element based on its value. The `discard()` method is similar to `remove()`, but it will not generate an error if the element doesn't exist. The `clear()` method will delete all the elements.
+
+```ruby
+>>> colors = {'red', 'blue', 'green'}
+
+>>> colors.pop()
+'blue'
+>>> colors
+{'green', 'red'}
+
+>>> colors.clear()
+>>> colors
+set()
+```
+
+Here's some examples for comparison operations.
+
+```ruby
+>>> names_1 = {'Ravi', 'Rohit'}
+>>> names_2 = {'Ravi', 'Ram', 'Rohit', 'Raj'}
+
+>>> names_1 == names_2
+False
+
+# same as: names_1 <= names_2
+>>> names_1.issubset(names_2)
+True
+
+# same as: names_2 >= names_1
+>>> names_2.issuperset(names_1)
+True
+
+# disjoint means there's no common elements: not names_1 & names_2
+>>> names_1.isdisjoint(names_2)
+False
+>>> names_1.isdisjoint({'Jo', 'Joe'})
+True
+```
+
+## Exercises
+
+* Write a function that checks whether an iterable has duplicate values or not.
+
+    ```ruby
+    >>> has_duplicates('pip')
+    True
+    >>> has_duplicates((3, 2))
+    False
+    ```
+* What does the above function return for `has_duplicates([3, 2, 3.0])`?
 
