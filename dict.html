@@ -1,0 +1,189 @@
+<!DOCTYPE HTML><html lang=en class="sidebar-visible no-js light"><head><meta charset=UTF-8><title>Dict - 100 Page Python Intro</title><meta content="text/html; charset=utf-8"http-equiv=Content-Type><meta name=description content="Short, introductory guide for the Python programming language"><meta name=viewport content="width=device-width, initial-scale=1"><meta name=theme-color content=#ffffff><link rel=icon href=favicon.svg><link rel="shortcut icon"href=favicon.png><link rel=stylesheet href=css/variables.css><link rel=stylesheet href=css/general.css><link rel=stylesheet href=css/chrome.css><link rel=stylesheet href=FontAwesome/css/font-awesome.css><link rel=stylesheet href=fonts/fonts.css><link rel=stylesheet href=highlight.css><link rel=stylesheet href=tomorrow-night.css><link rel=stylesheet href=ayu-highlight.css><link rel=stylesheet href=style.css><body><script>
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script><script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script><script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script><script>
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script><nav id=sidebar class=sidebar aria-label="Table of contents"><div class=sidebar-scrollbox><ol class=chapter><li class="chapter-item expanded affix"><a href=cover.html>Cover</a><li class="chapter-item expanded affix"><a href=buy.html>Buy PDF/EPUB versions</a><li class="chapter-item expanded"><a href=preface.html><strong aria-hidden=true>1.</strong> Preface</a><li class="chapter-item expanded"><a href=introduction.html><strong aria-hidden=true>2.</strong> Introduction</a><li class="chapter-item expanded"><a href=numeric-data-types.html><strong aria-hidden=true>3.</strong> Numeric data types</a><li class="chapter-item expanded"><a href=strings-and-user-input.html><strong aria-hidden=true>4.</strong> Strings and user input</a><li class="chapter-item expanded"><a href=defining-functions.html><strong aria-hidden=true>5.</strong> Defining functions</a><li class="chapter-item expanded"><a href=control-structures.html><strong aria-hidden=true>6.</strong> Control structures</a><li class="chapter-item expanded"><a href=importing-and-creating-modules.html><strong aria-hidden=true>7.</strong> Importing and creating modules</a><li class="chapter-item expanded"><a href=installing-modules-and-virtual-environments.html><strong aria-hidden=true>8.</strong> Installing modules and Virtual environments</a><li class="chapter-item expanded"><a href=exception-handling.html><strong aria-hidden=true>9.</strong> Exception handling</a><li class="chapter-item expanded"><a href=debugging.html><strong aria-hidden=true>10.</strong> Debugging</a><li class="chapter-item expanded"><a href=testing.html><strong aria-hidden=true>11.</strong> Testing</a><li class="chapter-item expanded"><a href=tuple-and-sequence-operations.html><strong aria-hidden=true>12.</strong> Tuple and Sequence operations</a><li class="chapter-item expanded"><a href=list.html><strong aria-hidden=true>13.</strong> List</a><li class="chapter-item expanded"><a href=mutability.html><strong aria-hidden=true>14.</strong> Mutability</a><li class="chapter-item expanded"><a href=dict.html class=active><strong aria-hidden=true>15.</strong> Dict</a><li class="chapter-item expanded"><a href=set.html><strong aria-hidden=true>16.</strong> Set</a></ol></div><div id=sidebar-resize-handle class=sidebar-resize-handle></div></nav><div id=page-wrapper class=page-wrapper><div class=page><div id=menu-bar-hover-placeholder></div><div id=menu-bar class="menu-bar sticky bordered"><div class=left-buttons><button id=sidebar-toggle class=icon-button type=button title="Toggle Table of Contents"aria-label="Toggle Table of Contents"aria-controls=sidebar><i class="fa fa-bars"></i></button><button id=theme-toggle class=icon-button type=button title="Change theme"aria-label="Change theme"aria-haspopup=true aria-expanded=false aria-controls=theme-list><i class="fa fa-paint-brush"></i></button><ul id=theme-list class=theme-popup aria-label=Themes role=menu><li role=none><button role=menuitem class=theme id=light>Light (default)</button><li role=none><button role=menuitem class=theme id=rust>Rust</button><li role=none><button role=menuitem class=theme id=coal>Coal</button><li role=none><button role=menuitem class=theme id=navy>Navy</button><li role=none><button role=menuitem class=theme id=ayu>Ayu</button></ul><button id=search-toggle class=icon-button type=button title="Search. (Shortkey: s)"aria-label="Toggle Searchbar"aria-expanded=false aria-keyshortcuts=S aria-controls=searchbar><i class="fa fa-search"></i></button></div><h1 class=menu-title>100 Page Python Intro</h1><div class=right-buttons><a href=https://github.com/learnbyexample/100_page_python_intro title="Git repository"aria-label="Git repository"> <i id=git-repository-button class="fa fa-github"></i> </a></div></div><div id=search-wrapper class=hidden><form id=searchbar-outer class=searchbar-outer><input type=search name=search id=searchbar name=searchbar placeholder="Search this book ..."aria-controls=searchresults-outer aria-describedby=searchresults-header></form><div id=searchresults-outer class="searchresults-outer hidden"><div id=searchresults-header class=searchresults-header></div><ul id=searchresults></ul></div></div><script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script><div id=content class=content><main><div class=sidetoc><nav class=pagetoc></nav></div><h1><a class=header href=#dict id=dict>Dict</a></h1><p>Dictionaries can be thought of as a collection of <strong>key-value</strong> pairs or a <strong>named list of items</strong>. It used to be unordered, but recent Python versions ensure that the insertion order is maintained.<h2><a class=header href=#initialization-and-accessing-elements id=initialization-and-accessing-elements>Initialization and accessing elements</a></h2><p>A <code>dict</code> data type is declared within <code>{}</code> characters and each item requires two values — an immutable data type for key, followed by <code>:</code> character and finally a value of any data type. The elements are separated by a comma character, just like the other container types.<p>To access an element, the syntax is <code>dict_variable[key]</code>. Retrieving an item takes a constant amount of time, irrespective of the size of the <code>dict</code> (see <a href=https://greenteapress.com/thinkpython2/html/thinkpython2022.html#sec255>Hashtables</a> for details). Dictionaries are mutable, so you can change an item's value, add items, remove items, etc.<pre><code class=language-python>>>> marks = {'Rahul': 86, 'Ravi': 92, 'Rohit': 75, 'Rajan': 79}
+
+>>> marks['Rohit']
+75
+>>> marks['Rahul'] += 5
+>>> marks['Ram'] = 67 
+>>> del marks['Rohit']
+
+# note that the insertion order is maintained
+>>> marks
+{'Rahul': 91, 'Ravi': 92, 'Rajan': 79, 'Ram': 67}
+</code></pre><p>Here's an example with <code>list</code> and <code>tuple</code> keys.<pre><code class=language-python>>>> list_key = {[1, 2]: 42}
+Traceback (most recent call last):
+  File "&LTstdin>", line 1, in &LTmodule>
+TypeError: unhashable type: 'list'
+
+>>> items = {('car', 2): 'honda', ('car', 5): 'tesla', ('bike', 10): 'hero'}
+>>> items[('bike', 10)]
+'hero'
+</code></pre><p>You can also use the <a href=https://docs.python.org/3/library/functions.html#func-dict>dict()</a> function for initialization in various ways. If all the keys are of <code>str</code> data type, you can use the same syntax as keyword arguments seen earlier with function definitions. You can also pass a container type having two values per element, such as a <code>list</code> of <code>tuples</code> as shown below.<pre><code class=language-python>>>> marks = dict(Rahul=86, Ravi=92, Rohit=75, Rajan=79)
+>>> marks
+{'Rahul': 86, 'Ravi': 92, 'Rohit': 75, 'Rajan': 79}
+
+>>> items = [('jeep', 20), ('car', 3), ('cycle', 5)]
+>>> dict(items)
+{'jeep': 20, 'car': 3, 'cycle': 5}
+</code></pre><p>Another way to initialize is to use the <code>fromkeys()</code> method that accepts an iterable and an optional value (default is <code>None</code>). The same value will be assigned to all the keys, so be careful if you want to use a mutable object, since the same reference will be used as well.<pre><code class=language-python>>>> colors = ('red', 'blue', 'green')
+
+>>> dict.fromkeys(colors)
+{'red': None, 'blue': None, 'green': None}
+>>> dict.fromkeys(colors, 255)
+{'red': 255, 'blue': 255, 'green': 255}
+</code></pre><h2><a class=header href=#get-and-setdefault id=get-and-setdefault>get and setdefault</a></h2><p>If you try to access a <code>dict</code> key that doesn't exist, you'll get a <code>KeyError</code> exception. If you do not want an exception to occur, you can use the <code>get()</code> method. By default it'll return a <code>None</code> value for keys that do not exist, which you can change by providing a default value as the second argument.<pre><code class=language-python>>>> marks = dict(Rahul=86, Ravi=92, Rohit=75, Rajan=79)
+
+>>> marks['Ron']
+Traceback (most recent call last):
+  File "&LTstdin>", line 1, in &LTmodule>
+KeyError: 'Ron'
+
+>>> marks.get('Ravi')
+92
+>>> value = marks.get('Ron')
+>>> print(value)
+None
+>>> marks.get('Ron', 0)
+0
+</code></pre><p>Here's a more practical example:<pre><code class=language-python>>>> vehicles = ['car', 'jeep', 'car', 'bike', 'bus', 'car', 'bike']
+>>> hist = {}
+>>> for v in vehicles:
+...     hist[v] = hist.get(v, 0) + 1
+... 
+>>> hist
+{'car': 3, 'jeep': 1, 'bike': 2, 'bus': 1}
+</code></pre><p>Using <code>get()</code> method will not automatically add keys that do not exist yet to the <code>dict</code> object. You can use <code>setdefault()</code> method, which behaves similarly to <code>get()</code> except that keys will get created if not found. See also <a href=https://docs.python.org/3/library/collections.html#collections.defaultdict>docs.python: collections.defaultdict</a>.<pre><code class=language-python>>>> marks = dict(Rahul=86, Ravi=92, Rohit=75, Rajan=79)
+
+>>> marks.get('Ram', 40)
+40
+>>> marks
+{'Rahul': 86, 'Ravi': 92, 'Rohit': 75, 'Rajan': 79}
+
+>>> marks.setdefault('Ram', 40)
+40
+>>> marks
+{'Rahul': 86, 'Ravi': 92, 'Rohit': 75, 'Rajan': 79, 'Ram': 40}
+</code></pre><h2><a class=header href=#iteration id=iteration>Iteration</a></h2><p>The default <code>for</code> loop over a <code>dict</code> object will give you a key for each iteration.<pre><code class=language-python>>>> fruits = dict(banana=12, papaya=5, mango=10, fig=100)
+
+>>> for k in fruits:
+...     print(f'{k}:{fruits[k]}')
+... 
+banana:12
+papaya:5
+mango:10
+fig:100
+
+# you'll also get only the keys if you apply list(), tuple() or set()
+>>> list(fruits)
+['banana', 'papaya', 'mango', 'fig']
+</code></pre><p>As an exercise,<ul><li>given <code>fruits</code> dictionary as defined in the above code snippet, what do you think will happen when you use <code>a, *b, c = fruits</code>?<li>given <code>nums = [1, 4, 6, 22, 3, 5, 4, 3, 6, 2, 1, 51, 3, 1]</code>, keep only first occurrences of a value from this list without changing the order of elements. You can do it with <code>dict</code> features presented so far. <code>[1, 4, 6, 22, 3, 5, 2, 51]</code> should be the output. See <a href=https://twitter.com/raymondh/status/944125570534621185>Using dict to eliminate duplicates while retaining order</a> if you are not able to solve it.</ul><h2><a class=header href=#dict-methods-and-operations id=dict-methods-and-operations>Dict methods and operations</a></h2><p>The <code>in</code> operator checks if a key is present in the given dictionary. The <code>keys()</code> method returns all the keys and <code>values()</code> method returns all the values. These methods return a custom set-like object, but with insertion order maintained.<pre><code class=language-python>>>> marks = dict(Rahul=86, Ravi=92, Rohit=75, Rajan=79)
+
+>>> 'Ravi' in marks
+True
+>>> 'Ram' in marks
+False
+
+>>> marks.keys()
+dict_keys(['Rahul', 'Ravi', 'Rohit', 'Rajan'])
+
+>>> marks.values()
+dict_values([86, 92, 75, 79])
+</code></pre><p>The <code>items()</code> method can be used to get a key-value <code>tuple</code> for each iteration.<pre><code class=language-python>>>> fruits = dict(banana=12, papaya=5, mango=10, fig=100)
+
+# set-like object
+>>> fruits.items()
+dict_items([('banana', 12), ('papaya', 5), ('mango', 10), ('fig', 100)])
+
+>>> for fruit, qty in fruits.items():
+...     print(f'{fruit}\t: {qty}')
+... 
+banana  : 12
+papaya  : 5
+mango   : 10
+fig     : 100
+</code></pre><p>The <code>del</code> statement example seen earlier removes the given key without returning the value associated with it. You can use the <code>pop()</code> method to get the value as well. The <code>popitem()</code> method removes the last added item and returns the key-value pair as a <code>tuple</code>.<pre><code class=language-python>>>> marks = dict(Rahul=86, Ravi=92, Rohit=75, Rajan=79)
+
+>>> marks.pop('Ravi')
+92
+>>> marks
+{'Rahul': 86, 'Rohit': 75, 'Rajan': 79}
+
+>>> marks.popitem()
+('Rajan', 79)
+>>> marks
+{'Rahul': 86, 'Rohit': 75}
+</code></pre><p>The <code>update()</code> method allows you to add/update items from another dictionary or a container with key-value pair elements.<pre><code class=language-python>>>> marks = dict(Rahul=86, Ravi=92, Rohit=75, Rajan=79)
+>>> marks.update(dict(Jo=89, Joe=75, Ravi=100))
+# note that 'Ravi' has '100' as the updated value
+>>> marks
+{'Rahul': 86, 'Ravi': 100, 'Rohit': 75, 'Rajan': 79, 'Jo': 89, 'Joe': 75}
+
+>>> fruits = dict(banana=12, papaya=5, mango=10, fig=100)
+>>> fruits.update([('onion', 3), ('pea', 10)])
+>>> fruits
+{'banana': 12, 'papaya': 5, 'mango': 10, 'fig': 100, 'onion': 3, 'pea': 10}
+</code></pre><p>The <code>|</code> operator is similar to the <code>update()</code> method, except that you get a new <code>dict</code> object instead of in-place modification.<pre><code class=language-python>>>> d1 = {'banana': 12, 'papaya': 5, 'mango': 20}
+>>> d2 = {'mango': 10, 'fig': 100}
+
+# this used to be done using unpacking, i.e. {**d1, **d2}
+>>> d1 | d2
+{'banana': 12, 'papaya': 5, 'mango': 10, 'fig': 100}
+</code></pre><h2><a class=header href=#arbitrary-keyword-arguments id=arbitrary-keyword-arguments>Arbitrary keyword arguments</a></h2><p>To accept arbitrary number of keyword arguments, use <code>**var_name</code> in the function definition. This has to be declared the last, after all the other types of arguments. Idiomatically, <code>**kwargs</code> is used as the variable name. See <a href=https://stackoverflow.com/questions/739654/how-to-make-function-decorators-and-chain-them-together/1594484#1594484>stackoverflow: Decorators demystified</a> for a practical use case of arbitrary keyword arguments.<pre><code class=language-python>>>> def many(**kwargs):
+...     print(f'{kwargs = }')
+... 
+>>> many()
+kwargs = {}
+>>> many(num=5)
+kwargs = {'num': 5}
+>>> many(car=5, jeep=25)
+kwargs = {'car': 5, 'jeep': 25}
+</code></pre><p>Turning it around, when you have a function defined with keyword arguments, you can unpack a dictionary while calling the function.<pre><code class=language-python>>>> def greeting(phrase='hello', style='='):
+...     print(f'{phrase:{style}^{len(phrase)+6}}')
+... 
+>>> greeting()
+===hello===
+>>> d = {'style': '-', 'phrase': 'have a nice day'}
+>>> greeting(**d)
+---have a nice day---
+</code></pre></main><nav class=nav-wrapper aria-label="Page navigation"><a rel=prev href=mutability.html class="mobile-nav-chapters previous"title="Previous chapter"aria-label="Previous chapter"aria-keyshortcuts=Left> <i class="fa fa-angle-left"></i> </a><a rel=next href=set.html class="mobile-nav-chapters next"title="Next chapter"aria-label="Next chapter"aria-keyshortcuts=Right> <i class="fa fa-angle-right"></i> </a><div style="clear: both"></div></nav></div></div><nav class=nav-wide-wrapper aria-label="Page navigation"><a rel=prev href=mutability.html class="nav-chapters previous"title="Previous chapter"aria-label="Previous chapter"aria-keyshortcuts=Left> <i class="fa fa-angle-left"></i> </a><a rel=next href=set.html class="nav-chapters next"title="Next chapter"aria-label="Next chapter"aria-keyshortcuts=Right> <i class="fa fa-angle-right"></i> </a></nav></div><script>
+            window.playground_copyable = true;
+        </script><script src=elasticlunr.min.js charset=utf-8></script><script src=mark.min.js charset=utf-8></script><script src=searcher.js charset=utf-8></script><script src=clipboard.min.js charset=utf-8></script><script src=highlight.js charset=utf-8></script><script src=book.js charset=utf-8></script><script src=sidebar.js></script>
