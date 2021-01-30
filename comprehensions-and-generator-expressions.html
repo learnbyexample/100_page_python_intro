@@ -1,0 +1,170 @@
+<!DOCTYPE HTML><html lang=en class="sidebar-visible no-js light"><head><meta charset=UTF-8><title>Comprehensions and Generator expressions - 100 Page Python Intro</title><meta content="text/html; charset=utf-8"http-equiv=Content-Type><meta name=description content="Short, introductory guide for the Python programming language"><meta name=viewport content="width=device-width, initial-scale=1"><meta name=theme-color content=#ffffff><link rel=icon href=favicon.svg><link rel="shortcut icon"href=favicon.png><link rel=stylesheet href=css/variables.css><link rel=stylesheet href=css/general.css><link rel=stylesheet href=css/chrome.css><link rel=stylesheet href=FontAwesome/css/font-awesome.css><link rel=stylesheet href=fonts/fonts.css><link rel=stylesheet href=highlight.css><link rel=stylesheet href=tomorrow-night.css><link rel=stylesheet href=ayu-highlight.css><link rel=stylesheet href=style.css><body><script>
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script><script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script><script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script><script>
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script><nav id=sidebar class=sidebar aria-label="Table of contents"><div class=sidebar-scrollbox><ol class=chapter><li class="chapter-item expanded affix"><a href=cover.html>Cover</a><li class="chapter-item expanded affix"><a href=buy.html>Buy PDF/EPUB versions</a><li class="chapter-item expanded"><a href=preface.html><strong aria-hidden=true>1.</strong> Preface</a><li class="chapter-item expanded"><a href=introduction.html><strong aria-hidden=true>2.</strong> Introduction</a><li class="chapter-item expanded"><a href=numeric-data-types.html><strong aria-hidden=true>3.</strong> Numeric data types</a><li class="chapter-item expanded"><a href=strings-and-user-input.html><strong aria-hidden=true>4.</strong> Strings and user input</a><li class="chapter-item expanded"><a href=defining-functions.html><strong aria-hidden=true>5.</strong> Defining functions</a><li class="chapter-item expanded"><a href=control-structures.html><strong aria-hidden=true>6.</strong> Control structures</a><li class="chapter-item expanded"><a href=importing-and-creating-modules.html><strong aria-hidden=true>7.</strong> Importing and creating modules</a><li class="chapter-item expanded"><a href=installing-modules-and-virtual-environments.html><strong aria-hidden=true>8.</strong> Installing modules and Virtual environments</a><li class="chapter-item expanded"><a href=exception-handling.html><strong aria-hidden=true>9.</strong> Exception handling</a><li class="chapter-item expanded"><a href=debugging.html><strong aria-hidden=true>10.</strong> Debugging</a><li class="chapter-item expanded"><a href=testing.html><strong aria-hidden=true>11.</strong> Testing</a><li class="chapter-item expanded"><a href=tuple-and-sequence-operations.html><strong aria-hidden=true>12.</strong> Tuple and Sequence operations</a><li class="chapter-item expanded"><a href=list.html><strong aria-hidden=true>13.</strong> List</a><li class="chapter-item expanded"><a href=mutability.html><strong aria-hidden=true>14.</strong> Mutability</a><li class="chapter-item expanded"><a href=dict.html><strong aria-hidden=true>15.</strong> Dict</a><li class="chapter-item expanded"><a href=set.html><strong aria-hidden=true>16.</strong> Set</a><li class="chapter-item expanded"><a href=text-processing.html><strong aria-hidden=true>17.</strong> Text processing</a><li class="chapter-item expanded"><a href=comprehensions-and-generator-expressions.html class=active><strong aria-hidden=true>18.</strong> Comprehensions and Generator expressions</a><li class="chapter-item expanded"><a href=dealing-with-files.html><strong aria-hidden=true>19.</strong> Dealing with files</a></ol></div><div id=sidebar-resize-handle class=sidebar-resize-handle></div></nav><div id=page-wrapper class=page-wrapper><div class=page><div id=menu-bar-hover-placeholder></div><div id=menu-bar class="menu-bar sticky bordered"><div class=left-buttons><button id=sidebar-toggle class=icon-button type=button title="Toggle Table of Contents"aria-label="Toggle Table of Contents"aria-controls=sidebar><i class="fa fa-bars"></i></button><button id=theme-toggle class=icon-button type=button title="Change theme"aria-label="Change theme"aria-haspopup=true aria-expanded=false aria-controls=theme-list><i class="fa fa-paint-brush"></i></button><ul id=theme-list class=theme-popup aria-label=Themes role=menu><li role=none><button role=menuitem class=theme id=light>Light (default)</button><li role=none><button role=menuitem class=theme id=rust>Rust</button><li role=none><button role=menuitem class=theme id=coal>Coal</button><li role=none><button role=menuitem class=theme id=navy>Navy</button><li role=none><button role=menuitem class=theme id=ayu>Ayu</button></ul><button id=search-toggle class=icon-button type=button title="Search. (Shortkey: s)"aria-label="Toggle Searchbar"aria-expanded=false aria-keyshortcuts=S aria-controls=searchbar><i class="fa fa-search"></i></button></div><h1 class=menu-title>100 Page Python Intro</h1><div class=right-buttons><a href=https://github.com/learnbyexample/100_page_python_intro title="Git repository"aria-label="Git repository"> <i id=git-repository-button class="fa fa-github"></i> </a></div></div><div id=search-wrapper class=hidden><form id=searchbar-outer class=searchbar-outer><input type=search name=search id=searchbar name=searchbar placeholder="Search this book ..."aria-controls=searchresults-outer aria-describedby=searchresults-header></form><div id=searchresults-outer class="searchresults-outer hidden"><div id=searchresults-header class=searchresults-header></div><ul id=searchresults></ul></div></div><script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script><div id=content class=content><main><div class=sidetoc><nav class=pagetoc></nav></div><h1><a class=header href=#comprehensions-and-generator-expressions id=comprehensions-and-generator-expressions>Comprehensions and Generator expressions</a></h1><p>This chapter will show how to use comprehensions and generator expressions for <strong>map</strong>, <strong>filter</strong> and <strong>reduce</strong> operations. You'll also learn about <strong>iterators</strong> and the <code>yield</code> statement.<h2><a class=header href=#comprehensions id=comprehensions>Comprehensions</a></h2><p>As mentioned earlier, Python provides <a href=https://docs.python.org/3/library/functions.html#map>map()</a> and <a href=https://docs.python.org/3/library/functions.html#filter>filter()</a> built-in functions. Comprehensions provide a terser and a faster (usually) way to implement them. However, the syntax can take a while to understand and get comfortable with.<p>The minimal requirement for a comprehension is a mapping expression (which could include a function call) and a loop. Here's an example:<pre><code class=language-python>>>> nums = (321, 1, 1, 0, 5.3, 2)
+
+# manual implementation
+>>> sqr_nums = []
+>>> for n in nums:
+...     sqr_nums.append(n * n)
+... 
+>>> sqr_nums
+[103041, 1, 1, 0, 28.09, 4]
+
+# list comprehension
+>>> [n * n for n in nums]
+[103041, 1, 1, 0, 28.09, 4]
+</code></pre><p>The general form of the above <code>list</code> comprehension is <code>[expr loop]</code>. Comparing with the manual implementation, the difference is that <code>append()</code> is automatically performed, which is where most of the performance benefit comes from. Note that <code>list</code> comprehension is defined based on the output being a <code>list</code>, input to the <code>for</code> loop can be any iterable (like <code>tuple</code> in the above example).<p>Here's an example with filtering operation. Instead of the following implementations:<pre><code class=language-python># manual implementation
+def remove_dunder(obj):
+    names = []
+    for n in dir(obj):
+        if '__' not in n:
+            names.append(n)
+    return names
+
+# using 'filter' function
+def remove_dunder(obj):
+    return list(filter(lambda n: '__' not in n, dir(obj)))
+</code></pre><p>You can use comprehension syntax like this:<pre><code class=language-python>>>> def remove_dunder(obj):
+...     return [n for n in dir(obj) if '__' not in n]
+... 
+>>> remove_dunder(dict)
+['clear', 'copy', 'fromkeys', 'get', 'items', 'keys', 'pop',
+ 'popitem', 'setdefault', 'update', 'values']
+</code></pre><p>The general form of the above comprehension is <code>[expr loop condition]</code>. If you can write the manual implementation, it is easy to derive the comprehension version. Put the expression (the argument passed to <code>append()</code> method) first, and then put the loops and conditions in the same order as the manual implementation. With practice, you'll be able to read and write the comprehension versions naturally.<p>Here's an example with <code>zip()</code> function:<pre><code class=language-python>>>> p = [1, 3, 5]
+>>> q = [3, 214, 53]
+>>> [i + j for i, j in zip(p, q)]
+[4, 217, 58]
+>>> [i * j for i, j in zip(p, q)]
+[3, 642, 265]
+</code></pre><p>And here's a nested loop example:<pre><code class=language-python>>>> names = ['Jo', 'Joe', 'Jon']
+>>> pairs = []
+>>> for i, n1 in enumerate(names):
+...     for n2 in names[i+1:]:
+...         pairs.append((n1, n2))
+... 
+>>> pairs
+[('Jo', 'Joe'), ('Jo', 'Jon'), ('Joe', 'Jon')]
+# note that the loop order is same as the manual implementation
+>>> [(n1, n2) for i, n1 in enumerate(names) for n2 in names[i+1:]]
+[('Jo', 'Joe'), ('Jo', 'Jon'), ('Joe', 'Jon')]
+</code></pre><p>Similarly, you can build <code>dict</code> and <code>set</code> comprehensions by using <code>{}</code> instead of <code>[]</code> characters. Comprehension syntax inside <code>()</code> characters becomes a generator expression (discussed later in this chapter), so you'll need to use <code>tuple()</code> for <code>tuple</code> comprehension. You can use <code>list()</code>, <code>dict()</code> and <code>set()</code> instead of <code>[]</code> and <code>{}</code> respectively as well.<pre><code class=language-python>>>> marks = dict(Rahul=68, Ravi=92, Rohit=75, Rajan=85, Ram=80)
+>>> {k: v for k, v in marks.items() if v >= 80}
+{'Ravi': 92, 'Rajan': 85, 'Ram': 80}
+
+>>> colors = {'teal', 'blue', 'green', 'yellow', 'red', 'orange'}
+>>> {c for c in colors if 'o' in c}
+{'yellow', 'orange'}
+
+>>> dishes = ('Poha', 'Aloo tikki', 'Baati', 'Khichdi', 'Makki roti')
+>>> tuple(d for d in dishes if len(d) < 6)
+('Poha', 'Baati')
+</code></pre><p>If you are still confused with comprehension syntax, see:<ul><li><a href=https://treyhunner.com/2015/12/python-list-comprehensions-now-in-color/>List comprehensions explained visually</a><li><a href=https://gist.github.com/bearfrieze/a746c6f12d8bada03589>Comprehensions in Python the Jedi way</a><li><a href=https://calmcode.io/comprehensions/introduction.html>calmcode.io: video on comprehensions</a></ul><h2><a class=header href=#iterator id=iterator>Iterator</a></h2><p>Partial quote from <a href=https://docs.python.org/3/glossary.html#term-iterator>docs.python glossary: <strong>iterator</strong></a>:<blockquote><p>An object representing a stream of data. Repeated calls to the iterator’s <code>__next__()</code> method (or passing it to the built-in function <code>next()</code>) return successive items in the stream. When no more data are available a <code>StopIteration</code> exception is raised instead.</blockquote><p>The <code>filter()</code> example in the previous section required further processing, such as passing to the <code>list()</code> function to get the output as a <code>list</code> object. This is because the <code>filter()</code> function returns an object that behaves like an <strong>iterator</strong>. You can pass iterators anywhere iterables are allowed, such as the <code>for</code> loop. Here's an example:<pre><code class=language-python>>>> filter_obj = filter(lambda n: '__' not in n, dir(tuple))
+>>> filter_obj
+&LTfilter object at 0x7fd910e2de80>
+>>> for x in filter_obj:
+...     print(x)
+... 
+count
+index
+</code></pre><p>One of the differences between an iterable and an iterator is that you can iterate over iterables any number of times (quite the tongue twister, if I may say so myself). Also, the <code>next()</code> function can be used on an iterator, but not iterables. Once you have exhausted an iterator, any attempt to get another item (such as <code>next()</code> or <code>for</code> loop) will result in a <code>StopIteration</code> exception. Iterators are <a href=https://en.wikipedia.org/wiki/Lazy_evaluation>lazy and memory efficient</a> since the results are evaluated only when needed, instead of lying around in a container.<pre><code class=language-python>>>> names = filter(lambda n: '__' not in n, dir(tuple))
+>>> next(names)
+'count'
+>>> next(names)
+'index'
+>>> next(names)
+Traceback (most recent call last):
+  File "&LTstdin>", line 1, in &LTmodule>
+StopIteration
+</code></pre><p>You can convert an iterable to an iterator using the <a href=https://docs.python.org/3/library/functions.html#iter>iter()</a> built-in function.<pre><code class=language-python>>>> nums = [321, 1, 1, 0, 5.3, 2]
+>>> iter(nums)
+&LTlist_iterator object at 0x7fd90e7f8ee0>
+</code></pre><p>Here's a practical example to get a random item from a <code>list</code> without repetition:<pre><code class=language-python>>>> import random 
+>>> names = ['Jo', 'Ravi', 'Joe', 'Raj', 'Jon']
+>>> random.shuffle(names)
+>>> random_name = iter(names)
+>>> next(random_name)
+'Jon'
+>>> next(random_name)
+'Ravi'
+</code></pre><h2><a class=header href=#yield id=yield>yield</a></h2><p>Functions that use <code>yield</code> statement instead of <code>return</code> to create an iterator are known as <strong>generators</strong>. Quoting from <a href=https://docs.python.org/3/tutorial/classes.html#generators>docs.python: Generators</a>:<blockquote><p>Each time <code>next()</code> is called on it, the generator resumes where it left off (it remembers all the data values and which statement was last executed).</blockquote><p>Here's a fibonacci generator:<pre><code class=language-python>>>> def fibonacci(n):
+...     a, b = 0, 1
+...     for _ in range(n):
+...         yield a
+...         a, b = b, a + b
+... 
+>>> fibonacci(5)
+&LTgenerator object fibonacci at 0x7fd90e7b22e0>
+>>> list(fibonacci(10))
+[0, 1, 1, 2, 3, 5, 8, 13, 21, 34]
+</code></pre><p>For a more detailed discussion and related features, see:<ul><li><a href=https://stackoverflow.com/questions/231767/what-does-the-yield-keyword-do>stackoverflow: What does the yield keyword do?</a><li><a href=https://jeffknupp.com/blog/2013/04/07/improve-your-python-yield-and-generators-explained/>Yield and Generators Explained</a><li><a href=https://docs.python.org/3/library/itertools.html>docs.python: itertools</a></ul><h2><a class=header href=#generator-expressions id=generator-expressions>Generator expressions</a></h2><p>Comprehension syntax inside <code>()</code> characters creates an iterator, known as <strong>generator expressions</strong>. Using a generator expression is memory efficient and faster than comprehensions whenever you need a single use iterable. If you use comprehension, you'll be wasting memory to save the values in a container, only to be discarded once they are processed by a <strong>reduce</strong> operation such as the <code>sum()</code> function in the below examples.<pre><code class=language-python>>>> nums = [100, 53, 32, 0, 11, 5, 2]
+>>> (n * n for n in nums)
+&LTgenerator object &LTgenexpr> at 0x7fd90e7b22e0>
+>>> g = (n * n for n in nums)
+>>> next(g)
+10000
+
+# here's a generator version of the sum_sqr_evens(iterable) function
+# note that () is optional here for the generator expression
+>>> sum(n * n for n in nums if n % 2 == 0)
+11028
+
+# inner product
+>>> sum(i * j for i, j in zip((1, 3, 5), (2, 4, 6)))
+44
+</code></pre><p>Here's an example with <code>join()</code> method:<pre><code class=language-python>>>> items = (1, 'hi', [10, 20], 'bye')
+>>> ':'.join(items)
+Traceback (most recent call last):
+  File "&LTstdin>", line 1, in &LTmodule>
+TypeError: sequence item 0: expected str instance, int found
+>>> ':'.join(str(i) for i in items)
+'1:hi:[10, 20]:bye'
+</code></pre><h2><a class=header href=#exercises id=exercises>Exercises</a></h2><ul><li><p>Write a function that returns a dictionary sorted by values in ascending order.</p> <pre><code class=language-ruby>>>> marks = dict(Rahul=86, Ravi=92, Rohit=75, Rajan=79, Ram=92)
+>>> sort_by_value(marks)
+{'Rohit': 75, 'Rajan': 79, 'Rahul': 86, 'Ravi': 92, 'Ram': 92}
+</code></pre><li><p>Write a function that returns a <code>list</code> of string slices as per the following rules:</p> <ul><li>return the input string as the only element if its length is less than 3 characters<li>otherwise, return all slices that have 2 or more characters</ul> <pre><code class=language-ruby>>>> word_slices('i')
+['i']
+>>> word_slices('to')
+['to']
+>>> word_slices('table')
+['ta', 'tab', 'tabl', 'table', 'ab', 'abl', 'able', 'bl', 'ble', 'le']
+</code></pre><li><p>Square even numbers and cube odd numbers. For example, <code>[321, 1, -4, 0, 5, 2]</code> should give you <code>[33076161, 1, 16, 0, 125, 4]</code> as the output.<li><p>Calculate sum of squares of the numbers, only if the square value is less than <code>50</code>. Output for <code>(7.1, 1, -4, 8, 5.1, 12)</code> should be <code>43.01</code>.</ul></main><nav class=nav-wrapper aria-label="Page navigation"><a rel=prev href=text-processing.html class="mobile-nav-chapters previous"title="Previous chapter"aria-label="Previous chapter"aria-keyshortcuts=Left> <i class="fa fa-angle-left"></i> </a><a rel=next href=dealing-with-files.html class="mobile-nav-chapters next"title="Next chapter"aria-label="Next chapter"aria-keyshortcuts=Right> <i class="fa fa-angle-right"></i> </a><div style="clear: both"></div></nav></div></div><nav class=nav-wide-wrapper aria-label="Page navigation"><a rel=prev href=text-processing.html class="nav-chapters previous"title="Previous chapter"aria-label="Previous chapter"aria-keyshortcuts=Left> <i class="fa fa-angle-left"></i> </a><a rel=next href=dealing-with-files.html class="nav-chapters next"title="Next chapter"aria-label="Next chapter"aria-keyshortcuts=Right> <i class="fa fa-angle-right"></i> </a></nav></div><script>
+            window.playground_copyable = true;
+        </script><script src=elasticlunr.min.js charset=utf-8></script><script src=mark.min.js charset=utf-8></script><script src=searcher.js charset=utf-8></script><script src=clipboard.min.js charset=utf-8></script><script src=highlight.js charset=utf-8></script><script src=book.js charset=utf-8></script><script src=sidebar.js></script>
