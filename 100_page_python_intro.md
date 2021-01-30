@@ -1,27 +1,29 @@
 # Preface
 
-This book is a short, introductory guide for the Python programming language.
+This book is a short, introductory guide for the Python programming language. This book is well suited:
 
-## Prerequisites
+* As a reference material for Python beginner workshops
+* If you have prior experience with another programming language
+* If you want a complement resource after reading a Python basics book, watching a video course, etc
 
-You should be already familiar with basic programming concepts. If you are new to programming, I'd highly recommended these resources to get started:
+## Prerequisites, Motivation and FAQ
 
-* [Think Python](https://greenteapress.com/wp/think-python-2e/) — gives you a solid foundation to programming, teaches debugging right the beginning, includes case studies, exercises, etc
-* [Automate the Boring Stuff with Python](https://automatetheboringstuff.com/2e/) — teaches you programming concepts and then shows how to automate everyday problems
+You should be already familiar with basic programming concepts. If you are new to programming, I'd highly recommended my [comprehensive curated list](https://learnbyexample.github.io/py_resources/) to get started.
 
-Or, if you prefer certification courses:
+I've been conducting a few Python introduction workshops for college students and faculty for the past four years (which came to a premature end thanks to the pandemic). These students were already familiar with another programming languages such as `C`, `Java`, etc. I used to provide my notes in PDF format as a workshop reference material, further reading resources, etc. After I started writing a book titled "[Practice Python Projects](https://learnbyexample.github.io/practice_python_projects/)", I realized I'd be better served by improving my Python knowledge first. What better way to do it than writing a book?
 
-* [Harvard CS50: Introduction to Computer Science](https://www.edx.org/course/cs50s-introduction-to-computer-science) — self paced course on edx. Languages include C, Python, SQL, and JavaScript plus CSS and HTML
-* [MIT: Introduction to Computer Science and Programming Using Python](https://www.edx.org/course/introduction-to-computer-science-and-programming-7) — self paced course on edx
+*Why is it called **100 Page Python Intro** when it has more than 100 pages?*
 
-See my curated list [py_resources](https://learnbyexample.github.io/py_resources/) for many more learning resources on various Python topics.
+>There are 2 hard problems in computer science: cache invalidation, naming things, and off-by-1 errors — Leon Bambrick
+
+The material I was using for my workshops was 56 pages. I had more chapters to add, but I thought it would be a struggle to reach 100 pages, instead of overshooting the goal in the end. The measurement also depends on a few factors. The main content will be less than 100 pages if I reduce the font size from 12 to 11, exclude cover, TOC, Preface, etc.
 
 ## Conventions
 
 * The examples presented here have been tested with **Python version 3.9.0** and includes features that are not available in earlier versions.
 * Code snippets that are copy pasted from the Python REPL shell have been modified for presentation purposes. For example, comments to provide context and explanations, blank lines and shortened error messages to improve readability and so on.
 * A comment with filename will be shown as the first line for program files.
-* External links are provided for further exploration throughout the book. They have been chosen with care to provide resources with more detailed discussion on those topics.
+* External links are provided for further exploration throughout the book. They have been chosen with care to provide more detailed resources on those topics as well as resources on related topics.
 
 ## Acknowledgements
 
@@ -29,8 +31,10 @@ See my curated list [py_resources](https://learnbyexample.github.io/py_resources
 * [stackoverflow](https://stackoverflow.com/) and [unix.stackexchange](https://unix.stackexchange.com/) — for getting answers to pertinent questions on Python, Shell and programming in general
 * [/r/learnpython](https://www.reddit.com/r/learnpython) — helpful forum for beginners
 * [/r/Python/](https://www.reddit.com/r/Python/) — general Python discussion
-* [tex.stackexchange](https://tex.stackexchange.com/) — for help on `pandoc` and `tex` related questions
-* [LibreOffice Draw](https://www.libreoffice.org/discover/draw/) — cover image
+* [tex.stackexchange](https://tex.stackexchange.com/) — for help on [pandoc](https://github.com/jgm/pandoc/) and `tex` related questions
+* Cover image:
+    * [Ilsa Olson](https://ko-fi.com/profetessaoscura) — cover art
+    * [LibreOffice Draw](https://www.libreoffice.org/discover/draw/) — title/author text
 * [pngquant](https://pngquant.org/) and [svgcleaner](https://github.com/RazrFalcon/svgcleaner) for optimizing images
 * [Warning](https://commons.wikimedia.org/wiki/File:Warning_icon.svg) and [Info](https://commons.wikimedia.org/wiki/File:Info_icon_002.svg) icons by [Amada44](https://commons.wikimedia.org/wiki/User:Amada44) under public domain
 
@@ -2199,7 +2203,7 @@ Quoting from [docs.python glossary: **sequence**](https://docs.python.org/3/glos
 
 >An iterable which supports efficient element access using integer indices via the `__getitem__()` special method and defines a `__len__()` method that returns the length of the sequence. Some built-in sequence types are list, str, tuple, and bytes. Note that dict also supports `__getitem__()` and `__len__()`, but is considered a mapping rather than a sequence because the lookups use arbitrary immutable keys rather than integers.
 
-Quoting from [docs.python glossary: **iterable**](https://docs.python.org/3/glossary.html#term-iterable):
+Partial quote from [docs.python glossary: **iterable**](https://docs.python.org/3/glossary.html#term-iterable):
 
 >An object capable of returning its members one at a time. Examples of iterables include all sequence types (such as list, str, and tuple) and some non-sequence types like dict, file objects...
 
@@ -2366,8 +2370,8 @@ As an exercise, what do you think will happen for these cases, given `nums = (1,
 Tuples are also the preferred way to return multiple values from a function. Here's some examples:
 
 ```ruby
->>> def min_max(iter):
-...     return min(iter), max(iter)
+>>> def min_max(iterable):
+...     return min(iterable), max(iterable)
 ... 
 >>> min_max('visualization')
 ('a', 'z')
@@ -2378,7 +2382,7 @@ Tuples are also the preferred way to return multiple values from a function. Her
 53.2
 ```
 
-The `min_max(iter)` user-defined function above returns both the **minimum** and **maximum** values of a given iterable input. `min()` and `max()` are built-in functions. You can either save the output as a `tuple` or unpack into multiple variables. You'll see built-in functions that return `tuple` as output later in this chapter.
+The `min_max(iterable)` user-defined function above returns both the **minimum** and **maximum** values of a given iterable input. `min()` and `max()` are built-in functions. You can either save the output as a `tuple` or unpack into multiple variables. You'll see built-in functions that return `tuple` as output later in this chapter.
 
 >![warning](./images/warning.svg) The use of both [min()](https://docs.python.org/3/library/functions.html#min) and [max()](https://docs.python.org/3/library/functions.html#max) in the above example is for illustration purpose only. As an exercise, write a custom logic that iterates only once over the input sequence and calculates both minimum/maximum simultaneously.
 
@@ -2891,9 +2895,9 @@ Many operations on container objects can be defined in terms of these three conc
 One or more of these operations may be absent depending on the problem statement. A function for the first of these steps could look like:
 
 ```ruby
->>> def get_evens(iter):
+>>> def get_evens(iterable):
 ...     op = []
-...     for n in iter:
+...     for n in iterable:
 ...         if n % 2 == 0:
 ...             op.append(n)
 ...     return op
@@ -2905,9 +2909,9 @@ One or more of these operations may be absent depending on the problem statement
 Function after the second step could be:
 
 ```ruby
->>> def sqr_evens(iter):
+>>> def sqr_evens(iterable):
 ...     op = []
-...     for n in iter:
+...     for n in iterable:
 ...         if n % 2 == 0:
 ...             op.append(n * n)
 ...     return op
@@ -2919,9 +2923,9 @@ Function after the second step could be:
 And finally, the function after the third step could be:
 
 ```ruby
->>> def sum_sqr_evens(iter):
+>>> def sum_sqr_evens(iterable):
 ...     total = 0
-...     for n in iter:
+...     for n in iterable:
 ...         if n % 2 == 0:
 ...             total += n * n
 ...     return total
@@ -3488,4 +3492,804 @@ True
     False
     ```
 * What does the above function return for `has_duplicates([3, 2, 3.0])`?
+
+# Text processing
+
+This chapter will discuss `str` methods and introduce a few examples with the `string` and `re` modules.
+
+## join
+
+The `join()` method is similar to what the `print()` function does with the `sep` option, except that you get a `str` object as the result. The iterable you pass to `join()` can only have string elements. On the other hand, `print()` uses an object's [`__str__()` method](https://docs.python.org/3/reference/datamodel.html#object.__str__) to get its string representation ([`__repr__()` method](https://docs.python.org/3/reference/datamodel.html#object.__repr__) is used as a fallback).
+
+```ruby
+>>> print(1, 2)
+1 2
+>>> ' '.join((1, 2))
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+TypeError: sequence item 0: expected str instance, int found
+>>> ' '.join(('1', '2'))
+'1 2'
+
+>>> c = ' :: '
+>>> c.join(['This', 'is', 'a', 'sample', 'string'])
+'This :: is :: a :: sample :: string'
+```
+
+As an exercise, check what happens if you pass multiple string values separated by comma to `join()` instead of an iterable.
+
+## Transliteration
+
+The `translate()` method accepts a table of codepoints (numerical value of a character) mapped to another character/codepoint or `None` (if the character has to be deleted). You can use the [ord()](https://docs.python.org/3/library/functions.html#ord) built-in function to get the codepoint of characters. Or, you can use the `str.maketrans()` method to generate the mapping for you.
+
+```ruby
+>>> ord('a')
+97
+>>> ord('A')
+65
+
+>>> str.maketrans('aeiou', 'AEIOU')
+{97: 65, 101: 69, 105: 73, 111: 79, 117: 85}
+
+>>> greeting = 'have a nice day'
+>>> greeting.translate(str.maketrans('aeiou', 'AEIOU'))
+'hAvE A nIcE dAy'
+```
+
+The [string module](https://docs.python.org/3/library/string.html) has a collection of constants that are often useful in text processing. Here's an example of deleting punctuation characters.
+
+```ruby
+>>> import string
+>>> string.punctuation
+'!"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~'
+
+>>> para = '"Hi", there! How *are* you? All fine here.'
+>>> para.translate(str.maketrans('', '', string.punctuation))
+'Hi there How are you All fine here'
+
+>>> chars_to_delete = ''.join(set(string.punctuation) - set('.!?'))
+>>> para.translate(str.maketrans('', '', chars_to_delete))
+'Hi there! How are you? All fine here.'
+```
+
+As an exercise, read the documentation for features covered in this section. See also [stackoverflow: character translation examples](https://stackoverflow.com/questions/555705/character-translation-using-python-like-the-tr-command).
+
+## Removing leading/trailing characters
+
+The `strip()` method removes consecutive characters from the start/end of the given string. By default it removes whitespace characters, which you can change by passing a `str` argument. You can use `lstrip()` and `rstrip()` methods to work only on the leading and trailing characters respectively.
+
+```ruby
+>>> greeting = '  \t\r\n have    a  nice \t day  \f\v\r\t\n '
+>>> greeting.strip()
+'have    a  nice \t day'
+>>> greeting.lstrip()
+'have    a  nice \t day  \x0c\x0b\r\t\n '
+>>> greeting.rstrip()
+'  \t\r\n have    a  nice \t day'
+
+>>> '"Hi",'.strip(string.punctuation)
+'Hi'
+```
+
+The `removeprefix()` and `removesuffix()` methods will delete a substring from the start/end of the input string.
+
+```ruby
+>>> 'spare'.removeprefix('sp')
+'are'
+>>> 'free'.removesuffix('e')
+'fre'
+
+# difference between remove and strip
+>>> 'cared'.removesuffix('de')
+'cared'
+>>> 'cared'.rstrip('de')
+'car'
+```
+
+## Dealing with case
+
+Here's five different methods for changing the case of characters. Word level transformation is determined by consecutive occurrences of alphabets, not limited to separation by whitespace characters.
+
+```ruby
+>>> sentence = 'thIs iS a saMple StrIng'
+
+>>> sentence.capitalize()
+'This is a sample string'
+
+>>> sentence.title()
+'This Is A Sample String'
+
+>>> sentence.lower()
+'this is a sample string'
+
+>>> sentence.upper()
+'THIS IS A SAMPLE STRING'
+
+>>> sentence.swapcase()
+'THiS Is A SAmPLE sTRiNG'
+```
+
+The `string.capwords()` method is similar to `title()` but also allows a specific word separator (whose default is whitespace).
+
+```ruby
+>>> phrase = 'this-IS-a:colon:separated,PHRASE'
+
+>>> phrase.title()
+'This-Is-A:Colon:Separated,Phrase'
+>>> string.capwords(phrase, ':')
+'This-is-a:Colon:Separated,phrase'
+```
+
+## is methods
+
+The `islower()`, `isupper()` and `istitle()` methods check if the given string conforms to the specific case pattern. Characters other than alphabets do not influence the result, but at least one alphabet needs to be present for a `True` output.
+
+```ruby
+>>> 'αλεπού'.islower()
+True
+
+>>> '123'.isupper()
+False
+>>> 'ABC123'.isupper()
+True
+
+>>> 'Today is Sunny'.istitle()
+False
+```
+
+Here's some examples with `isnumeric()` and `isascii()` methods. As an exercise, read the documentation for the rest of the **is** methods.
+
+```ruby
+# checks if string has numeric characters only, at least one
+>>> '153'.isnumeric()
+True
+>>> ''.isnumeric()
+False
+>>> '1.2'.isnumeric()
+False
+>>> '-1'.isnumeric()
+False
+
+# False if any character codepoint is outside the range 0x00 to 0x7F
+>>> '123—456'.isascii()
+False
+>>> 'happy learning!'.isascii()
+True
+```
+
+## Substring and count
+
+The `in` operator checks if the LHS string is a substring of the RHS string.
+
+```ruby
+>>> sentence = 'This is a sample string'
+
+>>> 'is a' in sentence
+True
+>>> 'this' in sentence
+False
+>>> 'this' in sentence.lower()
+True
+>>> 'test' not in sentence
+True
+```
+
+The `count()` method gives the number of times the given substring is present (non-overlapping).
+
+```ruby
+>>> sentence = 'This is a sample string'
+>>> sentence.count('is')
+2
+>>> sentence.count('w')
+0
+
+>>> word = 'phototonic'
+>>> word.count('oto')
+1
+```
+
+## Match start/end
+
+The `startswith()` and `endswith()` methods check for the presence of substrings only at the start/end of the input string.
+
+```ruby
+>>> sentence = 'This is a sample string'
+
+>>> sentence.startswith('This')
+True
+>>> sentence.startswith('is')
+False
+
+>>> sentence.endswith('ing')
+True
+>>> sentence.endswith('ly')
+False
+```
+
+If you need to check for multiple substrings, pass a `tuple` argument.
+
+```ruby
+>>> words = ['refuse', 'impossible', 'present', 'read']
+>>> prefix = ('im', 're')
+>>> for w in words:
+...     if w.startswith(prefix):
+...         print(w)
+... 
+refuse
+impossible
+read
+```
+
+## split
+
+The `split()` method splits a string based on the given substring and returns a `list`. By default, whitespace is used for splitting. You can also control the number of splits.
+
+```ruby
+>>> greeting = '  \t\r\n have    a  nice \t day  \f\v\r\t\n '
+# note that leading/trailing whitespaces do not create empty elements
+>>> greeting.split()
+['have', 'a', 'nice', 'day']
+
+# note that the empty elements are preserved here
+>>> ':car::jeep::'.split(':')
+['', 'car', '', 'jeep', '', '']
+
+>>> 'apple<=>grape<=>mango<=>fig'.split('<=>', maxsplit=1)
+['apple', 'grape<=>mango<=>fig']
+```
+
+## replace
+
+Use `replace()` method for substitution operation. Optional third argument allows you to specify number of replacements to be made.
+
+```ruby
+>>> phrase = '2 be or not 2 be'
+
+>>> phrase.replace('2', 'to')
+'to be or not to be'
+
+>>> phrase.replace('2', 'to', 1)
+'to be or not 2 be'
+
+# recall that string is immutable, you'll need to re-assign if needed
+>>> phrase = phrase.replace('2', 'to')
+>>> phrase
+'to be or not to be'
+```
+
+## re module
+
+Regular Expressions is a versatile tool for text processing. You'll find them included as part of standard library of most programming languages that are used for scripting purposes. If not, you can usually find a third-party library. Syntax and features of regular expressions vary from language to language though. [`re` module](https://docs.python.org/3/library/re.html) is the built-in library for Python.
+
+What's so special about regular expressions and why would you need it? It is a mini programming language in itself, specialized for text processing. Parts of a regular expression can be saved for future use, analogous to variables and functions. There are ways to perform AND, OR, NOT conditionals. Operations similar to `range()` function, string repetition operator and so on. Here's some common use cases:
+
+* Sanitizing a string to ensure that it satisfies a known set of rules. For example, to check if a given string matches password rules.
+* Filtering or extracting portions on an abstract level like alphabets, numbers, punctuation and so on.
+* Qualified string replacement. For example, at the start or the end of a string, only whole words, based on surrounding text, etc.
+
+```ruby
+>>> import re
+
+# extract non-colon character sequences
+>>> ip = ':car::jeep::'
+>>> ip.split(':')
+['', 'car', '', 'jeep', '', '']
+>>> re.findall(r'[^:]+', ip)
+['car', 'jeep']
+
+# replace only whole words 'par' and 'hand' with 'X'
+# \b is an anchor to restrict the matching to the start/end of words
+>>> ip = 'par spare part hand handy unhanded'
+>>> re.sub(r'\b(par|hand)\b', 'X', ip)
+'X spare part X handy unhanded'
+```
+
+>![info](./images/info.svg) See my book [Python re(gex)?](https://github.com/learnbyexample/py_regular_expressions) for a detailed guide on regular expressions (it is longer than this book!). The book covers the third-party [`regex` module](https://pypi.org/project/regex/) as well.
+
+## Exercises
+
+* Write a function that checks if two strings are anagrams irrespective of case (assume input is made up of alphabets only).
+
+    ```ruby
+    >>> anagram('god', 'Dog')
+    True
+    >>> anagram('beat', 'table')
+    False
+    >>> anagram('Beat', 'abet')
+    True
+    ```
+* Read the documentation and implement these formatting examples with equivalent `str` methods.
+
+    ```ruby
+    >>> fruit = 'apple'
+
+    >>> f'{fruit:=>10}'
+    '=====apple'
+    >>> f'{fruit:=<10}'
+    'apple====='
+    >>> f'{fruit:=^10}'
+    '==apple==='
+
+    >>> f'{fruit:^10}'
+    '  apple   '
+    ```
+* Write a function that returns a `list` of words present in the input string.
+
+    ```ruby
+    >>> words('"Hi", there! How *are* you? All fine here.')
+    ['Hi', 'there', 'How', 'are', 'you', 'All', 'fine', 'here']
+    >>> words('This-Is-A:Colon:Separated,Phrase')
+    ['This', 'Is', 'A', 'Colon', 'Separated', 'Phrase']
+    ```
+
+# Comprehensions and Generator expressions
+
+This chapter will show how to use comprehensions and generator expressions for **map**, **filter** and **reduce** operations. You'll also learn about **iterators** and the `yield` statement.
+
+## Comprehensions
+
+As mentioned earlier, Python provides [map()](https://docs.python.org/3/library/functions.html#map) and [filter()](https://docs.python.org/3/library/functions.html#filter) built-in functions. Comprehensions provide a terser and a faster (usually) way to implement them. However, the syntax can take a while to understand and get comfortable with.
+
+The minimal requirement for a comprehension is a mapping expression (which could include a function call) and a loop. Here's an example:
+
+```ruby
+>>> nums = (321, 1, 1, 0, 5.3, 2)
+
+# manual implementation
+>>> sqr_nums = []
+>>> for n in nums:
+...     sqr_nums.append(n * n)
+... 
+>>> sqr_nums
+[103041, 1, 1, 0, 28.09, 4]
+
+# list comprehension
+>>> [n * n for n in nums]
+[103041, 1, 1, 0, 28.09, 4]
+```
+
+The general form of the above `list` comprehension is `[expr loop]`. Comparing with the manual implementation, the difference is that `append()` is automatically performed, which is where most of the performance benefit comes from. Note that `list` comprehension is defined based on the output being a `list`, input to the `for` loop can be any iterable (like `tuple` in the above example).
+
+Here's an example with filtering operation. Instead of the following implementations:
+
+```ruby
+# manual implementation
+def remove_dunder(obj):
+    names = []
+    for n in dir(obj):
+        if '__' not in n:
+            names.append(n)
+    return names
+
+# using 'filter' function
+def remove_dunder(obj):
+    return list(filter(lambda n: '__' not in n, dir(obj)))
+```
+
+You can use comprehension syntax like this:
+
+```ruby
+>>> def remove_dunder(obj):
+...     return [n for n in dir(obj) if '__' not in n]
+... 
+>>> remove_dunder(dict)
+['clear', 'copy', 'fromkeys', 'get', 'items', 'keys', 'pop',
+ 'popitem', 'setdefault', 'update', 'values']
+```
+
+The general form of the above comprehension is `[expr loop condition]`. If you can write the manual implementation, it is easy to derive the comprehension version. Put the expression (the argument passed to `append()` method) first, and then put the loops and conditions in the same order as the manual implementation. With practice, you'll be able to read and write the comprehension versions naturally.
+
+Here's an example with `zip()` function:
+
+```ruby
+>>> p = [1, 3, 5]
+>>> q = [3, 214, 53]
+>>> [i + j for i, j in zip(p, q)]
+[4, 217, 58]
+>>> [i * j for i, j in zip(p, q)]
+[3, 642, 265]
+```
+
+And here's a nested loop example:
+
+```ruby
+>>> names = ['Jo', 'Joe', 'Jon']
+>>> pairs = []
+>>> for i, n1 in enumerate(names):
+...     for n2 in names[i+1:]:
+...         pairs.append((n1, n2))
+... 
+>>> pairs
+[('Jo', 'Joe'), ('Jo', 'Jon'), ('Joe', 'Jon')]
+# note that the loop order is same as the manual implementation
+>>> [(n1, n2) for i, n1 in enumerate(names) for n2 in names[i+1:]]
+[('Jo', 'Joe'), ('Jo', 'Jon'), ('Joe', 'Jon')]
+```
+
+Similarly, you can build `dict` and `set` comprehensions by using `{}` instead of `[]` characters. Comprehension syntax inside `()` characters becomes a generator expression (discussed later in this chapter), so you'll need to use `tuple()` for `tuple` comprehension. You can use `list()`, `dict()` and `set()` instead of `[]` and `{}` respectively as well.
+
+```ruby
+>>> marks = dict(Rahul=68, Ravi=92, Rohit=75, Rajan=85, Ram=80)
+>>> {k: v for k, v in marks.items() if v >= 80}
+{'Ravi': 92, 'Rajan': 85, 'Ram': 80}
+
+>>> colors = {'teal', 'blue', 'green', 'yellow', 'red', 'orange'}
+>>> {c for c in colors if 'o' in c}
+{'yellow', 'orange'}
+
+>>> dishes = ('Poha', 'Aloo tikki', 'Baati', 'Khichdi', 'Makki roti')
+>>> tuple(d for d in dishes if len(d) < 6)
+('Poha', 'Baati')
+```
+
+If you are still confused with comprehension syntax, see:
+
+* [List comprehensions explained visually](https://treyhunner.com/2015/12/python-list-comprehensions-now-in-color/)
+* [Comprehensions in Python the Jedi way](https://gist.github.com/bearfrieze/a746c6f12d8bada03589)
+* [calmcode.io: video on comprehensions](https://calmcode.io/comprehensions/introduction.html)
+
+## Iterator
+
+Partial quote from [docs.python glossary: **iterator**](https://docs.python.org/3/glossary.html#term-iterator):
+
+>An object representing a stream of data. Repeated calls to the iterator’s `__next__()` method (or passing it to the built-in function `next()`) return successive items in the stream. When no more data are available a `StopIteration` exception is raised instead.
+
+The `filter()` example in the previous section required further processing, such as passing to the `list()` function to get the output as a `list` object. This is because the `filter()` function returns an object that behaves like an **iterator**. You can pass iterators anywhere iterables are allowed, such as the `for` loop. Here's an example:
+
+```ruby
+>>> filter_obj = filter(lambda n: '__' not in n, dir(tuple))
+>>> filter_obj
+<filter object at 0x7fd910e2de80>
+>>> for x in filter_obj:
+...     print(x)
+... 
+count
+index
+```
+
+One of the differences between an iterable and an iterator is that you can iterate over iterables any number of times (quite the tongue twister, if I may say so myself). Also, the `next()` function can be used on an iterator, but not iterables. Once you have exhausted an iterator, any attempt to get another item (such as `next()` or `for` loop) will result in a `StopIteration` exception. Iterators are [lazy and memory efficient](https://en.wikipedia.org/wiki/Lazy_evaluation) since the results are evaluated only when needed, instead of lying around in a container.
+
+```ruby
+>>> names = filter(lambda n: '__' not in n, dir(tuple))
+>>> next(names)
+'count'
+>>> next(names)
+'index'
+>>> next(names)
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+StopIteration
+```
+
+You can convert an iterable to an iterator using the [iter()](https://docs.python.org/3/library/functions.html#iter) built-in function.
+
+```ruby
+>>> nums = [321, 1, 1, 0, 5.3, 2]
+>>> iter(nums)
+<list_iterator object at 0x7fd90e7f8ee0>
+```
+
+Here's a practical example to get a random item from a `list` without repetition:
+
+```ruby
+>>> import random 
+>>> names = ['Jo', 'Ravi', 'Joe', 'Raj', 'Jon']
+>>> random.shuffle(names)
+>>> random_name = iter(names)
+>>> next(random_name)
+'Jon'
+>>> next(random_name)
+'Ravi'
+```
+
+## yield
+
+Functions that use `yield` statement instead of `return` to create an iterator are known as **generators**. Quoting from [docs.python: Generators](https://docs.python.org/3/tutorial/classes.html#generators):
+
+>Each time `next()` is called on it, the generator resumes where it left off (it remembers all the data values and which statement was last executed).
+
+Here's a fibonacci generator:
+
+```ruby
+>>> def fibonacci(n):
+...     a, b = 0, 1
+...     for _ in range(n):
+...         yield a
+...         a, b = b, a + b
+... 
+>>> fibonacci(5)
+<generator object fibonacci at 0x7fd90e7b22e0>
+>>> list(fibonacci(10))
+[0, 1, 1, 2, 3, 5, 8, 13, 21, 34]
+```
+
+For a more detailed discussion and related features, see:
+
+* [stackoverflow: What does the yield keyword do?](https://stackoverflow.com/questions/231767/what-does-the-yield-keyword-do)
+* [Yield and Generators Explained](https://jeffknupp.com/blog/2013/04/07/improve-your-python-yield-and-generators-explained/)
+* [docs.python: itertools](https://docs.python.org/3/library/itertools.html)
+
+## Generator expressions
+
+Comprehension syntax inside `()` characters creates an iterator, known as **generator expressions**. Using a generator expression is memory efficient and faster than comprehensions whenever you need a single use iterable. If you use comprehension, you'll be wasting memory to save the values in a container, only to be discarded once they are processed by a **reduce** operation such as the `sum()` function in the below examples.
+
+```ruby
+>>> nums = [100, 53, 32, 0, 11, 5, 2]
+>>> (n * n for n in nums)
+<generator object <genexpr> at 0x7fd90e7b22e0>
+>>> g = (n * n for n in nums)
+>>> next(g)
+10000
+
+# here's a generator version of the sum_sqr_evens(iterable) function
+# note that () is optional here for the generator expression
+>>> sum(n * n for n in nums if n % 2 == 0)
+11028
+
+# inner product
+>>> sum(i * j for i, j in zip((1, 3, 5), (2, 4, 6)))
+44
+```
+
+Here's an example with `join()` method:
+
+```ruby
+>>> items = (1, 'hi', [10, 20], 'bye')
+>>> ':'.join(items)
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+TypeError: sequence item 0: expected str instance, int found
+>>> ':'.join(str(i) for i in items)
+'1:hi:[10, 20]:bye'
+```
+
+## Exercises
+
+* Write a function that returns a dictionary sorted by values in ascending order.
+
+    ```ruby
+    >>> marks = dict(Rahul=86, Ravi=92, Rohit=75, Rajan=79, Ram=92)
+    >>> sort_by_value(marks)
+    {'Rohit': 75, 'Rajan': 79, 'Rahul': 86, 'Ravi': 92, 'Ram': 92}
+    ```
+
+* Write a function that returns a `list` of string slices as per the following rules:
+    * return the input string as the only element if its length is less than 3 characters
+    * otherwise, return all slices that have 2 or more characters
+
+    ```ruby
+    >>> word_slices('i')
+    ['i']
+    >>> word_slices('to')
+    ['to']
+    >>> word_slices('table')
+    ['ta', 'tab', 'tabl', 'table', 'ab', 'abl', 'able', 'bl', 'ble', 'le']
+    ```
+
+* Square even numbers and cube odd numbers. For example, `[321, 1, -4, 0, 5, 2]` should give you `[33076161, 1, 16, 0, 125, 4]` as the output.
+* Calculate sum of squares of the numbers, only if the square value is less than `50`. Output for `(7.1, 1, -4, 8, 5.1, 12)` should be `43.01`.
+
+# Dealing with files
+
+This chapter will discuss the `open()` built-in function and some of the built-in modules for file processing.
+
+## open and close
+
+The [open()](https://docs.python.org/3/library/functions.html#open) built-in function is one of the ways to read and write files. The first argument to this function is the filename to be processed. The filename is a relative/absolute path to the location of the file. Rest are keyword arguments that you can configure. The output is a `TextIOWrapper` object (i.e. a filehandle), which you can use as an iterator. Here's an example:
+
+```ruby
+# default mode is rt i.e. read text
+>>> fh = open('ip.txt')
+>>> fh
+<_io.TextIOWrapper name='ip.txt' mode='r' encoding='UTF-8'>
+>>> next(fh)
+'hi there\n'
+>>> next(fh)
+'today is sunny\n'
+>>> next(fh)
+'have a nice day\n'
+>>> next(fh)
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+StopIteration
+
+# check if the filehandle is active or closed
+>>> fh.closed
+False
+# close the filehandle
+>>> fh.close()
+>>> fh.closed
+True
+```
+
+The `mode` argument specifies what kind of processing you want. Only `text` mode will be covered in this chapter, which is the default. You can combine options, for example, `rb` means `read` in `binary` mode. Here's the relevant details from the documentation:
+
+* `'r'` open for reading (default)
+* `'w'` open for writing, truncating the file first
+* `'x'` open for exclusive creation, failing if the file already exists
+* `'a'` open for writing, appending to the end of the file if it exists
+* `'b'` binary mode
+* `'t'` text mode (default)
+* `'+'` open for updating (reading and writing)
+
+The `encoding` argument is meaningful only in the `text` mode. You can check the default encoding for your environment using the `locale` module as shown below. See [docs.python: standard encodings](https://docs.python.org/3/library/codecs.html#standard-encodings) and [docs.python: Unicode](https://docs.python.org/3/howto/unicode.html) for more details.
+
+```ruby
+>>> import locale
+>>> locale.getpreferredencoding()
+'UTF-8'
+```
+
+Here's how Python handles line separation by default, see documentation for more details.
+
+>On input, if `newline` is `None`, universal newlines mode is enabled. Lines in the input can end in `'\n'`, `'\r'`, or `'\r\n'`, and these are translated into `'\n'` before being returned to the caller.
+
+>On output, if `newline` is `None`, any `'\n'` characters written are translated to the system default line separator, `os.linesep`.
+
+If the given filename doesn't exist, you'll get a `FileNotFoundError` exception.
+
+```ruby
+>>> open('xyz.txt', 'r', encoding='ascii')
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+FileNotFoundError: [Errno 2] No such file or directory: 'xyz.txt'
+```
+
+## Context manager
+
+Quoting from [docs.python: Reading and Writing Files](https://docs.python.org/3/tutorial/inputoutput.html#reading-and-writing-files):
+
+>It is good practice to use the `with` keyword when dealing with file objects. The advantage is that the file is properly closed after its suite finishes, even if an exception is raised at some point. Using `with` is also much shorter than writing equivalent `try-finally` blocks.
+
+```ruby
+# read_file.py
+with open('ip.txt', 'r', encoding='ascii') as f:
+    for ip_line in f:
+        op_line = ip_line.rstrip('\n').capitalize() + '.'
+        print(op_line)
+```
+
+Recall that `as` keyword was introduced in the [try-except](#try-except) section. Here's the output of the above program:
+
+```bash
+$ python3.9 read_file.py
+Hi there.
+Today is sunny.
+Have a nice day.
+```
+
+>![info](./images/info.svg) See [The Magic of Python Context Managers](https://towardsdatascience.com/the-magic-of-python-context-managers-adb92ace1dd0) for more details.
+
+## read, readline and readlines
+
+The `read()` method gives you entire remaining contents of the file as a single string. The `readline()` method gives next line of text and `readlines()` gives all the remaining lines as a `list` of strings.
+
+```ruby
+>>> open('ip.txt').read()
+'hi there\ntoday is sunny\nhave a nice day\n'
+
+>>> fh = open('ip.txt')
+# 'readline' is similar to 'next'
+# but returns empty string instead of StopIteration exception
+>>> fh.readline()
+'hi there\n'
+>>> fh.readlines()
+['today is sunny\n', 'have a nice day\n']
+>>> fh.readline()
+''
+```
+
+## write
+
+```ruby
+# write_file.py
+with open('op.txt', 'w', encoding='ascii') as f:
+    f.write('this is a sample line of text\n')
+    f.write('yet another line\n')
+```
+
+You can call the `write()` method on a filehandle to add contents to that file (provided the `mode` you have set supports writing). Unlike `print()`, the `write()` method doesn't automatically add newline characters.
+
+```bash
+$ python3.9 write_file.py 
+
+$ cat op.txt
+this is a sample line of text
+yet another line
+
+$ file op.txt
+op.txt: ASCII text
+```
+
+>![warning](./images/warning.svg) If the file already exists, the `w` mode will overwrite the contents (i.e. existing content will be lost).
+
+>![info](./images/info.svg) You can also use the `print()` function for writing by passing the filehandle to the `file` argument. The [fileinput module](https://docs.python.org/3/library/fileinput.html) supports in-place editing and other features (examples will be discussed later).
+
+## File processing modules
+
+This section gives introductory examples for some of the built-in modules that are handy for file processing. Quoting from [docs.python: os](https://docs.python.org/3/library/os.html):
+
+>This module provides a portable way of using operating system dependent functionality.
+
+```ruby
+>>> import os
+
+# current working directory
+>>> os.getcwd()
+'/home/learnbyexample/Python/programs/'
+
+# value of an environment variable
+>>> os.getenv('SHELL')
+'/bin/bash'
+
+# file size
+>>> os.stat('ip.txt').st_size
+40
+
+# check if given path is a file
+>>> os.path.isfile('ip.txt')
+True
+```
+
+Quoting from [docs.python: glob](https://docs.python.org/3/library/glob.html):
+
+>The glob module finds all the pathnames matching a specified pattern according to the rules used by the Unix shell, although results are returned in arbitrary order. No tilde expansion is done, but `*`, `?`, and character ranges expressed with `[]` will be correctly matched.
+
+```ruby
+>>> import glob
+
+# list of files (including directories) containing '_file' in their name
+>>> glob.glob('*_file*')
+['read_file.py', 'write_file.py']
+```
+
+Quoting from [docs.python: shutil](https://docs.python.org/3/library/shutil.html):
+
+>The `shutil` module offers a number of high-level operations on files and collections of files. In particular, functions are provided which support file copying and removal.
+
+```ruby
+>>> import shutil
+
+>>> shutil.copy('ip.txt', 'ip_file.txt')
+'ip_file.txt'
+>>> glob.glob('*_file*')
+['read_file.py', 'ip_file.txt', 'write_file.py']
+```
+
+Quoting from [docs.python: pathlib](https://docs.python.org/3/library/pathlib.html):
+
+>This module offers classes representing filesystem paths with semantics appropriate for different operating systems. Path classes are divided between pure paths, which provide purely computational operations without I/O, and concrete paths, which inherit from pure paths but also provide I/O operations.
+
+```ruby
+>>> from pathlib import Path
+
+# use 'rglob' instead of 'glob' if you want to match names recursively
+>>> list(Path('programs').glob('*file.py'))
+[PosixPath('programs/read_file.py'), PosixPath('programs/write_file.py')]
+```
+
+See [pathlib module: taming the file system](https://realpython.com/python-pathlib/) and [stackoverflow: How can I iterate over files in a given directory?](https://stackoverflow.com/questions/10377998/how-can-i-iterate-over-files-in-a-given-directory) for more details and examples.
+
+There are specialized modules for structured data processing as well, for example:
+
+* [docs.python: csv](https://docs.python.org/3/library/csv.html)
+* [docs.python: json](https://docs.python.org/3/library/json.html)
+* [docs.python: xml](https://docs.python.org/3/library/xml.html)
+
+## Exercises
+
+* Write a program that reads a known filename `f1.txt` which contains a single column of numbers in Python syntax. Your task is to display the sum of these numbers, which is `10485.14` for the given example.
+
+    ```bash
+    $ cat f1.txt 
+    8
+    53
+    3.14
+    84
+    73e2
+    100
+    2937
+    ```
+
+* Read the documentation for `glob.glob()` and write a program to list all files ending with `.txt` in the current directory as well as sub-directories, recursively.
 

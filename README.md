@@ -10,7 +10,11 @@
 
 # 100 Page Python Intro
 
-Short, introductory guide for the Python programming language
+This book is a short, introductory guide for the Python programming language. This book is well suited:
+
+* As a reference material for Python beginner workshops
+* If you have prior experience with another programming language
+* If you want a complement resource after reading a Python basics book, watching a video course, etc
 
 <p align="center">
     <img src="./images/py_intro.png" width="320px" height="400px" />
@@ -34,7 +38,9 @@ For web version of the book, visit https://learnbyexample.github.io/100_page_pyt
 
 # Feedback
 
-Please open an issue if you spot any typo/errors.
+[Open an issue](https://github.com/learnbyexample/100_page_python_intro/issues) if you spot any typo/errors.
+
+:warning: :warning: Please DO NOT submit pull requests. Main reason being any modification requires changes in multiple places.
 
 I'd also highly appreciate your feedback about the book.
 
@@ -48,8 +54,10 @@ Twitter: https://twitter.com/learn_byexample
 * [stackoverflow](https://stackoverflow.com/) and [unix.stackexchange](https://unix.stackexchange.com/) — for getting answers to pertinent questions on Python, Shell and programming in general
 * [/r/learnpython](https://www.reddit.com/r/learnpython) — helpful forum for beginners
 * [/r/Python/](https://www.reddit.com/r/Python/) — general Python discussion
-* [tex.stackexchange](https://tex.stackexchange.com/) — for help on `pandoc` and `tex` related questions
-* [LibreOffice Draw](https://www.libreoffice.org/discover/draw/) — cover image
+* [tex.stackexchange](https://tex.stackexchange.com/) — for help on [pandoc](https://github.com/jgm/pandoc/) and `tex` related questions
+* Cover image:
+    * [Ilsa Olson](https://ko-fi.com/profetessaoscura) — cover art
+    * [LibreOffice Draw](https://www.libreoffice.org/discover/draw/) — title/author text
 * [pngquant](https://pngquant.org/) and [svgcleaner](https://github.com/RazrFalcon/svgcleaner) for optimizing images
 * [Warning](https://commons.wikimedia.org/wiki/File:Warning_icon.svg) and [Info](https://commons.wikimedia.org/wiki/File:Info_icon_002.svg) icons by [Amada44](https://commons.wikimedia.org/wiki/User:Amada44) under public domain
 * [mdBook](https://github.com/rust-lang/mdBook) — for web version of the book
