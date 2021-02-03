@@ -1980,7 +1980,7 @@ See also:
 
 * [awesome-python: Debugging tools](https://github.com/vinta/awesome-python#debugging-tools)
 * [pdb tutorial](https://github.com/spiside/pdb-tutorial)
-* [docs.python: Basic Logging Tutorial](https://docs.python.org/3/howto/logging.html)
+* [docs.python HOWTOs: Basic Logging Tutorial](https://docs.python.org/3/howto/logging.html)
 
 ## IDLE debugging
 
@@ -2802,7 +2802,7 @@ The `key` argument accepts the name of a built-in/user-defined function (i.e. fu
 ['fuliginous', 'morello', 'crusado', 'seam', 'irk']
 ```
 
-If the custom user-defined function required is just a single expression, you can create anonymous functions with [lambda expressions](https://docs.python.org/3/tutorial/controlflow.html#lambda-expressions) instead of a full-fledged function. As an exercise, read [docs.python: Sorting](https://docs.python.org/3/howto/sorting.html) and implement the below examples using `operator` module instead of `lambda` expressions.
+If the custom user-defined function required is just a single expression, you can create anonymous functions with [lambda expressions](https://docs.python.org/3/tutorial/controlflow.html#lambda-expressions) instead of a full-fledged function. As an exercise, read [docs.python HOWTOs: Sorting](https://docs.python.org/3/howto/sorting.html) and implement the below examples using `operator` module instead of `lambda` expressions.
 
 ```ruby
 # based on second element of each item
@@ -3784,7 +3784,7 @@ What's so special about regular expressions and why would you need it? It is a m
 'X spare part X handy unhanded'
 ```
 
->![info](./images/info.svg) See my book [Python re(gex)?](https://github.com/learnbyexample/py_regular_expressions) for a detailed guide on regular expressions (it is longer than this book!). The book covers the third-party [`regex` module](https://pypi.org/project/regex/) as well.
+>![info](./images/info.svg) See my book [Python re(gex)?](https://github.com/learnbyexample/py_regular_expressions) for a detailed guide on regular expressions (it is nearly as long as this book!). The book covers the third-party [`regex` module](https://pypi.org/project/regex/) as well.
 
 ## Exercises
 
@@ -4112,7 +4112,7 @@ The `mode` argument specifies what kind of processing you want. Only `text` mode
 * `'t'` text mode (default)
 * `'+'` open for updating (reading and writing)
 
-The `encoding` argument is meaningful only in the `text` mode. You can check the default encoding for your environment using the `locale` module as shown below. See [docs.python: standard encodings](https://docs.python.org/3/library/codecs.html#standard-encodings) and [docs.python: Unicode](https://docs.python.org/3/howto/unicode.html) for more details.
+The `encoding` argument is meaningful only in the `text` mode. You can check the default encoding for your environment using the `locale` module as shown below. See [docs.python: standard encodings](https://docs.python.org/3/library/codecs.html#standard-encodings) and [docs.python HOWTOs: Unicode](https://docs.python.org/3/howto/unicode.html) for more details.
 
 ```ruby
 >>> import locale
@@ -4203,7 +4203,7 @@ op.txt: ASCII text
 
 >![warning](./images/warning.svg) If the file already exists, the `w` mode will overwrite the contents (i.e. existing content will be lost).
 
->![info](./images/info.svg) You can also use the `print()` function for writing by passing the filehandle to the `file` argument. The [fileinput module](https://docs.python.org/3/library/fileinput.html) supports in-place editing and other features (examples will be discussed later).
+>![info](./images/info.svg) You can also use the `print()` function for writing by passing the filehandle to the `file` argument. The [fileinput module](https://docs.python.org/3/library/fileinput.html) supports in-place editing and other features (see [In-place editing with fileinput](#in-place-editing-with-fileinput) section for examples).
 
 ## File processing modules
 
@@ -4292,4 +4292,396 @@ There are specialized modules for structured data processing as well, for exampl
     ```
 
 * Read the documentation for `glob.glob()` and write a program to list all files ending with `.txt` in the current directory as well as sub-directories, recursively.
+
+# Executing external commands
+
+This chapter will discuss how you can execute external commands from Python, capture their output and other relevant details such as the exit status. The availability of commands depends on the OS you are using (mine is Linux). 
+
+## Using os module
+
+Last chapter showed a few examples with `os` module for file processing. The `os` module is a feature rich module with lot of other uses, like providing an interface for working with external commands. Here's an example:
+
+```ruby
+>>> import os
+
+>>> os.system('echo hello "$USER"')
+hello learnbyexample
+0
+```
+
+Similar to the `print()` function, the output of the external command, if any, is displayed on the screen. The return value is the exit status of the command, which gets displayed by default on the REPL. `0` means the command executed successfully, any other value indicates some kind of failure. As per [docs.python: os.system](https://docs.python.org/3/library/os.html#os.system):
+
+>On Unix, the return value is the exit status of the process encoded in the format specified for `wait()`.
+
+Here's an example for non-zero exit status:
+
+```ruby
+>>> status = os.system('ls xyz.txt')
+ls: cannot access 'xyz.txt': No such file or directory
+>>> status
+512
+# to get the actual exit value
+>>> os.waitstatus_to_exitcode(status)
+2
+
+# if you don't want to see the error message,
+# you can redirect the stderr stream
+>>> os.system('ls xyz.txt 2> /dev/null')
+512
+```
+
+You can use the `os.popen()` method to save the results of an external command. It provides a file object like interface for both read (default) and write. To check the status, call `close()` method on the filehandle (`None` means success).
+
+```ruby
+>>> fh = os.popen('wc -w <ip.txt')
+>>> op = fh.read()
+>>> op
+'9\n'
+>>> status = fh.close()
+>>> print(status)
+None
+
+# if you just want the output
+>>> os.popen('wc -w <ip.txt').read()
+'9\n'
+```
+
+## subprocess.run
+
+The `subprocess` module provides a more flexible and secure option to execute external commands, at the cost of being more verbose.
+
+Quoting relevant parts from [doc.python: subprocess module](https://docs.python.org/3/library/subprocess.html):
+
+>The `subprocess` module allows you to spawn new processes, connect to their input/output/error pipes, and obtain their return codes.
+
+>The recommended approach to invoking `subprocesses` is to use the `run()` function for all use cases it can handle. For more advanced use cases, the underlying `Popen` interface can be used directly.
+
+```ruby
+>>> import subprocess
+
+>>> subprocess.run('pwd')
+'/home/learnbyexample/Python/programs/'
+CompletedProcess(args='pwd', returncode=0)
+
+>>> process = subprocess.run(('ls', 'xyz.txt'))
+ls: cannot access 'xyz.txt': No such file or directory
+>>> process.returncode
+2
+```
+
+The first argument to `run()` method is the command to be executed. This can be either be a single string or a sequence of strings (if you need to pass arguments to the command being executed). By default, command output is displayed on the screen. Return value is a `CompletedProcess` object, which has relevant information for the command that was executed such as the exit status. 
+
+As an exercise, read [subprocess.run documentation](https://docs.python.org/3/library/subprocess.html#subprocess.run) and modify the above `ls` example to:
+
+* redirect the `stderr` stream to `/dev/null`
+* automatically raise an exception when the exit status is non-zero
+
+See also:
+
+* [stackoverflow: How to execute a program or call a system command from Python?](https://stackoverflow.com/questions/89228/how-to-execute-a-program-or-call-a-system-command-from-python)
+* [stackoverflow: difference between subprocess and os.system](https://stackoverflow.com/questions/4813238/difference-between-subprocess-popen-and-os-system)
+* [stackoverflow: How to use subprocess command with pipes](https://stackoverflow.com/questions/13332268/how-to-use-subprocess-command-with-pipes)
+* [stackoverflow: subprocess FAQ](https://stackoverflow.com/questions/tagged/subprocess%2bpython?tab=Votes)
+
+## shell=True
+
+You can also construct a single string command, similar to `os.system()`, if you set `shell` keyword argument to `True`. While this is convenient, use it only if you have total control over the command being executed such as your personal scripts. Otherwise, it can lead to security issues, see [stackoverflow: why not use shell=True](https://stackoverflow.com/questions/13491392/why-not-just-use-shell-true-in-subprocess-popen-in-python) for details.
+
+Quoting from [docs.python: subprocess Frequently Used Arguments](https://docs.python.org/3/library/subprocess.html#frequently-used-arguments):
+
+>If `shell` is `True`, the specified command will be executed through the shell. This can be useful if you are using Python primarily for the enhanced control flow it offers over most system shells and still want convenient access to other shell features such as shell pipes, filename wildcards, environment variable expansion, and expansion of `~` to a user's home directory
+
+```ruby
+>>> p = subprocess.run(('echo', '$HOME'))
+$HOME
+>>> p = subprocess.run('echo $HOME', shell=True)
+/home/learnbyexample
+
+>>> p = subprocess.run(('ls', '*.txt'))
+ls: cannot access '*.txt': No such file or directory
+>>> p = subprocess.run('ls *.txt', shell=True)
+ip.txt
+
+>>> p = subprocess.run('seq -s, 10 > out.txt', shell=True)
+>>> p = subprocess.run('cat out.txt', shell=True)
+1,2,3,4,5,6,7,8,9,10
+```
+
+If `shell=True` cannot be used but shell features as mentioned above is needed, you can use modules like `os`, `glob`, `shutil` and so on as applicable. See also [docs.python: Replacing Older Functions with the subprocess Module](https://docs.python.org/3/library/subprocess.html#replacing-older-functions-with-the-subprocess-module).
+
+```ruby
+>>> p = subprocess.run(('echo', os.getenv('HOME')))
+/home/learnbyexample
+```
+
+## Changing shell
+
+By default, `/bin/sh` is the shell used for POSIX systems. You can change that by setting the `executable` argument to the shell of your choice.
+
+```ruby
+>>> p = subprocess.run('diff <(seq 3) <(seq 4)', shell=True)
+/bin/sh: 1: Syntax error: "(" unexpected
+
+>>> p = subprocess.run('diff <(seq 3) <(seq 4)', shell=True,
+                       executable='/bin/bash')
+3a4
+> 4
+```
+
+## Capture output
+
+If you use `capture_output=True`, the `CompletedProcess` object will provide `stdout` and `stderr` results as well. These are provided as `bytes` data type by default. You can change that by setting `text=True`.
+
+```ruby
+>>> p = subprocess.run(('date', '-u', '+%A'), capture_output=True, text=True)
+>>> p
+CompletedProcess(args=('date', '-u', '+%A'), returncode=0,
+                 stdout='Monday\n', stderr='')
+>>> p.stdout
+'Monday\n'
+```
+
+You can also use `subprocess.check_output()` method to directly get the output.
+
+```ruby
+>>> subprocess.check_output(('date', '-u', '+%A'), text=True)
+'Monday\n'
+```
+
+>![info](./images/info.svg) You can also use legacy methods `subprocess.getstatusoutput()` and `subprocess.getoutput()` but they lack in features and do not provide secure options. See [docs.python: subprocess Legacy Shell Invocation Functions](https://docs.python.org/3/library/subprocess.html#legacy-shell-invocation-functions) for details.
+
+# Command line arguments
+
+This chapter will show a few examples of processing CLI arguments using `sys` and `argparse` modules. The `fileinput` module is also introduced in this chapter, which is handy for in-place file editing.
+
+## sys.argv
+
+Command line arguments passed when executing a Python program can be accessed as a `list` of strings via `sys.argv`. The first element (index `0`) contains the name of the Python script or `-c` or empty string, depending upon how the Python interpreter was called. Rest of the elements will have the command line arguments, if any were passed along the script to be executed. See [docs.python: sys.argv](https://docs.python.org/3/library/sys.html#sys.argv) for more details.
+
+Here's a program that accepts two numbers passed as CLI arguments and displays the sum only if the input was passed correctly.
+
+```ruby
+# sum_two_nums.py
+import ast
+import sys
+
+try:
+    num1, num2 = sys.argv[1:]
+    total = ast.literal_eval(num1) + ast.literal_eval(num2)
+except ValueError:
+    sys.exit('Error: Please provide exactly two numbers as arguments')
+else:
+    print(f'{num1} + {num2} = {total}')
+```
+
+The [ast.literal_eval()](https://docs.python.org/3/library/ast.html#ast.literal_eval) method is handy for converting a string value to built-in literals, especially for collection data types. If you wanted to use `int()` and `float()` for the above program, you'd have to add logic for separating the input into integers and floating-point first. Passing a string to [sys.exit()](https://docs.python.org/3/library/sys.html#sys.exit) gets printed to the `stderr` stream and sets the exit status as `1` in addition to terminating the script.
+
+Here's a sample run:
+
+```bash
+$ python3.9 sum_two_nums.py 2 3.14
+2 + 3.14 = 5.140000000000001
+$ echo $?
+0
+
+$ python3.9 sum_two_nums.py 2 3.14 7
+Error: Please provide exactly two numbers as arguments
+$ echo $?
+1
+$ python3.9 sum_two_nums.py 2 abc
+Error: Please provide exactly two numbers as arguments
+```
+
+As an exercise, modify the above program to handle `TypeError` exceptions. Instead of the output shown below, inform the user about the error using `sys.exit()` method. 
+
+```bash
+$ python3.9 sum_two_nums.py 2 [1]
+Traceback (most recent call last):
+  File "/home/learnbyexample/Python/programs/sum_two_nums.py", line 6, in <module>
+    total = ast.literal_eval(num1) + ast.literal_eval(num2)
+TypeError: unsupported operand type(s) for +: 'int' and 'list'
+```
+
+As another exercise, accept one or more numbers as input arguments. Calculate and display the following details about the input — sum, product and average.
+
+## In-place editing with fileinput
+
+To edit a file in-place, the [fileinput module](https://docs.python.org/3/library/fileinput.html) comes in handy. Here's a program that loops over filenames passed as CLI arguments (i.e. `sys.argv[1:]`), does some processing and writes back the changes to the original input files. You can also provide one or more filenames to the `files` keyword argument, if you do not wish to pass them as CLI arguments.
+
+```ruby
+# inplace_edit.py
+import fileinput
+
+with fileinput.input(inplace=True) as f:
+    for ip_line in f:
+        op_line = ip_line.rstrip('\n').capitalize() + '.'
+        print(op_line)
+```
+
+Note that unlike `open()`, the `FileInput` object doesn't support `write()` method. However, using `print()` is enough. Here's a sample run:
+
+```bash
+$ python3.9 inplace_edit.py [io]p.txt
+
+$ # check if files have changed
+$ cat ip.txt
+Hi there.
+Today is sunny.
+Have a nice day.
+$ cat op.txt
+This is a sample line of text.
+Yet another line.
+
+$ # if stdin is passed as input, inplace gets disabled
+$ echo 'GooD moRNiNg' | python3.9 inplace_edit.py
+Good morning.
+```
+
+>![info](./images/info.svg) As `inplace=True` permanently modifies your input files, it is always a good idea to check your logic on sample files first. That way your data wouldn't be lost because of an error in your program. You can also ask `fileinput` to create backups if you need to recover original files later — for example, `backup='.bkp'` will create backups by adding `.bkp` as the suffix to the original filenames.
+
+## argparse
+
+`sys.argv` is good enough for simple use cases. If you wish to create a CLI application with various kinds of flags and arguments (some of which may be optional/mandatory) and so on, use a module such as the built-in `argparse` or a third-party solution like [click](https://pypi.org/project/click/).
+
+Quoting from [docs.python: argparse](https://docs.python.org/3/library/argparse.html):
+
+>The `argparse` module makes it easy to write user-friendly command-line interfaces. The program defines what arguments it requires, and `argparse` will figure out how to parse those out of `sys.argv`. The `argparse` module also automatically generates help and usage messages and issues errors when users give the program invalid arguments.
+
+Here's a CLI application that accepts a file containing a list of filenames that are to be sorted by their extension. Files with the same extension are further sorted in ascending order. The program also implements an optional flag to remove duplicate entries.
+
+```ruby
+# sort_ext.py
+import argparse
+
+parser = argparse.ArgumentParser()
+parser.add_argument('-f', '--file', required=True,
+                    help="input file to be sorted")
+parser.add_argument('-u', '--unique', action='store_true',
+                    help="sort uniquely")
+args = parser.parse_args()
+
+ip_lines = open(args.file).readlines()
+if args.unique:
+    ip_lines = set(ip_lines)
+
+op_lines = sorted(ip_lines, key=lambda s: (s.rsplit('.', 1)[-1], s))
+for line in op_lines:
+    print(line, end='')
+```
+
+The documentation for the CLI application is generated automatically based on the information passed to the parser. You can use help options (which is added automatically too) to view the documentation, as shown below:
+
+```bash
+$ python3.9 sort_ext.py -h
+usage: sort_ext.py [-h] -f FILE [-u]
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -f FILE, --file FILE  input file to be sorted
+  -u, --unique          sort uniquely
+
+$ python3.9 sort_ext.py
+usage: sort_ext.py [-h] -f FILE [-u]
+sort_ext.py: error: the following arguments are required: -f/--file
+```
+
+The `add_argument()` method allows you to add details about an option/argument for the CLI application. The first parameter names an argument or option (starts with `-`). The `help` keyword argument lets you add documentation for that particular option/argument. See [docs.python: add_argument](https://docs.python.org/3/library/argparse.html#argparse.ArgumentParser.add_argument) for documentation and details about other keyword arguments.
+
+The above program adds two options, one to store the filename to be sorted and the other to act as a flag for sorting uniquely. Here's a sample text file that needs to be sorted based on the extension.
+
+```bash
+$ cat sample.txt
+input.log
+basic.test
+input.log
+out.put.txt
+sync.py
+input.log
+async.txt
+```
+
+Here's the output with both types of sorting supported by the program.
+
+```bash
+# default sort
+$ python3.9 sort_ext.py -f sample.txt
+input.log
+input.log
+input.log
+sync.py
+basic.test
+async.txt
+out.put.txt
+
+# unique sort
+$ python3.9 sort_ext.py -uf sample.txt
+input.log
+sync.py
+basic.test
+async.txt
+out.put.txt
+```
+
+>![info](./images/info.svg) See [docs.python HOWTOs: Argparse Tutorial](https://docs.python.org/3/howto/argparse.html) for a more detailed introduction.
+
+## Accepting stdin
+
+CLI tools like `grep`, `sed`, `awk` and many others can accept data from `stdin` as well as accept filenames as arguments. The previous program modified to add `stdin` functionality is shown below. `args.file` is now a positional argument instead of an option. `nargs='?'` indicates that this argument is optional. `type=argparse.FileType('r')` allows you to automatically get a filehandle in `read` mode for the filename supplied as an argument. If filename isn't provided, `default=sys.stdin` kicks in and you get a filehandle for the `stdin` data.
+
+```ruby
+# sort_ext_stdin.py
+import argparse, sys
+
+parser = argparse.ArgumentParser()
+parser.add_argument('file', nargs='?',
+                    type=argparse.FileType('r'), default=sys.stdin,
+                    help="input file to be sorted")
+parser.add_argument('-u', '--unique', action='store_true',
+                    help="sort uniquely")
+args = parser.parse_args()
+
+ip_lines = args.file.readlines()
+if args.unique:
+    ip_lines = set(ip_lines)
+
+op_lines = sorted(ip_lines, key=lambda s: (s.rsplit('.', 1)[-1], s))
+for line in op_lines:
+    print(line, end='')
+```
+
+Here's the help for the modified program:
+
+```bash
+$ python3.9 sort_ext_stdin.py -h
+usage: sort_ext_stdin.py [-h] [-u] [file]
+
+positional arguments:
+  file          input file to be sorted
+
+optional arguments:
+  -h, --help    show this help message and exit
+  -u, --unique  sort uniquely
+```
+
+Here's a sample run showing both `stdin` and filename argument functionality.
+
+```bash
+# 'cat' is used here for illustration purposes only
+$ cat sample.txt | python3.9 sort_ext_stdin.py
+input.log
+input.log
+input.log
+sync.py
+basic.test
+async.txt
+out.put.txt
+$ python3.9 sort_ext_stdin.py -u sample.txt
+input.log
+sync.py
+basic.test
+async.txt
+out.put.txt
+```
+
+As an exercise, add `-o, --output` optional argument to store the output in a file for the above program.
 
