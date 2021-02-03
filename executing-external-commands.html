@@ -1,0 +1,111 @@
+<!DOCTYPE HTML><html lang=en class="sidebar-visible no-js light"><head><meta charset=UTF-8><title>Executing external commands - 100 Page Python Intro</title><meta content="text/html; charset=utf-8"http-equiv=Content-Type><meta name=description content="Short, introductory guide for the Python programming language"><meta name=viewport content="width=device-width, initial-scale=1"><meta name=theme-color content=#ffffff><link rel=icon href=favicon.svg><link rel="shortcut icon"href=favicon.png><link rel=stylesheet href=css/variables.css><link rel=stylesheet href=css/general.css><link rel=stylesheet href=css/chrome.css><link rel=stylesheet href=FontAwesome/css/font-awesome.css><link rel=stylesheet href=fonts/fonts.css><link rel=stylesheet href=highlight.css><link rel=stylesheet href=tomorrow-night.css><link rel=stylesheet href=ayu-highlight.css><link rel=stylesheet href=style.css><body><script>
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script><script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script><script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script><script>
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script><nav id=sidebar class=sidebar aria-label="Table of contents"><div class=sidebar-scrollbox><ol class=chapter><li class="chapter-item expanded affix"><a href=cover.html>Cover</a><li class="chapter-item expanded affix"><a href=buy.html>Buy PDF/EPUB versions</a><li class="chapter-item expanded"><a href=preface.html><strong aria-hidden=true>1.</strong> Preface</a><li class="chapter-item expanded"><a href=introduction.html><strong aria-hidden=true>2.</strong> Introduction</a><li class="chapter-item expanded"><a href=numeric-data-types.html><strong aria-hidden=true>3.</strong> Numeric data types</a><li class="chapter-item expanded"><a href=strings-and-user-input.html><strong aria-hidden=true>4.</strong> Strings and user input</a><li class="chapter-item expanded"><a href=defining-functions.html><strong aria-hidden=true>5.</strong> Defining functions</a><li class="chapter-item expanded"><a href=control-structures.html><strong aria-hidden=true>6.</strong> Control structures</a><li class="chapter-item expanded"><a href=importing-and-creating-modules.html><strong aria-hidden=true>7.</strong> Importing and creating modules</a><li class="chapter-item expanded"><a href=installing-modules-and-virtual-environments.html><strong aria-hidden=true>8.</strong> Installing modules and Virtual environments</a><li class="chapter-item expanded"><a href=exception-handling.html><strong aria-hidden=true>9.</strong> Exception handling</a><li class="chapter-item expanded"><a href=debugging.html><strong aria-hidden=true>10.</strong> Debugging</a><li class="chapter-item expanded"><a href=testing.html><strong aria-hidden=true>11.</strong> Testing</a><li class="chapter-item expanded"><a href=tuple-and-sequence-operations.html><strong aria-hidden=true>12.</strong> Tuple and Sequence operations</a><li class="chapter-item expanded"><a href=list.html><strong aria-hidden=true>13.</strong> List</a><li class="chapter-item expanded"><a href=mutability.html><strong aria-hidden=true>14.</strong> Mutability</a><li class="chapter-item expanded"><a href=dict.html><strong aria-hidden=true>15.</strong> Dict</a><li class="chapter-item expanded"><a href=set.html><strong aria-hidden=true>16.</strong> Set</a><li class="chapter-item expanded"><a href=text-processing.html><strong aria-hidden=true>17.</strong> Text processing</a><li class="chapter-item expanded"><a href=comprehensions-and-generator-expressions.html><strong aria-hidden=true>18.</strong> Comprehensions and Generator expressions</a><li class="chapter-item expanded"><a href=dealing-with-files.html><strong aria-hidden=true>19.</strong> Dealing with files</a><li class="chapter-item expanded"><a href=executing-external-commands.html class=active><strong aria-hidden=true>20.</strong> Executing external commands</a><li class="chapter-item expanded"><a href=command-line-arguments.html><strong aria-hidden=true>21.</strong> Command line arguments</a></ol></div><div id=sidebar-resize-handle class=sidebar-resize-handle></div></nav><div id=page-wrapper class=page-wrapper><div class=page><div id=menu-bar-hover-placeholder></div><div id=menu-bar class="menu-bar sticky bordered"><div class=left-buttons><button id=sidebar-toggle class=icon-button type=button title="Toggle Table of Contents"aria-label="Toggle Table of Contents"aria-controls=sidebar><i class="fa fa-bars"></i></button><button id=theme-toggle class=icon-button type=button title="Change theme"aria-label="Change theme"aria-haspopup=true aria-expanded=false aria-controls=theme-list><i class="fa fa-paint-brush"></i></button><ul id=theme-list class=theme-popup aria-label=Themes role=menu><li role=none><button role=menuitem class=theme id=light>Light (default)</button><li role=none><button role=menuitem class=theme id=rust>Rust</button><li role=none><button role=menuitem class=theme id=coal>Coal</button><li role=none><button role=menuitem class=theme id=navy>Navy</button><li role=none><button role=menuitem class=theme id=ayu>Ayu</button></ul><button id=search-toggle class=icon-button type=button title="Search. (Shortkey: s)"aria-label="Toggle Searchbar"aria-expanded=false aria-keyshortcuts=S aria-controls=searchbar><i class="fa fa-search"></i></button></div><h1 class=menu-title>100 Page Python Intro</h1><div class=right-buttons><a href=https://github.com/learnbyexample/100_page_python_intro title="Git repository"aria-label="Git repository"> <i id=git-repository-button class="fa fa-github"></i> </a></div></div><div id=search-wrapper class=hidden><form id=searchbar-outer class=searchbar-outer><input type=search name=search id=searchbar name=searchbar placeholder="Search this book ..."aria-controls=searchresults-outer aria-describedby=searchresults-header></form><div id=searchresults-outer class="searchresults-outer hidden"><div id=searchresults-header class=searchresults-header></div><ul id=searchresults></ul></div></div><script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script><div id=content class=content><main><div class=sidetoc><nav class=pagetoc></nav></div><h1><a class=header href=#executing-external-commands id=executing-external-commands>Executing external commands</a></h1><p>This chapter will discuss how you can execute external commands from Python, capture their output and other relevant details such as the exit status. The availability of commands depends on the OS you are using (mine is Linux).<h2><a class=header href=#using-os-module id=using-os-module>Using os module</a></h2><p>Last chapter showed a few examples with <code>os</code> module for file processing. The <code>os</code> module is a feature rich module with lot of other uses, like providing an interface for working with external commands. Here's an example:<pre><code class=language-python>>>> import os
+
+>>> os.system('echo hello "$USER"')
+hello learnbyexample
+0
+</code></pre><p>Similar to the <code>print()</code> function, the output of the external command, if any, is displayed on the screen. The return value is the exit status of the command, which gets displayed by default on the REPL. <code>0</code> means the command executed successfully, any other value indicates some kind of failure. As per <a href=https://docs.python.org/3/library/os.html#os.system>docs.python: os.system</a>:<blockquote><p>On Unix, the return value is the exit status of the process encoded in the format specified for <code>wait()</code>.</blockquote><p>Here's an example for non-zero exit status:<pre><code class=language-python>>>> status = os.system('ls xyz.txt')
+ls: cannot access 'xyz.txt': No such file or directory
+>>> status
+512
+# to get the actual exit value
+>>> os.waitstatus_to_exitcode(status)
+2
+
+# if you don't want to see the error message,
+# you can redirect the stderr stream
+>>> os.system('ls xyz.txt 2> /dev/null')
+512
+</code></pre><p>You can use the <code>os.popen()</code> method to save the results of an external command. It provides a file object like interface for both read (default) and write. To check the status, call <code>close()</code> method on the filehandle (<code>None</code> means success).<pre><code class=language-python>>>> fh = os.popen('wc -w &LTip.txt')
+>>> op = fh.read()
+>>> op
+'9\n'
+>>> status = fh.close()
+>>> print(status)
+None
+
+# if you just want the output
+>>> os.popen('wc -w &LTip.txt').read()
+'9\n'
+</code></pre><h2><a class=header href=#subprocessrun id=subprocessrun>subprocess.run</a></h2><p>The <code>subprocess</code> module provides a more flexible and secure option to execute external commands, at the cost of being more verbose.<p>Quoting relevant parts from <a href=https://docs.python.org/3/library/subprocess.html>doc.python: subprocess module</a>:<blockquote><p>The <code>subprocess</code> module allows you to spawn new processes, connect to their input/output/error pipes, and obtain their return codes.</blockquote><blockquote><p>The recommended approach to invoking <code>subprocesses</code> is to use the <code>run()</code> function for all use cases it can handle. For more advanced use cases, the underlying <code>Popen</code> interface can be used directly.</blockquote><pre><code class=language-python>>>> import subprocess
+
+>>> subprocess.run('pwd')
+'/home/learnbyexample/Python/programs/'
+CompletedProcess(args='pwd', returncode=0)
+
+>>> process = subprocess.run(('ls', 'xyz.txt'))
+ls: cannot access 'xyz.txt': No such file or directory
+>>> process.returncode
+2
+</code></pre><p>The first argument to <code>run()</code> method is the command to be executed. This can be either be a single string or a sequence of strings (if you need to pass arguments to the command being executed). By default, command output is displayed on the screen. Return value is a <code>CompletedProcess</code> object, which has relevant information for the command that was executed such as the exit status.<p>As an exercise, read <a href=https://docs.python.org/3/library/subprocess.html#subprocess.run>subprocess.run documentation</a> and modify the above <code>ls</code> example to:<ul><li>redirect the <code>stderr</code> stream to <code>/dev/null</code><li>automatically raise an exception when the exit status is non-zero</ul><p>See also:<ul><li><a href=https://stackoverflow.com/questions/89228/how-to-execute-a-program-or-call-a-system-command-from-python>stackoverflow: How to execute a program or call a system command from Python?</a><li><a href=https://stackoverflow.com/questions/4813238/difference-between-subprocess-popen-and-os-system>stackoverflow: difference between subprocess and os.system</a><li><a href=https://stackoverflow.com/questions/13332268/how-to-use-subprocess-command-with-pipes>stackoverflow: How to use subprocess command with pipes</a><li><a href=https://stackoverflow.com/questions/tagged/subprocess%2bpython?tab=Votes>stackoverflow: subprocess FAQ</a></ul><h2><a class=header href=#shelltrue id=shelltrue>shell=True</a></h2><p>You can also construct a single string command, similar to <code>os.system()</code>, if you set <code>shell</code> keyword argument to <code>True</code>. While this is convenient, use it only if you have total control over the command being executed such as your personal scripts. Otherwise, it can lead to security issues, see <a href=https://stackoverflow.com/questions/13491392/why-not-just-use-shell-true-in-subprocess-popen-in-python>stackoverflow: why not use shell=True</a> for details.<p>Quoting from <a href=https://docs.python.org/3/library/subprocess.html#frequently-used-arguments>docs.python: subprocess Frequently Used Arguments</a>:<blockquote><p>If <code>shell</code> is <code>True</code>, the specified command will be executed through the shell. This can be useful if you are using Python primarily for the enhanced control flow it offers over most system shells and still want convenient access to other shell features such as shell pipes, filename wildcards, environment variable expansion, and expansion of <code>~</code> to a user's home directory</blockquote><pre><code class=language-python>>>> p = subprocess.run(('echo', '$HOME'))
+$HOME
+>>> p = subprocess.run('echo $HOME', shell=True)
+/home/learnbyexample
+
+>>> p = subprocess.run(('ls', '*.txt'))
+ls: cannot access '*.txt': No such file or directory
+>>> p = subprocess.run('ls *.txt', shell=True)
+ip.txt
+
+>>> p = subprocess.run('seq -s, 10 > out.txt', shell=True)
+>>> p = subprocess.run('cat out.txt', shell=True)
+1,2,3,4,5,6,7,8,9,10
+</code></pre><p>If <code>shell=True</code> cannot be used but shell features as mentioned above is needed, you can use modules like <code>os</code>, <code>glob</code>, <code>shutil</code> and so on as applicable. See also <a href=https://docs.python.org/3/library/subprocess.html#replacing-older-functions-with-the-subprocess-module>docs.python: Replacing Older Functions with the subprocess Module</a>.<pre><code class=language-python>>>> p = subprocess.run(('echo', os.getenv('HOME')))
+/home/learnbyexample
+</code></pre><h2><a class=header href=#changing-shell id=changing-shell>Changing shell</a></h2><p>By default, <code>/bin/sh</code> is the shell used for POSIX systems. You can change that by setting the <code>executable</code> argument to the shell of your choice.<pre><code class=language-python>>>> p = subprocess.run('diff <(seq 3) <(seq 4)', shell=True)
+/bin/sh: 1: Syntax error: "(" unexpected
+
+>>> p = subprocess.run('diff <(seq 3) <(seq 4)', shell=True,
+                       executable='/bin/bash')
+3a4
+> 4
+</code></pre><h2><a class=header href=#capture-output id=capture-output>Capture output</a></h2><p>If you use <code>capture_output=True</code>, the <code>CompletedProcess</code> object will provide <code>stdout</code> and <code>stderr</code> results as well. These are provided as <code>bytes</code> data type by default. You can change that by setting <code>text=True</code>.<pre><code class=language-python>>>> p = subprocess.run(('date', '-u', '+%A'), capture_output=True, text=True)
+>>> p
+CompletedProcess(args=('date', '-u', '+%A'), returncode=0,
+                 stdout='Monday\n', stderr='')
+>>> p.stdout
+'Monday\n'
+</code></pre><p>You can also use <code>subprocess.check_output()</code> method to directly get the output.<pre><code class=language-python>>>> subprocess.check_output(('date', '-u', '+%A'), text=True)
+'Monday\n'
+</code></pre><blockquote><p><img src=./images/info.svg alt=info> You can also use legacy methods <code>subprocess.getstatusoutput()</code> and <code>subprocess.getoutput()</code> but they lack in features and do not provide secure options. See <a href=https://docs.python.org/3/library/subprocess.html#legacy-shell-invocation-functions>docs.python: subprocess Legacy Shell Invocation Functions</a> for details.</blockquote></main><nav class=nav-wrapper aria-label="Page navigation"><a rel=prev href=dealing-with-files.html class="mobile-nav-chapters previous"title="Previous chapter"aria-label="Previous chapter"aria-keyshortcuts=Left> <i class="fa fa-angle-left"></i> </a><a rel=next href=command-line-arguments.html class="mobile-nav-chapters next"title="Next chapter"aria-label="Next chapter"aria-keyshortcuts=Right> <i class="fa fa-angle-right"></i> </a><div style="clear: both"></div></nav></div></div><nav class=nav-wide-wrapper aria-label="Page navigation"><a rel=prev href=dealing-with-files.html class="nav-chapters previous"title="Previous chapter"aria-label="Previous chapter"aria-keyshortcuts=Left> <i class="fa fa-angle-left"></i> </a><a rel=next href=command-line-arguments.html class="nav-chapters next"title="Next chapter"aria-label="Next chapter"aria-keyshortcuts=Right> <i class="fa fa-angle-right"></i> </a></nav></div><script>
+            window.playground_copyable = true;
+        </script><script src=elasticlunr.min.js charset=utf-8></script><script src=mark.min.js charset=utf-8></script><script src=searcher.js charset=utf-8></script><script src=clipboard.min.js charset=utf-8></script><script src=highlight.js charset=utf-8></script><script src=book.js charset=utf-8></script><script src=sidebar.js></script>
