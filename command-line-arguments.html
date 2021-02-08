@@ -60,12 +60,12 @@ $ echo $?
 1
 $ python3.9 sum_two_nums.py 2 abc
 Error: Please provide exactly two numbers as arguments
-</code></pre><p>As an exercise, modify the above program to handle <code>TypeError</code> exceptions. Instead of the output shown below, inform the user about the error using <code>sys.exit()</code> method.<pre><code class=language-bash>$ python3.9 sum_two_nums.py 2 [1]
+</code></pre><p>As an <strong>exercise</strong>, modify the above program to handle <code>TypeError</code> exceptions. Instead of the output shown below, inform the user about the error using <code>sys.exit()</code> method.<pre><code class=language-bash>$ python3.9 sum_two_nums.py 2 [1]
 Traceback (most recent call last):
   File "/home/learnbyexample/Python/programs/sum_two_nums.py", line 6, in &LTmodule>
     total = ast.literal_eval(num1) + ast.literal_eval(num2)
 TypeError: unsupported operand type(s) for +: 'int' and 'list'
-</code></pre><p>As another exercise, accept one or more numbers as input arguments. Calculate and display the following details about the input — sum, product and average.<h2><a class=header href=#in-place-editing-with-fileinput id=in-place-editing-with-fileinput>In-place editing with fileinput</a></h2><p>To edit a file in-place, the <a href=https://docs.python.org/3/library/fileinput.html>fileinput module</a> comes in handy. Here's a program that loops over filenames passed as CLI arguments (i.e. <code>sys.argv[1:]</code>), does some processing and writes back the changes to the original input files. You can also provide one or more filenames to the <code>files</code> keyword argument, if you do not wish to pass them as CLI arguments.<pre><code class=language-python># inplace_edit.py
+</code></pre><p>As another <strong>exercise</strong>, accept one or more numbers as input arguments. Calculate and display the following details about the input — sum, product and average.<h2><a class=header href=#in-place-editing-with-fileinput id=in-place-editing-with-fileinput>In-place editing with fileinput</a></h2><p>To edit a file in-place, the <a href=https://docs.python.org/3/library/fileinput.html>fileinput module</a> comes in handy. Here's a program that loops over filenames passed as CLI arguments (i.e. <code>sys.argv[1:]</code>), does some processing and writes back the changes to the original input files. You can also provide one or more filenames to the <code>files</code> keyword argument, if you do not wish to pass them as CLI arguments.<pre><code class=language-python># inplace_edit.py
 import fileinput
 
 with fileinput.input(inplace=True) as f:
@@ -181,6 +181,6 @@ sync.py
 basic.test
 async.txt
 out.put.txt
-</code></pre><p>As an exercise, add <code>-o, --output</code> optional argument to store the output in a file for the above program.</main><nav class=nav-wrapper aria-label="Page navigation"><a rel=prev href=executing-external-commands.html class="mobile-nav-chapters previous"title="Previous chapter"aria-label="Previous chapter"aria-keyshortcuts=Left> <i class="fa fa-angle-left"></i> </a><div style="clear: both"></div></nav></div></div><nav class=nav-wide-wrapper aria-label="Page navigation"><a rel=prev href=executing-external-commands.html class="nav-chapters previous"title="Previous chapter"aria-label="Previous chapter"aria-keyshortcuts=Left> <i class="fa fa-angle-left"></i> </a></nav></div><script>
+</code></pre><p>As an <strong>exercise</strong>, add <code>-o, --output</code> optional argument to store the output in a file for the above program.</main><nav class=nav-wrapper aria-label="Page navigation"><a rel=prev href=executing-external-commands.html class="mobile-nav-chapters previous"title="Previous chapter"aria-label="Previous chapter"aria-keyshortcuts=Left> <i class="fa fa-angle-left"></i> </a><div style="clear: both"></div></nav></div></div><nav class=nav-wide-wrapper aria-label="Page navigation"><a rel=prev href=executing-external-commands.html class="nav-chapters previous"title="Previous chapter"aria-label="Previous chapter"aria-keyshortcuts=Left> <i class="fa fa-angle-left"></i> </a></nav></div><script>
             window.playground_copyable = true;
         </script><script src=elasticlunr.min.js charset=utf-8></script><script src=mark.min.js charset=utf-8></script><script src=searcher.js charset=utf-8></script><script src=clipboard.min.js charset=utf-8></script><script src=highlight.js charset=utf-8></script><script src=book.js charset=utf-8></script><script src=sidebar.js></script>

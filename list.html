@@ -71,7 +71,7 @@
 >>> nums[1:2] = [3.14, 4.13, 6.78]
 >>> nums
 [100, 3.14, 4.13, 6.78, -2, -3]
-</code></pre><h2><a class=header href=#list-methods-and-operations id=list-methods-and-operations>List methods and operations</a></h2><p>This section will discuss some of the <code>list</code> methods and operations. See <a href=https://docs.python.org/3/tutorial/datastructures.html#more-on-lists>docs.python: list methods</a> for documentation. As mentioned earlier, you can use <code>dir(list)</code> to view the available methods of an object.<p>Use the <code>append()</code> method to add a single element to the end of a <code>list</code> object. If you need to append multiple items, you can pass an iterable to the <code>extend()</code> method. As an exercise, check what happens if you pass an iterable to the <code>append()</code> method and a non-iterable value to the <code>extend()</code> method. What happens if you pass multiple values to both these methods?<pre><code class=language-python>>>> books = []
+</code></pre><h2><a class=header href=#list-methods-and-operations id=list-methods-and-operations>List methods and operations</a></h2><p>This section will discuss some of the <code>list</code> methods and operations. See <a href=https://docs.python.org/3/tutorial/datastructures.html#more-on-lists>docs.python: list methods</a> for documentation. As mentioned earlier, you can use <code>dir(list)</code> to view the available methods of an object.<p>Use the <code>append()</code> method to add a single element to the end of a <code>list</code> object. If you need to append multiple items, you can pass an iterable to the <code>extend()</code> method. As an <strong>exercise</strong>, check what happens if you pass an iterable to the <code>append()</code> method and a non-iterable value to the <code>extend()</code> method. What happens if you pass multiple values to both these methods?<pre><code class=language-python>>>> books = []
 >>> books.append('Cradle')
 >>> books.append('Mistborn')
 >>> books
@@ -138,7 +138,7 @@
 >>> nums.clear()
 >>> nums
 []
-</code></pre><p>You've already seen how to add element(s) at the end of a <code>list</code> using <code>append()</code> and <code>extend()</code> methods. The <code>insert()</code> method is the opposite of <code>pop()</code> method. You can provide a value to be inserted at the given index. As an exercise, check what happens if you pass a <code>list</code> value. Also, what happens if you pass more than one value?<pre><code class=language-python>>>> books = ['Sourdough', 'Sherlock Holmes', 'To Kill a Mocking Bird']
+</code></pre><p>You've already seen how to add element(s) at the end of a <code>list</code> using <code>append()</code> and <code>extend()</code> methods. The <code>insert()</code> method is the opposite of <code>pop()</code> method. You can provide a value to be inserted at the given index. As an <strong>exercise</strong>, check what happens if you pass a <code>list</code> value. Also, what happens if you pass more than one value?<pre><code class=language-python>>>> books = ['Sourdough', 'Sherlock Holmes', 'To Kill a Mocking Bird']
 >>> books.insert(2, 'The Martian')
 >>> books
 ['Sourdough', 'Sherlock Holmes', 'The Martian', 'To Kill a Mocking Bird']
@@ -192,7 +192,7 @@ True
 >>> words = ('morello', 'irk', 'fuliginous', 'crusado', 'seam')
 >>> sorted(words, key=len, reverse=True)
 ['fuliginous', 'morello', 'crusado', 'seam', 'irk']
-</code></pre><p>If the custom user-defined function required is just a single expression, you can create anonymous functions with <a href=https://docs.python.org/3/tutorial/controlflow.html#lambda-expressions>lambda expressions</a> instead of a full-fledged function. As an exercise, read <a href=https://docs.python.org/3/howto/sorting.html>docs.python HOWTOs: Sorting</a> and implement the below examples using <code>operator</code> module instead of <code>lambda</code> expressions.<pre><code class=language-python># based on second element of each item
+</code></pre><p>If the custom user-defined function required is just a single expression, you can create anonymous functions with <a href=https://docs.python.org/3/tutorial/controlflow.html#lambda-expressions>lambda expressions</a> instead of a full-fledged function. As an <strong>exercise</strong>, read <a href=https://docs.python.org/3/howto/sorting.html>docs.python HOWTOs: Sorting</a> and implement the below examples using <code>operator</code> module instead of <code>lambda</code> expressions.<pre><code class=language-python># based on second element of each item
 >>> items = [('car', 20), ('jeep', 3), ('cycle', 5)]
 >>> sorted(items, key=lambda e: e[1], reverse=True)
 [('car', 20), ('cycle', 5), ('jeep', 3)]
@@ -211,7 +211,7 @@ True
 # the main trick is to negate the numerical value
 >>> sorted(dishes, key=lambda s: (-s.count(' '), s))
 ['Aloo tikki', 'Makki roti', 'Baati', 'Khichdi', 'Poha']
-</code></pre><p>As an exercise, given <code>nums = [1, 4, 5, 2, 51, 3, 6, 22]</code>, determine and implement the sorting condition based on the required output shown below:<ul><li><code>[4, 2, 6, 22, 1, 5, 51, 3]</code><li><code>[2, 4, 6, 22, 1, 3, 5, 51]</code><li><code>[22, 6, 4, 2, 51, 5, 3, 1]</code></ul><p>Here's some examples with <code>min()</code> and <code>max()</code> functions.<pre><code class=language-python>>>> nums = [321, 0.5, 899.232, 5.3, 2, 1, -1]
+</code></pre><p>As an <strong>exercise</strong>, given <code>nums = [1, 4, 5, 2, 51, 3, 6, 22]</code>, determine and implement the sorting condition based on the required output shown below:<ul><li><code>[4, 2, 6, 22, 1, 5, 51, 3]</code><li><code>[2, 4, 6, 22, 1, 3, 5, 51]</code><li><code>[22, 6, 4, 2, 51, 5, 3, 1]</code></ul><p>Here's some examples with <code>min()</code> and <code>max()</code> functions.<pre><code class=language-python>>>> nums = [321, 0.5, 899.232, 5.3, 2, 1, -1]
 >>> min(nums)
 -1
 >>> max(nums)
@@ -229,7 +229,7 @@ True
 >>> random.shuffle(items)
 >>> items
 ['car', 3, -3.14, 'jeep', 'hi', 20]
-</code></pre><p>Use the <code>sample()</code> method to get a <code>list</code> of specified number of random elements. As an exercise, see what happens if you pass a slice size greater than the number of elements present in the input sequence.<pre><code class=language-python>>>> random.sample((4, 5, 2, 76), k=3)
+</code></pre><p>Use the <code>sample()</code> method to get a <code>list</code> of specified number of random elements. As an <strong>exercise</strong>, see what happens if you pass a slice size greater than the number of elements present in the input sequence.<pre><code class=language-python>>>> random.sample((4, 5, 2, 76), k=3)
 [4, 76, 2]
 
 >>> random.sample(range(1000), k=5)

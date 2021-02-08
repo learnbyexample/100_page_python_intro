@@ -54,7 +54,7 @@ True
 False
 >>> 2 <= 3
 True
-</code></pre><blockquote><p><img src=./images/info.svg alt=info> Python is a strictly typed language. So, unlike context-based languages like Perl, you have to explicitly use type conversion when needed. As an exercise, try using any of the <code><</code> or <code><=</code> or <code>></code> or <code>>=</code> operators between numeric and string values.</blockquote><blockquote><p><img src=./images/info.svg alt=info> See <a href=https://docs.python.org/3/library/stdtypes.html#comparisons>docs.python: Comparisons</a> and <a href=https://docs.python.org/3/reference/expressions.html#operator-precedence>docs.python: Operator precedence</a> for documentation and other details.</blockquote><h2><a class=header href=#truthy-and-falsy-values id=truthy-and-falsy-values>Truthy and Falsy values</a></h2><p>The values by themselves have <em>Truthy</em> and <em>Falsy</em> meanings when used in conditional context. You can use the <code>bool()</code> built-in function to explicitly convert them to boolean values.<p>For numbers, <strong>zero</strong> evaluates to <code>False</code> and <code>True</code> otherwise. An <strong>empty</strong> string evaluates to <code>False</code> and <code>True</code> otherwise. The <code>None</code> value evaluates to <code>False</code>. See <a href=https://docs.python.org/3/library/stdtypes.html#truth-value-testing>docs.python: Truth Value Testing</a> for more details.<pre><code class=language-python>>>> type(True)
+</code></pre><blockquote><p><img src=./images/info.svg alt=info> Python is a strictly typed language. So, unlike context-based languages like Perl, you have to explicitly use type conversion when needed. As an <strong>exercise</strong>, try using any of the <code><</code> or <code><=</code> or <code>></code> or <code>>=</code> operators between numeric and string values.</blockquote><blockquote><p><img src=./images/info.svg alt=info> See <a href=https://docs.python.org/3/library/stdtypes.html#comparisons>docs.python: Comparisons</a> and <a href=https://docs.python.org/3/reference/expressions.html#operator-precedence>docs.python: Operator precedence</a> for documentation and other details.</blockquote><h2><a class=header href=#truthy-and-falsy-values id=truthy-and-falsy-values>Truthy and Falsy values</a></h2><p>The values by themselves have <em>Truthy</em> and <em>Falsy</em> meanings when used in a conditional context. You can use the <a href=https://docs.python.org/3/library/functions.html#bool>bool()</a> built-in function to explicitly convert them to boolean values.<p>For numbers, <strong>zero</strong> evaluates to <code>False</code> and <code>True</code> otherwise. An <strong>empty</strong> string evaluates to <code>False</code> and <code>True</code> otherwise. The <code>None</code> value evaluates to <code>False</code>. See <a href=https://docs.python.org/3/library/stdtypes.html#truth-value-testing>docs.python: Truth Value Testing</a> for more details.<pre><code class=language-python>>>> type(True)
 &LTclass 'bool'>
 >>> type(False)
 &LTclass 'bool'>
@@ -126,7 +126,7 @@ True
 
 >>> 'cat' not in ('bat', 'mat', 'pat')
 True
-</code></pre><p>When applied to strings, the <code>in</code> operator performs sub-string comparison.<pre><code class=language-python>>>> fruit = 'mango'
+</code></pre><p>When applied to strings, the <code>in</code> operator performs substring comparison.<pre><code class=language-python>>>> fruit = 'mango'
 >>> 'an' in fruit
 True
 >>> 'at' in fruit
@@ -145,22 +145,22 @@ print(f'{isodd(123) = }')
 isodd(42) = False
 isodd(-21) = True
 isodd(123) = True
-</code></pre><p>As an exercise, reduce the <code>isodd()</code> function body to a single statement instead of four. This is possible with features already discussed in this chapter, the ternary operator discussed in the next section would be an overkill.<blockquote><p><img src=./images/info.svg alt=info> Python doesn't have a <code>switch</code> control structure. See <a href=https://stackoverflow.com/questions/60208/replacements-for-switch-statement-in-python>stackoverflow: switch statement in Python?</a> for workarounds.</blockquote><h2><a class=header href=#ternary-operator id=ternary-operator>Ternary operator</a></h2><p>Python doesn't support the traditional <code>?:</code> ternary operator syntax. Instead, it uses <code>if-else</code> keywords in the same line as illustrated below.<pre><code class=language-python>def absolute(num):
+</code></pre><p>As an <strong>exercise</strong>, reduce the <code>isodd()</code> function body to a single statement instead of four. This is possible with features already discussed in this chapter, the ternary operator discussed in the next section would be an overkill.<blockquote><p><img src=./images/info.svg alt=info> Python doesn't have a <code>switch</code> control structure. See <a href=https://stackoverflow.com/q/60208/4082052>stackoverflow: switch statement in Python?</a> for workarounds.</blockquote><h2><a class=header href=#ternary-operator id=ternary-operator>Ternary operator</a></h2><p>Python doesn't support the traditional <code>?:</code> ternary operator syntax. Instead, it uses <code>if-else</code> keywords in the same line as illustrated below.<pre><code class=language-python>def absolute(num):
     if num >= 0:
         return num
     else:
         return -num
 </code></pre><p>The above <code>if-else</code> structure can be rewritten using ternary operator as shown below:<pre><code class=language-python>def absolute(num):
     return num if num >= 0 else -num
-</code></pre><p>Or, just use the <code>abs()</code> built-in function, which has support for complex numbers, fractions, etc. Unlike the above program, <code>abs()</code> will also handle <code>-0.0</code> correctly.<blockquote><p><img src=./images/info.svg alt=info> See <a href=https://stackoverflow.com/questions/394809/does-python-have-a-ternary-conditional-operator>stackoverflow: ternary conditional operator</a> for other ways to emulate the ternary operation in Python. <code>True</code> and <code>False</code> boolean values are equivalent to <code>1</code> and <code>0</code> in integer context. So, for example, the above ternary expression can also be written as <code>(-num, num)[num >= 0]</code>.</blockquote><h2><a class=header href=#for-loop id=for-loop>for loop</a></h2><p>Counter based loop can be constructed using the <code>range()</code> built-in function and the <code>in</code> operator. The <code>range()</code> function can be called in the following ways:<pre><code class=language-python>range(stop)
+</code></pre><p>Or, just use the <a href=https://docs.python.org/3/library/functions.html#abs>abs()</a> built-in function, which has support for complex numbers, fractions, etc. Unlike the above program, <code>abs()</code> will also handle <code>-0.0</code> correctly.<blockquote><p><img src=./images/info.svg alt=info> See <a href=https://stackoverflow.com/q/394809/4082052>stackoverflow: ternary conditional operator</a> for other ways to emulate the ternary operation in Python. <code>True</code> and <code>False</code> boolean values are equivalent to <code>1</code> and <code>0</code> in integer context. So, for example, the above ternary expression can also be written as <code>(-num, num)[num >= 0]</code>.</blockquote><h2><a class=header href=#for-loop id=for-loop>for loop</a></h2><p>Counter based loop can be constructed using the <a href=https://docs.python.org/3/library/functions.html#range>range()</a> built-in function and the <code>in</code> operator. The <code>range()</code> function can be called in the following ways:<pre><code class=language-python>range(stop)
 range(start, stop)
 range(start, stop, step)
-</code></pre><p>Both ascending and descending order arithmetic progression can be constructed using these variations. When skipped, default values are <code>start=0</code> and <code>step=1</code>. For understanding purposes, a <code>C</code> like code snippet is shown below.<pre><code class=language-python># ascending order
+</code></pre><p>Both ascending and descending order arithmetic progression can be constructed using these variations. When skipped, default values are <code>start=0</code> and <code>step=1</code>. For understanding purposes, a <code>C</code> like code snippet is shown below:<pre><code class=language-python># ascending order
 for(i = start; i < stop; i += step)
 
 # descending order
 for(i = start; i > stop; i += step)
-</code></pre><p>Here's is a sample multiplication table.<pre><code class=language-python>>>> num = 9
+</code></pre><p>Here's is a sample multiplication table:<pre><code class=language-python>>>> num = 9
 >>> for i in range(1, 5):
 ...     print(f'{num} * {i} = {num * i}')
 ... 
@@ -176,7 +176,7 @@ for(i = start; i > stop; i += step)
 
 >>> list(range(120, 99, -4))
 [120, 116, 112, 108, 104, 100]
-</code></pre><p>As an exercise, create this arithmetic progression <code>-2, 1, 4, 7, 10, 13</code> using the <code>range()</code> function. Also, see what value you get for each iteration of <code>for c in 'hello'</code>.<h2><a class=header href=#while-loop id=while-loop>while loop</a></h2><p>Use <code>while</code> loop when you want to execute statements as long as the condition evaluates to <code>True</code>. Here's an example:<pre><code class=language-python># countdown.py
+</code></pre><p>As an <strong>exercise</strong>, create this arithmetic progression <code>-2, 1, 4, 7, 10, 13</code> using the <code>range()</code> function. Also, see what value you get for each iteration of <code>for c in 'hello'</code>.<h2><a class=header href=#while-loop id=while-loop>while loop</a></h2><p>Use <code>while</code> loop when you want to execute statements as long as the condition evaluates to <code>True</code>. Here's an example:<pre><code class=language-python># countdown.py
 count = int(input('Enter a positive integer: '))
 while count > 0:
     print(count)
@@ -201,7 +201,7 @@ enter a number: 3.14
 square root of 3.14 is 1.7720
 enter a number: 
 >>> 
-</code></pre><blockquote><p><img src=./images/info.svg alt=info> See also <a href=https://stackoverflow.com/questions/653509/breaking-out-of-nested-loops>stackoverflow: breaking out of nested loops</a>.</blockquote><p>When <code>continue</code> is used, further statements are skipped and the next iteration of the loop is started, if any. This is frequently used in file processing when you need to skip certain lines like headers, comments, etc.<pre><code class=language-python>>>> for num in range(10):
+</code></pre><blockquote><p><img src=./images/info.svg alt=info> See also <a href=https://stackoverflow.com/q/653509/4082052>stackoverflow: breaking out of nested loops</a>.</blockquote><p>When <code>continue</code> is used, further statements are skipped and the next iteration of the loop is started, if any. This is frequently used in file processing when you need to skip certain lines like headers, comments, etc.<pre><code class=language-python>>>> for num in range(10):
 ...     if num % 3:
 ...         continue
 ...     print(f'{num} * 2 = {num * 2}')
@@ -210,7 +210,7 @@ enter a number:
 3 * 2 = 6
 6 * 2 = 12
 9 * 2 = 18
-</code></pre><p>As an exercise, use appropriate <code>range()</code> logic so that the <code>if</code> statement is no longer needed.<blockquote><p><img src=./images/info.svg alt=info> See <a href=https://docs.python.org/3/tutorial/controlflow.html#break-and-continue-statements-and-else-clauses-on-loops>docs.python: break, continue, else</a> for more details and the curious case of <code>else</code> clause in loops.</blockquote><h2><a class=header href=#assignment-expression id=assignment-expression>Assignment expression</a></h2><p>Quoting from <a href=https://docs.python.org/3/reference/expressions.html#assignment-expressions>docs.python: Assignment expressions</a>:<blockquote><p>An assignment expression (sometimes also called a “named expression” or “walrus”) assigns an expression to an identifier, while also returning the value of the expression.</blockquote><p>The <code>while</code> loop snippet from the previous section can be re-written using assignment expression as shown below:<pre><code class=language-python>>>> while len(num := input('enter a number: ')) > 0:
+</code></pre><p>As an <strong>exercise</strong>, use appropriate <code>range()</code> logic so that the <code>if</code> statement is no longer needed.<blockquote><p><img src=./images/info.svg alt=info> See <a href=https://docs.python.org/3/tutorial/controlflow.html#break-and-continue-statements-and-else-clauses-on-loops>docs.python: break, continue, else</a> for more details and the curious case of <code>else</code> clause in loops.</blockquote><h2><a class=header href=#assignment-expression id=assignment-expression>Assignment expression</a></h2><p>Quoting from <a href=https://docs.python.org/3/reference/expressions.html#assignment-expressions>docs.python: Assignment expressions</a>:<blockquote><p>An assignment expression (sometimes also called a “named expression” or “walrus”) assigns an expression to an identifier, while also returning the value of the expression.</blockquote><p>The <code>while</code> loop snippet from the previous section can be re-written using assignment expression as shown below:<pre><code class=language-python>>>> while len(num := input('enter a number: ')) > 0:
 ...     print(f'square root of {num} is {float(num) ** 0.5:.4f}')
 ... 
 enter a number: 2

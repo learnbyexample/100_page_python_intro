@@ -50,7 +50,7 @@ TypeError: sequence item 0: expected str instance, int found
 >>> c = ' :: '
 >>> c.join(['This', 'is', 'a', 'sample', 'string'])
 'This :: is :: a :: sample :: string'
-</code></pre><p>As an exercise, check what happens if you pass multiple string values separated by comma to <code>join()</code> instead of an iterable.<h2><a class=header href=#transliteration id=transliteration>Transliteration</a></h2><p>The <code>translate()</code> method accepts a table of codepoints (numerical value of a character) mapped to another character/codepoint or <code>None</code> (if the character has to be deleted). You can use the <a href=https://docs.python.org/3/library/functions.html#ord>ord()</a> built-in function to get the codepoint of characters. Or, you can use the <code>str.maketrans()</code> method to generate the mapping for you.<pre><code class=language-python>>>> ord('a')
+</code></pre><p>As an <strong>exercise</strong>, check what happens if you pass multiple string values separated by comma to <code>join()</code> instead of an iterable.<h2><a class=header href=#transliteration id=transliteration>Transliteration</a></h2><p>The <code>translate()</code> method accepts a table of codepoints (numerical value of a character) mapped to another character/codepoint or <code>None</code> (if the character has to be deleted). You can use the <a href=https://docs.python.org/3/library/functions.html#ord>ord()</a> built-in function to get the codepoint of characters. Or, you can use the <code>str.maketrans()</code> method to generate the mapping for you.<pre><code class=language-python>>>> ord('a')
 97
 >>> ord('A')
 65
@@ -72,7 +72,7 @@ TypeError: sequence item 0: expected str instance, int found
 >>> chars_to_delete = ''.join(set(string.punctuation) - set('.!?'))
 >>> para.translate(str.maketrans('', '', chars_to_delete))
 'Hi there! How are you? All fine here.'
-</code></pre><p>As an exercise, read the documentation for features covered in this section. See also <a href=https://stackoverflow.com/questions/555705/character-translation-using-python-like-the-tr-command>stackoverflow: character translation examples</a>.<h2><a class=header href=#removing-leadingtrailing-characters id=removing-leadingtrailing-characters>Removing leading/trailing characters</a></h2><p>The <code>strip()</code> method removes consecutive characters from the start/end of the given string. By default it removes whitespace characters, which you can change by passing a <code>str</code> argument. You can use <code>lstrip()</code> and <code>rstrip()</code> methods to work only on the leading and trailing characters respectively.<pre><code class=language-python>>>> greeting = '  \t\r\n have    a  nice \t day  \f\v\r\t\n '
+</code></pre><p>As an <strong>exercise</strong>, read the documentation for features covered in this section. See also <a href=https://stackoverflow.com/q/555705/4082052>stackoverflow: character translation examples</a>.<h2><a class=header href=#removing-leadingtrailing-characters id=removing-leadingtrailing-characters>Removing leading/trailing characters</a></h2><p>The <code>strip()</code> method removes consecutive characters from the start/end of the given string. By default it removes whitespace characters, which you can change by passing a <code>str</code> argument. You can use <code>lstrip()</code> and <code>rstrip()</code> methods to work only on the leading and trailing characters respectively.<pre><code class=language-python>>>> greeting = '  \t\r\n have    a  nice \t day  \f\v\r\t\n '
 >>> greeting.strip()
 'have    a  nice \t day'
 >>> greeting.lstrip()
@@ -124,7 +124,7 @@ True
 
 >>> 'Today is Sunny'.istitle()
 False
-</code></pre><p>Here's some examples with <code>isnumeric()</code> and <code>isascii()</code> methods. As an exercise, read the documentation for the rest of the <strong>is</strong> methods.<pre><code class=language-python># checks if string has numeric characters only, at least one
+</code></pre><p>Here's some examples with <code>isnumeric()</code> and <code>isascii()</code> methods. As an <strong>exercise</strong>, read the documentation for the rest of the <strong>is</strong> methods.<pre><code class=language-python># checks if string has numeric characters only, at least one
 >>> '153'.isnumeric()
 True
 >>> ''.isnumeric()
