@@ -6,11 +6,13 @@ This book is a short, introductory guide for the Python programming language. Th
 * If you have prior experience with another programming language
 * If you want a complement resource after reading a Python basics book, watching a video course, etc
 
-## Prerequisites, Motivation and FAQ
+## Prerequisites
 
 You should be already familiar with basic programming concepts. If you are new to programming, I'd highly recommended my [comprehensive curated list](https://learnbyexample.github.io/py_resources/) to get started.
 
-I've been conducting a few Python introduction workshops for college students and faculty for the past four years (which came to a premature end thanks to the pandemic). These students were already familiar with another programming languages such as `C`, `Java`, etc. I used to provide my notes in PDF format as a workshop reference material, further reading resources, etc. After I started writing a book titled "[Practice Python Projects](https://learnbyexample.github.io/practice_python_projects/)", I realized I'd be better served by improving my Python knowledge first. What better way to do it than writing a book?
+## Motivation and FAQ
+
+I've been conducting a few Python introduction workshops for college students and faculty for the past four years (which came to a premature end thanks to the pandemic). These students were already familiar with another programming languages such as `C`, `Java`, etc. I used to provide my notes in PDF format as a workshop reference material, further reading resources, etc. After I started writing a book titled [**Practice Python Projects**](https://learnbyexample.github.io/practice_python_projects/), I realized I'd be better served by improving my Python knowledge first. What better way to do it than writing a book?
 
 *Why is it called **100 Page Python Intro** when it has more than 100 pages?*
 
@@ -24,12 +26,13 @@ The material I was using for my workshops was 56 pages. I had more chapters to a
 * Code snippets that are copy pasted from the Python REPL shell have been modified for presentation purposes. For example, comments to provide context and explanations, blank lines and shortened error messages to improve readability and so on.
 * A comment with filename will be shown as the first line for program files.
 * External links are provided for further exploration throughout the book. They have been chosen with care to provide more detailed resources on those topics as well as resources on related topics.
+* The [100_page_python_intro repo](https://github.com/learnbyexample/100_page_python_intro/tree/main/programs) has all the programs and files presented in this book, organized by chapter for convenience.
 
 ## Acknowledgements
 
 * [Offical Python website](https://docs.python.org/3/) — documentation and examples
 * [stackoverflow](https://stackoverflow.com/) and [unix.stackexchange](https://unix.stackexchange.com/) — for getting answers to pertinent questions on Python, Shell and programming in general
-* [/r/learnpython](https://www.reddit.com/r/learnpython) — helpful forum for beginners
+* [/r/learnpython](https://www.reddit.com/r/learnpython) and [/r/learnprogramming](https://www.reddit.com/r/learnprogramming) — helpful forum for beginners
 * [/r/Python/](https://www.reddit.com/r/Python/) — general Python discussion
 * [tex.stackexchange](https://tex.stackexchange.com/) — for help on [pandoc](https://github.com/jgm/pandoc/) and `tex` related questions
 * Cover image:
@@ -65,7 +68,8 @@ Images mentioned in Acknowledgements section above are available under original 
 
 ## Book version
 
-1.0
+1.0  
+See [Version_changes.md](https://github.com/learnbyexample/100_page_python_intro/blob/main/Version_changes.md) to track changes across book versions.
 
 # Introduction
 
@@ -87,7 +91,7 @@ On modern Linux distributions, you are likely to find Python already installed. 
 
 ## Online tools
 
-In case you are facing installation issues, or do not want to install Python on your computer for some reason, there are plenty of options to execute Python programs using online tools. Some of the popular ones are listed below:
+In case you are facing installation issues, or do not want to (or cannot) install Python on your computer for some reason, there are plenty of options to execute Python programs using online tools. Some of the popular ones are listed below:
 
 * [Repl.it](https://repl.it/languages/python3) — Interactive playground. Code, collaborate, compile, run, share, and deploy Python and more online from your browser
 * [Pythontutor](http://www.pythontutor.com/visualize.html#mode=edit) — Visualize code execution, also has example codes and ability to share sessions
@@ -196,6 +200,8 @@ Python provides a `help()` function, which is quite handy to use from the REPL. 
 
 ![help print](./images/help_print.png)
 
+>![info](./images/info.svg) Quotes are necessary, for example `help('import')` and `help('del')`, if the topic you are looking for isn't an object.
+
 If you get stuck with a problem, there are several ways to get it resolved. For example:
 
 1. read/search for that particular topic from documentation/books/tutorials/etc 
@@ -260,7 +266,7 @@ Python also supports the exponential notation. See [wikipedia: E scientific nota
 1.5e-05
 ```
 
-Unlike integers, floating-point numbers have a limited precision. Python will automatically convert very small or very large floating-point numbers to the exponential notation.
+Unlike integers, floating-point numbers have a limited precision. While displaying very small or very large floating-point numbers, Python will automatically convert them to the exponential notation.
 
 ```ruby
 >>> 0.0000000001234567890123456789
@@ -269,7 +275,7 @@ Unlike integers, floating-point numbers have a limited precision. Python will au
 3.1415926535897936e+34
 ```
 
->![info](./images/info.svg) You might also get seemingly strange results as shown below. See [docs.python: Floating Point Arithmetic Issues and Limitations](https://docs.python.org/3/tutorial/floatingpoint.html) and [stackoverflow: Is floating point math broken?](https://stackoverflow.com/questions/588004/is-floating-point-math-broken) for details and workarounds.
+>![info](./images/info.svg) You might also get seemingly strange results as shown below. See [docs.python: Floating Point Arithmetic Issues and Limitations](https://docs.python.org/3/tutorial/floatingpoint.html) and [stackoverflow: Is floating point math broken?](https://stackoverflow.com/q/588004/4082052) for details and workarounds.
 
 ```ruby
 >>> 3.14 + 2
@@ -321,7 +327,9 @@ Use modulo operator `%` to get the remainder. Sign of the result is same as the 
 -2.5
 ```
 
->![info](./images/info.svg) See [docs.python: Binary arithmetic operations](https://docs.python.org/3/reference/expressions.html#binary-arithmetic-operations) and [stackoverflow: modulo operation on negative numbers](https://stackoverflow.com/questions/3883004/the-modulo-operation-on-negative-numbers-in-python) for more details.
+>![info](./images/info.svg) See [docs.python: Binary arithmetic operations](https://docs.python.org/3/reference/expressions.html#binary-arithmetic-operations) and [stackoverflow: modulo operation on negative numbers](https://stackoverflow.com/q/3883004/4082052) for more details.
+
+## Operator precedence
 
 Arithmetic operator precedence follows the familiar **PEMDAS** or **BODMAS** abbreviations. Precedence, higher to lower is listed below:
 
@@ -334,13 +342,13 @@ Expression is evaluated left-to-right when operators have the same precedence. U
 
 ## Integer formats
 
-The integer examples so far have been coded using base 10, i.e. **decimal** format. Python has provision for representing **binary**, **octal** and **hexadecimal** formats as well. To distinguish between these different formats, a prefix is used.
+The integer examples so far have been coded using base 10, i.e. **decimal** format. Python has provision for representing **binary**, **octal** and **hexadecimal** formats as well. To distinguish between these different formats, a prefix is used:
 
 * `0b` or `0B` for binary
 * `0o` or `0O` for octal
 * `0x` or `0X` for hexadecimal
 
-All four formats fall under the `int` data type. Underscores can be used for readability for any of these formats.
+All four formats fall under the `int` data type. Python displays them in decimal format by default. Underscores can be used for readability for any of these formats.
 
 ```ruby
 >>> 0b1000_1111
@@ -354,7 +362,7 @@ All four formats fall under the `int` data type. Underscores can be used for rea
 15
 ```
 
-As a consequence, decimal format numbers cannot be prefixed by `0`, other than `0` itself.
+Decimal format numbers cannot be prefixed by `0`, other than `0` itself.
 
 ```ruby
 >>> 00000
@@ -378,7 +386,7 @@ Python's standard data type also includes complex type (imaginary part is suffix
 * [docs.python: decimal](https://docs.python.org/3/library/decimal.html)
 * [docs.python: fractions](https://docs.python.org/3/library/fractions.html)
 
->![warning](./images/warning.svg) Some of the numeric types can have alphabets like `e`, `b`, `j`, etc in their values. As Python is a dynamically typed language, you cannot use variable names beginning with a number. Otherwise, it would be impossible to evaluate an expression like `result = initial_value + 0x12 - 2j`.
+>![warning](./images/warning.svg) Some of the numeric types can have alphabets like `e`, `b`, `j`, etc in their values. As Python is a dynamically typed language, you cannot use variable names beginning with a number. Otherwise, it would be impossible to evaluate an expression like `result = input_value + 0x12 - 2j`.
 
 >![info](./images/info.svg) There are many third-party libraries that are useful for number crunching in mathematical context, engineering applications, etc. See my list [py_resources: Scientific computing](https://learnbyexample.github.io/py_resources/domain.html#scientific-computing) for curated resources.
 
@@ -539,7 +547,7 @@ As per [PEP 20: The Zen of Python](https://www.python.org/dev/peps/pep-0020/),
 
 >There should be one-- and preferably only one --obvious way to do it.
 
-However, there are several approaches for formatting strings. This section will primarily discuss **formatted** string literals (**f-strings** for short). And then show alternate approaches.
+However, there are several approaches for formatting strings. This section will focus mostly on **formatted** string literals (**f-strings** for short). And then show alternate approaches.
 
 f-strings allow you to embed an expression within `{}` characters as part of the string literal. Like raw strings, you need to use a prefix, which is `f` or `F` in this case. Python will substitute the embeds with the result of the expression, converting it to string if necessary (such as numeric results). See [docs.python: Format String Syntax](https://docs.python.org/3/library/string.html#formatstrings) and [docs.python: Formatted string literals](https://docs.python.org/3/reference/lexical_analysis.html#formatted-string-literals) for documentation and more examples.
 
@@ -632,13 +640,13 @@ You can use `b`, `o` and `x` to display integer values in binary, octal and hexa
 'Approx pi: 3.14'
 ```
 
->![info](./images/info.svg) See [docs.python: The String format() Method](https://docs.python.org/3/tutorial/inputoutput.html#the-string-format-method) and the sections that follow for more details about the above features. The [Text processing](#text-processing) chapter will discuss more about the string processing methods.
+>![info](./images/info.svg) See [docs.python: The String format() Method](https://docs.python.org/3/tutorial/inputoutput.html#the-string-format-method) and the sections that follow for more details about the above features. See [docs.python: Format examples](https://docs.python.org/3/library/string.html#format-examples) for more examples, including `datetime` formatting. The [Text processing](#text-processing) chapter will discuss more about the string processing methods.
 
->![info](./images/info.svg) In case you don't know what a *method* is, see [stackoverflow: What's the difference between a method and a function?](https://stackoverflow.com/questions/155609/whats-the-difference-between-a-method-and-a-function)
+>![info](./images/info.svg) In case you don't know what a *method* is, see [stackoverflow: What's the difference between a method and a function?](https://stackoverflow.com/q/155609/4082052)
 
 ## User input
 
-The `input` built-in function can be used to get data from the user. It also allows an optional string to make it an interactive process. It always returns a string data type, you can convert to another type as discussed in the next section.
+The [input()](https://docs.python.org/3/library/functions.html#input) built-in function can be used to get data from the user. It also allows an optional string to make it an interactive process. It always returns a string data type, which you can convert to another type (explained in the next section).
 
 ```ruby
 # Python will wait until you type your data and press the Enter key
@@ -660,21 +668,21 @@ pleased to meet you learnbyexample.
 
 ## Type conversion
 
-The `type()` built-in function can be used to know what data type you are dealing with. You can pass any expression as an argument.
+The [type()](https://docs.python.org/3/library/functions.html#type) built-in function can be used to know what data type you are dealing with. You can pass any expression as an argument.
 
 ```ruby
->>> type(42)
+>>> num = 42
+>>> type(num)
 <class 'int'>
 
->>> num = 3.14
->>> type(num)
+>>> type(22 / 7)
 <class 'float'>
 
 >>> type('Hi there')
 <class 'str'>
 ```
 
-The built-in functions `int()`, `float()` and `str()` can be used to convert from one data type to another. These function names are the same as their data type class names seen above.
+The built-in functions [int()](https://docs.python.org/3/library/functions.html#int), [float()](https://docs.python.org/3/library/functions.html#float) and [str()](https://docs.python.org/3/library/functions.html#str) can be used to convert from one data type to another. These function names are the same as their data type class names seen above.
 
 ```ruby
 >>> num = 3.14
@@ -696,17 +704,18 @@ enter a float value 45.24e22
 
 ## Exercises
 
-* Read about **Bytes** literals from [docs.python: String and Bytes literals](https://docs.python.org/3/reference/lexical_analysis.html#strings). See also [stackoverflow: What is the difference between a string and a byte string?](https://stackoverflow.com/questions/6224052/what-is-the-difference-between-a-string-and-a-byte-string)
+* Read about **Bytes** literals from [docs.python: String and Bytes literals](https://docs.python.org/3/reference/lexical_analysis.html#strings). See also [stackoverflow: What is the difference between a string and a byte string?](https://stackoverflow.com/q/6224052/4082052)
 * If you check out [docs.python: int() function](https://docs.python.org/3/library/functions.html#int), you'll see that the `int()` function accepts an optional argument. As an example, write a program that asks the user for hexadecimal number as input. Then, use `int()` function to convert the input string to an integer (you'll need the second argument for this). Add `5` and display the result in hexadecimal format.
 * Write a program to accept two input values. First can be either a number or a string value. Second is an integer value, which should be used to display the first value in centered alignment. You can use any character you prefer to surround the value, other than the default space character.
 * What happens if you use a combination of `r`, `f` and other such valid prefix characters while declaring a string literal? What happens if you use raw strings syntax and provide only a single `\` character? Does the documentation describe these cases?
 * Try out at least two format specifiers not discussed in this chapter.
+* Given `a = 5`, get `'{5}'` as the output using **f-strings**.
 
 # Defining functions
 
 This chapter will discuss how to define your own functions, pass arguments to them and get back results. You'll also learn more about the `print()` built-in function.
 
-## def keyword
+## def
 
 Use `def` keyword to define a function. The function name is specified after the keyword, followed by arguments inside parentheses and finally a `:` character to end the definition. It is a common mistake for beginners to miss the `:` character. Arguments are optional, as shown in the below program.
 
@@ -720,7 +729,7 @@ def greeting():
 greeting()
 ```
 
-The above code defines a function named `greeting` and contains three statements. Unlike many other programming languages, whitespaces are significant in Python. Instead of a pair of curly braces, indentation is used to distinguish the body of the function and statements outside of that function. Typically, 4 spaces is used, as shown above. The function call `greeting()` has the same indentation level as the function definition, so it is not part of the function. For readability, an empty line is used to separate the function definition and subsequent statements.
+The above code defines a function named `greeting` and contains three statements as part of the function. Unlike many other programming languages, whitespaces are significant in Python. Instead of a pair of curly braces, indentation is used to distinguish the body of the function and statements outside of that function. Typically, 4 spaces is used, as shown above. The function call `greeting()` has the same indentation level as the function definition, so it is not part of the function. For readability, an empty line is used to separate the function definition and subsequent statements.
 
 ```bash
 $ python3.9 no_args.py
@@ -729,7 +738,7 @@ $ python3.9 no_args.py
 -----------------------------
 ```
 
->![info](./images/info.svg) Functions have to be declared before they can be called. As an exercise, call the function before declaration and see what happens for the above program.
+>![info](./images/info.svg) Functions have to be declared before they can be called. As an **exercise**, call the function before declaration and see what happens for the above program.
 
 >![info](./images/info.svg) As per [PEP 8: Style Guide for Python Code](https://www.python.org/dev/peps/pep-0008/), it is recommended to use two blank lines around top level functions. However, I prefer to use a single blank line. For large projects, specialized tools like [pylint](https://pypi.org/project/pylint/) and [black](https://pypi.org/project/black/) are used to analyze and enforce coding styles/guidelines.
 
@@ -753,7 +762,7 @@ weather = 'Today would be a nice, sunny day'
 greeting(weather)
 ```
 
-In this script, the function from the previous example has been modified to accept an input string as the sole argument. The `len()` built-in function is used here to get the length of a string value. The code also showcases the usefulness of variables, string operators and string formatting.
+In this script, the function from the previous example has been modified to accept an input string as the sole argument. The [len()](https://docs.python.org/3/library/functions.html#len) built-in function is used here to get the length of a string value. The code also showcases the usefulness of variables, string operators and string formatting.
 
 ```bash
 $ python3.9 with_args.py
@@ -765,9 +774,9 @@ $ python3.9 with_args.py
 ------------------------------------------
 ```
 
-As an exercise, modify the above program as suggested below and observe the results you get.
+As an **exercise**, modify the above program as suggested below and observe the results you get.
 
-* add print statements for `ip`, `op_length` and `styled_line` variables after the function calls
+* add print statements for `ip`, `op_length` and `styled_line` variables at the end of the program (after the function calls)
 * pass a numeric value to the `greeting()` function
 * don't pass any argument while calling the `greeting()` function
 
@@ -813,10 +822,14 @@ $ python3.9 default_args.py
 ::::::::::
 ```
 
-As an exercise, modify the above script for the below requirements.
+As an **exercise**, modify the above script for the below requirements.
 
 * make the spacing work for multicharacter `style` argument
 * accept another argument with a default value of single space character that determines the character to be used around the centered `ip` value
+
+As another **exercise**, what do you think will happen if you use `greeting(spacing=5, ip='Oh!')` to call the function shown above?
+
+>![info](./images/info.svg) Arguments declared without default values can still be used as keyword arguments during function call. This is the default behavior. Python provides special constructs `/` and `*` for stricter separation of positional and keyword arguments. See [docs.python: Special parameters](https://docs.python.org/3/tutorial/controlflow.html#special-parameters) for details.
 
 ## Return value
 
@@ -835,7 +848,7 @@ None
 <class 'NoneType'>
 ```
 
-Use the `return` statement to explicitly give back a value to the function caller. You can use this keyword by itself as well, the expression is optional.
+Use the `return` statement to explicitly give back a value when the function is called. You can use this keyword by itself as well (default value is `None`).
 
 ```ruby
 >>> def num_square(n):
@@ -853,7 +866,7 @@ Use the `return` statement to explicitly give back a value to the function calle
 
 >![info](./images/info.svg) On encountering a `return` statement, the function will be terminated and further statements, if any, present as part of the function body will not be executed.
 
->![info](./images/info.svg) A common beginner confusion is mixing up `print()` and `return`. See [stackoverflow: What is the formal difference between “print” and “return”?](https://stackoverflow.com/questions/7664779/what-is-the-formal-difference-between-print-and-return) for examples and explanations.
+>![info](./images/info.svg) A common beginner confusion is mixing up the `print()` function and the `return` statement. See [stackoverflow: What is the formal difference between “print” and “return”?](https://stackoverflow.com/q/7664779/4082052) for examples and explanations.
 
 ## A closer look at the print() function
 
@@ -900,7 +913,7 @@ hi-bye
 ======
 ```
 
->![info](./images/info.svg) The `file` and `flush` arguments will be discussed later. Writing your own function to accept arbitrary number of arguments will also be discussed later.
+>![info](./images/info.svg) The `file` argument will be discussed later. Writing your own function to accept arbitrary number of arguments will also be discussed later.
 
 ## Docstrings
 
@@ -954,13 +967,13 @@ False
 True
 ```
 
->![info](./images/info.svg) Python is a strictly typed language. So, unlike context-based languages like Perl, you have to explicitly use type conversion when needed. As an exercise, try using any of the `<` or `<=` or `>` or `>=` operators between numeric and string values.
+>![info](./images/info.svg) Python is a strictly typed language. So, unlike context-based languages like Perl, you have to explicitly use type conversion when needed. As an **exercise**, try using any of the `<` or `<=` or `>` or `>=` operators between numeric and string values.
 
 >![info](./images/info.svg) See [docs.python: Comparisons](https://docs.python.org/3/library/stdtypes.html#comparisons) and [docs.python: Operator precedence](https://docs.python.org/3/reference/expressions.html#operator-precedence) for documentation and other details.
 
 ## Truthy and Falsy values
 
-The values by themselves have *Truthy* and *Falsy* meanings when used in conditional context. You can use the `bool()` built-in function to explicitly convert them to boolean values.
+The values by themselves have *Truthy* and *Falsy* meanings when used in a conditional context. You can use the [bool()](https://docs.python.org/3/library/functions.html#bool) built-in function to explicitly convert them to boolean values.
 
 For numbers, **zero** evaluates to `False` and `True` otherwise. An **empty** string evaluates to `False` and `True` otherwise. The `None` value evaluates to `False`. See [docs.python: Truth Value Testing](https://docs.python.org/3/library/stdtypes.html#truth-value-testing) for more details.
 
@@ -1070,7 +1083,7 @@ True
 True
 ```
 
-When applied to strings, the `in` operator performs sub-string comparison.
+When applied to strings, the `in` operator performs substring comparison.
 
 ```ruby
 >>> fruit = 'mango'
@@ -1108,9 +1121,9 @@ isodd(-21) = True
 isodd(123) = True
 ```
 
-As an exercise, reduce the `isodd()` function body to a single statement instead of four. This is possible with features already discussed in this chapter, the ternary operator discussed in the next section would be an overkill.
+As an **exercise**, reduce the `isodd()` function body to a single statement instead of four. This is possible with features already discussed in this chapter, the ternary operator discussed in the next section would be an overkill.
 
->![info](./images/info.svg) Python doesn't have a `switch` control structure. See [stackoverflow: switch statement in Python?](https://stackoverflow.com/questions/60208/replacements-for-switch-statement-in-python) for workarounds.
+>![info](./images/info.svg) Python doesn't have a `switch` control structure. See [stackoverflow: switch statement in Python?](https://stackoverflow.com/q/60208/4082052) for workarounds.
 
 ## Ternary operator
 
@@ -1131,13 +1144,13 @@ def absolute(num):
     return num if num >= 0 else -num
 ```
 
-Or, just use the `abs()` built-in function, which has support for complex numbers, fractions, etc. Unlike the above program, `abs()` will also handle `-0.0` correctly.
+Or, just use the [abs()](https://docs.python.org/3/library/functions.html#abs) built-in function, which has support for complex numbers, fractions, etc. Unlike the above program, `abs()` will also handle `-0.0` correctly.
 
->![info](./images/info.svg) See [stackoverflow: ternary conditional operator](https://stackoverflow.com/questions/394809/does-python-have-a-ternary-conditional-operator) for other ways to emulate the ternary operation in Python. `True` and `False` boolean values are equivalent to `1` and `0` in integer context. So, for example, the above ternary expression can also be written as `(-num, num)[num >= 0]`.
+>![info](./images/info.svg) See [stackoverflow: ternary conditional operator](https://stackoverflow.com/q/394809/4082052) for other ways to emulate the ternary operation in Python. `True` and `False` boolean values are equivalent to `1` and `0` in integer context. So, for example, the above ternary expression can also be written as `(-num, num)[num >= 0]`.
 
 ## for loop
 
-Counter based loop can be constructed using the `range()` built-in function and the `in` operator. The `range()` function can be called in the following ways:
+Counter based loop can be constructed using the [range()](https://docs.python.org/3/library/functions.html#range) built-in function and the `in` operator. The `range()` function can be called in the following ways:
 
 ```ruby
 range(stop)
@@ -1145,7 +1158,7 @@ range(start, stop)
 range(start, stop, step)
 ```
 
-Both ascending and descending order arithmetic progression can be constructed using these variations. When skipped, default values are `start=0` and `step=1`. For understanding purposes, a `C` like code snippet is shown below.
+Both ascending and descending order arithmetic progression can be constructed using these variations. When skipped, default values are `start=0` and `step=1`. For understanding purposes, a `C` like code snippet is shown below:
 
 ```ruby
 # ascending order
@@ -1155,7 +1168,7 @@ for(i = start; i < stop; i += step)
 for(i = start; i > stop; i += step)
 ```
 
-Here's is a sample multiplication table.
+Here's is a sample multiplication table:
 
 ```ruby
 >>> num = 9
@@ -1181,7 +1194,7 @@ The `range`, `list`, `tuple`, `str` data types (and some more) fall under **sequ
 [120, 116, 112, 108, 104, 100]
 ```
 
-As an exercise, create this arithmetic progression `-2, 1, 4, 7, 10, 13` using the `range()` function. Also, see what value you get for each iteration of `for c in 'hello'`.
+As an **exercise**, create this arithmetic progression `-2, 1, 4, 7, 10, 13` using the `range()` function. Also, see what value you get for each iteration of `for c in 'hello'`.
 
 ## while loop
 
@@ -1229,7 +1242,7 @@ enter a number:
 >>> 
 ```
 
->![info](./images/info.svg) See also [stackoverflow: breaking out of nested loops](https://stackoverflow.com/questions/653509/breaking-out-of-nested-loops).
+>![info](./images/info.svg) See also [stackoverflow: breaking out of nested loops](https://stackoverflow.com/q/653509/4082052).
 
 When `continue` is used, further statements are skipped and the next iteration of the loop is started, if any. This is frequently used in file processing when you need to skip certain lines like headers, comments, etc.
 
@@ -1245,7 +1258,7 @@ When `continue` is used, further statements are skipped and the next iteration o
 9 * 2 = 18
 ```
 
-As an exercise, use appropriate `range()` logic so that the `if` statement is no longer needed.
+As an **exercise**, use appropriate `range()` logic so that the `if` statement is no longer needed.
 
 >![info](./images/info.svg) See [docs.python: break, continue, else](https://docs.python.org/3/tutorial/controlflow.html#break-and-continue-statements-and-else-clauses-on-loops) for more details and the curious case of `else` clause in loops.
 
@@ -1292,7 +1305,7 @@ The previous chapters focused on data types, functions (both built-in and user d
 
 ## Random numbers
 
-Say you want to generate a random number from a given range for a guessing game. You could write your own random number generator. Or, you could save development/testing time, and make use of the `random` built-in module.
+Say you want to generate a random number from a given range for a guessing game. You could write your own random number generator. Or, you could save development/testing time, and make use of the [random](https://docs.python.org/3/library/random.html) built-in module.
 
 Here's an example guessing game.
 
@@ -1395,7 +1408,7 @@ So what happened here? Not only did the `sqr` and `fact` functions get imported,
 5
 ```
 
-As an exercise,
+As an **exercise**,
 
 * add docstrings for the above program and check the output of `help()` function using `num_funcs`, `num_funcs.fact`, etc as arguments.
 * check what would be the output of `num_funcs.fact()` for negative integers and floating-point numbers. Then import the `math` built-in module and repeat the process with `math.factorial()`. Go through the [Exception handling](#exception-handling) chapter and modify the above program to gracefully handle negative integers and floating-point numbers.
@@ -1461,7 +1474,7 @@ AttributeError: module 'num_funcs_module' has no attribute 'num'
 
 >![info](./images/info.svg) In the above example, there are three statements that'll be executed if the program is run as the main program. It is common to put such statements under a `main()` user defined function and then call it inside the `if` block.
 
->![info](./images/info.svg) There are many such special variables and methods with **d**ouble **under**scores around their names. They are also called as **dunder** variables and methods. See [stackoverflow: \_\_name\_\_ special variable](https://stackoverflow.com/questions/419163/what-does-if-name-main-do) for a detailed discussion and strange use cases.
+>![info](./images/info.svg) There are many such special variables and methods with **d**ouble **under**scores around their names. They are also called as **dunder** variables and methods. See [stackoverflow: \_\_name\_\_ special variable](https://stackoverflow.com/q/419163/4082052) for a detailed discussion and strange use cases.
 
 ## Different ways of importing
 
@@ -1513,13 +1526,14 @@ You can use `python3.9 -B` if you do not wish the `__pycache__` directory to be 
 
 * [docs.python: The Python Standard Library](https://docs.python.org/3/library/index.html)
 * [github: awesome-python](https://github.com/vinta/awesome-python) — curated list of awesome Python frameworks, libraries, software and resources
+* [github: best-of-python](https://github.com/ml-tooling/best-of-python) — awesome Python open-source libraries & tools, updated weekly
 * [Turtle examples](https://michael0x2a.com/blog/turtle-examples) — a fun module to create graphical shapes, inspired from Logo
 
 # Installing modules and Virtual environments
 
 The standard modules are only a tiny fraction of the vast amount of libraries available for Python. The rich third-party ecosystem is one of the reasons why Python is so widely used. You can find plenty of well made modules for web development, finance applications, scientific computing, machine learning, bioinformatics, data science, GUI, games and so on. There are plenty of alternatives for standard modules as well.
 
-Quoting from [pypi.org: Python Packaging Index](https://pypi.org)
+Quoting from [pypi.org: Python Packaging Index](https://pypi.org):
 
 >The Python Package Index (PyPI) is a repository of software for the Python programming language. PyPI helps you find and install software developed and shared by the Python community.
 
@@ -1551,7 +1565,7 @@ Successfully installed regex-2020.11.13
 
 >![info](./images/info.svg) See [packaging.python: Installing from PyPI](https://packaging.python.org/tutorials/installing-packages/#installing-from-pypi) for details like constraining package version number, upgrading packages, etc.
 
->![info](./images/info.svg) `uninstall` instead of `install` in the above example will remove the package. See also [stackoverflow: how to uninstall a package](https://stackoverflow.com/questions/33412974/how-to-uninstall-a-package-installed-with-pip-install-user) for details and gotchas.
+>![info](./images/info.svg) `uninstall` instead of `install` in the above example will remove the package. See also [stackoverflow: how to uninstall a package](https://stackoverflow.com/q/33412974/4082052) for details and gotchas.
 
 >![warning](./images/warning.svg) ![warning](./images/warning.svg) ![warning](./images/warning.svg) Unless you really know what you are doing, do NOT ever use `pip` as a **root/admin** user. Problematic packages are an issue, see [Malicious packages found to be typo-squatting](https://snyk.io/blog/malicious-packages-found-to-be-typo-squatting-in-pypi/) and [Hunting for Malicious Packages on PyPI](https://news.ycombinator.com/item?id=25081937) for examples. See also [security.stackexchange: PyPI security measures](https://security.stackexchange.com/questions/79326/which-security-measures-does-pypi-and-similar-third-party-software-repositories).
 
@@ -1580,18 +1594,18 @@ See also:
 * [meribold: Virtual Environments Demystified](https://meribold.org/python/2018/02/13/virtual-environments-9487/)
 * [calmcode.io: virtualenv](https://calmcode.io/virtualenv/intro.html) — video
 * [realpython: Python Virtual Environments Primer](https://realpython.com/blog/python/python-virtual-environments-a-primer/)
-* [stackoverflow: What is the difference between venv, pyvenv, pyenv, virtualenv, virtualenvwrapper, pipenv, etc?](https://stackoverflow.com/questions/41573587/what-is-the-difference-between-venv-pyvenv-pyenv-virtualenv-virtualenvwrappe)
+* [stackoverflow: What is the difference between venv, pyvenv, pyenv, virtualenv, virtualenvwrapper, pipenv, etc?](https://stackoverflow.com/q/41573587/4082052)
 
 ## Creating your own package
 
 The [packaging.python: Packaging Python Projects](https://packaging.python.org/tutorials/packaging-projects/) tutorial walks you through packaging a simple Python project. See also:
 
-* [stackoverflow: What is setup.py?](https://stackoverflow.com/questions/1471994/what-is-setup-py)
+* [stackoverflow: What is setup.py?](https://stackoverflow.com/q/1471994/4082052)
 * [Practical Python Programming: Packaging and Distribution](https://dabeaz-course.github.io/practical-python/Notes/09_Packages/00_Overview.html)
 
 # Exception handling
 
-This chapter will discuss different types of errors and how to handle some of the them within the program gracefully. You'll also see how to raise exceptions on your own.
+This chapter will discuss different types of errors and how to handle some of the them within the program gracefully. You'll also see how to raise exceptions programmatically.
 
 ## Syntax errors
 
@@ -1689,7 +1703,7 @@ oops something went wrong! the error msg is:
 
 >![info](./images/info.svg) See [docs.python: built-in exceptions](https://docs.python.org/3/library/exceptions.html#bltin-exceptions) for documentation on built-in exceptions.
 
->![warning](./images/warning.svg) Passing an error type to `except` is optional, it is not recommended however. See [stackoverflow: avoid bare exceptions](https://stackoverflow.com/questions/14797375/should-i-always-specify-an-exception-type-in-except-statements) for details.
+>![warning](./images/warning.svg) Passing an error type to `except` is optional, it is not recommended however. See [stackoverflow: avoid bare exceptions](https://stackoverflow.com/q/14797375/4082052) for details.
 
 >![info](./images/info.svg) There are static code analysis tools like [pylint](https://pypi.org/project/pylint/), "which looks for programming errors, helps enforcing a coding standard, sniffs for code smells and offers simple refactoring suggestions". See [awesome-python: code-analysis](https://github.com/vinta/awesome-python#code-analysis) for more such tools.
 
@@ -1727,7 +1741,7 @@ Square of -2 is 4
 
 ## raise
 
-You can also manually `raise` exceptions if needed. It accepts an optional error type, which can be either a built-in or a user defined one (see [docs.python: User-defined Exceptions](https://docs.python.org/3/tutorial/errors.html#user-defined-exceptions)). And you can optionally specify an error message. Here's an example:
+You can also manually `raise` exceptions if needed. It accepts an optional error type, which can be either a built-in or a user defined one (see [docs.python: User-defined Exceptions](https://docs.python.org/3/tutorial/errors.html#user-defined-exceptions)). And you can optionally specify an error message. `raise` by itself re-raises the currently active exception, if any (`RuntimeError` otherwise).
 
 ```ruby
 >>> def sum2nums(n1, n2):
@@ -1851,17 +1865,17 @@ Here's some awesome articles on this challenging topic:
 * [Debugging guide](https://uchicago-cs.github.io/debugging-guide/)
 * [Problem solving skills](https://ryanstutorials.net/problem-solving-skills/)
 
-Here's an interesting snippet (modified to keep it small) from a collection of [interesting bug stories](https://stackoverflow.com/questions/169713/whats-the-toughest-bug-you-ever-found-and-fixed).
+Here's an interesting snippet (modified to keep it small) from a collection of [interesting bug stories](https://stackoverflow.com/q/169713/4082052).
 
 >A jpeg parser choked whenever the CEO came into the room, because he always had a shirt with a square pattern on it, which triggered some special case of contrast and block boundary algorithms.
 
-See also [curated list of absurd software bug stories](https://500mile.email/).
+See also this [curated list of absurd software bug stories](https://500mile.email/).
 
 ## Common beginner mistakes
 
 The previous chapter already covered syntax errors. This section will discuss more Python gotchas.
 
-Python allows you to redefine built-in functions, modules, classes etc (see [stackoverflow: metaprogramming](https://stackoverflow.com/questions/514644/what-exactly-is-metaprogramming)). Unless that's your intention, do not use [keywords](https://docs.python.org/3/reference/lexical_analysis.html#keywords), [built-in functions](https://docs.python.org/3/library/functions.html) and modules as your variable name, function name, program filename, etc. Here's an example:
+Python allows you to redefine built-in functions, modules, classes etc (see [stackoverflow: metaprogramming](https://stackoverflow.com/q/514644/4082052)). Unless that's your intention, do not use [keywords](https://docs.python.org/3/reference/lexical_analysis.html#keywords), [built-in functions](https://docs.python.org/3/library/functions.html) and modules as your variable name, function name, program filename, etc. Here's an example:
 
 ```ruby
 # normal behavior
@@ -1888,14 +1902,14 @@ Traceback (most recent call last):
 TypeError: 'int' object is not callable
 ```
 
->![info](./images/info.svg) As an exercise, create an empty file named as `math.py`. In the same directory, create another program file that imports the `math` module and then uses some feature, say `print(math.pi)`. What happens if you execute this program?
+As an **exercise**, create an empty file named as `math.py`. In the same directory, create another program file that imports the `math` module and then uses some feature, `print(math.pi)` for example. What happens if you execute this program?
 
 See also:
 
 * [Think Python: Debugging chapter](https://greenteapress.com/thinkpython2/html/thinkpython2021.html)
 * [inventwithpython: common runtime errors](https://inventwithpython.com/blog/2012/07/09/16-common-python-runtime-errors-beginners-find/) and [common python gotchas](https://inventwithpython.com/beyond/chapter8.html)
 * [pythonforbiologists: common beginner errors](https://pythonforbiologists.com/29-common-beginner-errors-on-one-page/)
-* [stackoverflow: common pitfalls in Python](https://stackoverflow.com/questions/1011431/common-pitfalls-in-python)
+* [stackoverflow: common pitfalls in Python](https://stackoverflow.com/q/1011431/4082052)
 
 ## pdb
 
@@ -1904,14 +1918,14 @@ Python comes with a handy built-in library `pdb` that you can use from the CLI t
 * `l` prints code around the current statement the debugger is at, useful to visualize the progress of debug effort
 * `ll` prints entire code for the current function or frame
 * `s` execute current line, steps inside function calls
-* `n` execute current line, treats function as a single execution step
+* `n` execute current line, treats function call as a single execution step
 * `c` continue execution until the next breakpoint
 * `p expression` print value of an expression in the current context, usually used to see the current value of a variable
 * `h` list of available commands
     * `h c` help on `c` command
 * `q` quit the debugger
 
-Here's an example invocation of the debugger for the `num_funcs.py` program seen earlier in the [Importing your own module](#importing-your-own-module) section. Only the `n` command is used below. The line with `>` prefix tells you about the program file being debugged, current line number and function name. The line with `->` prefix is the code present at the current line. `(Pdb)` is the prompt for this interactive session. You can also see the output of `print()` function for the last `n` command in the illustration below.
+Here's an example invocation of the debugger for the `num_funcs.py` program seen earlier in the [Importing your own module](#importing-your-own-module) section. Only the `n` command is used below. The line with `>` prefix tells you about the program file being debugged, current line number, function name and return value when applicable. The line with `->` prefix is the code present at the current line. `(Pdb)` is the prompt for this interactive session. You can also see the output of `print()` function for the last `n` command in the illustration below.
 
 ```bash
 $ python3.9 -m pdb num_funcs.py
@@ -1974,7 +1988,7 @@ The program finished and will be restarted
 (Pdb) q
 ```
 
->![info](./images/info.svg) You can call [breakpoint()](https://docs.python.org/3/library/functions.html?#breakpoint) or [pdb.set_trace()](https://docs.python.org/3/library/pdb.html#pdb.set_trace) to set breakpoints in the code and use it in combination with `c` command.
+>![info](./images/info.svg) You can call [breakpoint()](https://docs.python.org/3/library/functions.html#breakpoint) or [pdb.set_trace()](https://docs.python.org/3/library/pdb.html#pdb.set_trace) to set breakpoints in the code and use it in combination with `c` command.
 
 See also:
 
@@ -1984,7 +1998,7 @@ See also:
 
 ## IDLE debugging
 
-Sites like [Pythontutor](http://www.pythontutor.com/visualize.html#mode=edit) allow you to visually debug a program — you can execute a program step by step and see the current value of variables. Similar feature is typically provided by IDEs. Under the hood, these visualizations would likely be using the `pdb` module discussed in the previous section.
+Sites like [Pythontutor](http://www.pythontutor.com/visualize.html#mode=edit) allow you to visually debug a program — you can execute a program step by step and see the current value of variables. Similar feature is typically provided by IDEs as well. Under the hood, these visualizations would likely be using the `pdb` module discussed in the previous section.
 
 This section will show an example with `IDLE`. Before you can run the program, first select **Debugger** option under **Debug** menu. You can also use `idle3.9 -d` to launch IDLE in debug mode directly. You'll see a new window pop up as shown below:
 
@@ -2070,7 +2084,7 @@ if __name__ == '__main__':
     print('all tests passed')
 ```
 
-`max_count = count = 0` is a terse way to initialize multiple variables to the same value. Okay to use for immutable types (will be discussed later) like `int`, `float` and `str`.
+`max_count = count = 0` is a terse way to initialize multiple variables to the same value. Okay to use for immutable types (see [Mutability](#mutability) chapter) like `int`, `float` and `str`.
 
 If everything goes right, you should see the following output.
 
@@ -2079,9 +2093,9 @@ $ python3.9 nested_braces.py
 all tests passed
 ```
 
->As an exercise, randomly change the logic of `max_nested_braces` function and see if any of the tests fail.
+As an **exercise**, randomly change the logic of `max_nested_braces` function and see if any of the tests fail.
 
->![info](./images/info.svg) `assert` statements can be skipped by using `python3.9 -O`
+>![info](./images/info.svg) `assert` statements can be skipped if you use `python3.9 -O <filename>`
 
 Writing tests helps you in many ways. It could help you guard against typos and accidental editing. Often, you'll need to tweak a program in future to correct some bugs or add a feature — tests would again help to give you confidence that you haven't messed up already working cases. Another use case is **refactoring**, where you rewrite a portion of the program (sometimes entire) without changing its functionality.
 
@@ -2183,7 +2197,7 @@ exception_testing.py::test_exception PASSED          [100%]
 ==================== 2 passed in 0.02s =====================
 ```
 
-The above illustrations are trivial examples. Here's some advanced learning resources:
+The above illustrations are trivial examples. And tests are typically organized in different files/folders from the program(s) being tested. Here's some advanced learning resources:
 
 * [realpython: Getting started with testing in Python](https://realpython.com/python-testing/)
 * `pytest` — [calmcode video series](https://calmcode.io/pytest/introduction.html) and [Testing Python Applications](https://stribny.name/blog/pytest/)
@@ -2193,9 +2207,7 @@ The above illustrations are trivial examples. Here's some advanced learning reso
 
 # Tuple and Sequence operations
 
-This chapter will discuss the `tuple` data type and some of the common sequence operations. Data types like `str`, `range`, `list` and `tuple` fall under **Sequence** types. [Binary Sequence Types](https://docs.python.org/3/library/stdtypes.html#binaryseq) aren't discussed in this book. Some of the operations behave differently or do not apply for certain types, see [docs.python: Common Sequence Operations](https://docs.python.org/3/library/stdtypes.html#common-sequence-operations) for details.
-
->![info](./images/info.svg) See also [docs.python: collections](https://docs.python.org/3/library/collections.html) for specialized container data types.
+This chapter will discuss the `tuple` data type and some of the common sequence operations. Data types like `str`, `range`, `list` and `tuple` fall under **Sequence** types. [Binary Sequence Types](https://docs.python.org/3/library/stdtypes.html#binaryseq) aren't discussed in this book.
 
 ## Sequences and iterables
 
@@ -2207,6 +2219,8 @@ Partial quote from [docs.python glossary: **iterable**](https://docs.python.org/
 
 >An object capable of returning its members one at a time. Examples of iterables include all sequence types (such as list, str, and tuple) and some non-sequence types like dict, file objects...
 
+Some of the operations behave differently or do not apply for certain types, see [docs.python: Common Sequence Operations](https://docs.python.org/3/library/stdtypes.html#common-sequence-operations) for details.
+
 ## Initialization
 
 Tuples are declared as a collection of zero or more objects, separated by a comma within `()` parentheses characters. Each element can be specified as a value by itself or as an expression. The outer parentheses are optional if comma separation is present. Here's some examples:
@@ -2214,8 +2228,6 @@ Tuples are declared as a collection of zero or more objects, separated by a comm
 ```ruby
 # can also use: empty_tuple = tuple()
 >>> empty_tuple = ()
->>> type(empty_tuple)
-<class 'tuple'>
 
 # note the trailing comma, otherwise it will result in a 'str' data type
 # same as 'apple', since parentheses are optional here
@@ -2230,18 +2242,17 @@ Tuples are declared as a collection of zero or more objects, separated by a comm
 (3, 'two', (-3, -4), ())
 ```
 
-You can use the `tuple()` built-in function to convert from an iterable data type to `tuple`. Here's some examples:
+You can use the [tuple()](https://docs.python.org/3/library/functions.html#tuple) built-in function to create a `tuple` from an iterable.
 
 ```ruby
 >>> chars = tuple('hello')
 >>> chars
 ('h', 'e', 'l', 'l', 'o')
-
 >>> tuple(range(3, 10, 3))
 (3, 6, 9)
 ```
 
->![info](./images/info.svg) Tuples are immutable, but individual elements can be either mutable or immutable. As an exercise, given `chars = tuple('hello')`, see what's the output of the expression `chars[0]` and the statement `chars[0] = 'H'`.
+>![info](./images/info.svg) Tuples are immutable, but individual elements can be either mutable or immutable. As an **exercise**, given `chars = tuple('hello')`, see what's the output of the expression `chars[0]` and the statement `chars[0] = 'H'`.
 
 ## Slicing
 
@@ -2265,12 +2276,12 @@ One or more elements can be retrieved from a sequence using the slicing notation
 >>> primes[3:]
 (7, 11)
 
-# copy of the sequence, same as primes[::1]
+# shallow copy of the sequence, same as primes[::1]
 >>> primes[:]
 (2, 3, 5, 7, 11)
 ```
 
-You can use negative index to get elements from the end of the sequence. `seq[-n]` is equivalent to `seq[len(seq) - n]`.
+You can use negative index to get elements from the end of the sequence. The expression `seq[-n]` is equivalent to `seq[len(seq) - n]`.
 
 ```ruby
 >>> primes = (2, 3, 5, 7, 11)
@@ -2305,7 +2316,7 @@ Here's some examples with different `step` values.
 (11, 7, 5, 3, 2)
 ```
 
-As an exercise, given `primes = (2, 3, 5, 7, 11)`,
+As an **exercise**, given `primes = (2, 3, 5, 7, 11)`,
 
 * what happens if you use `primes[5]` or `primes[-6]`?
 * what happens if you use `primes[:5]` or `primes[-6:]`?
@@ -2359,7 +2370,7 @@ Unpacking isn't limited to single value assignments. You can use a `*` prefix to
 'last'
 ```
 
-As an exercise, what do you think will happen for these cases, given `nums = (1, 2)`:
+As an **exercise**, what do you think will happen for these cases, given `nums = (1, 2)`:
 
 * `a, b, c = nums`
 * `a, *b, c = nums`
@@ -2375,7 +2386,7 @@ Tuples are also the preferred way to return multiple values from a function. Her
 ... 
 >>> min_max('visualization')
 ('a', 'z')
->>> small, big = min_max((-3, 10, -42, 53.2))
+>>> small, big = min_max((10, -42, 53.2, -3))
 >>> small
 -42
 >>> big
@@ -2384,7 +2395,7 @@ Tuples are also the preferred way to return multiple values from a function. Her
 
 The `min_max(iterable)` user-defined function above returns both the **minimum** and **maximum** values of a given iterable input. `min()` and `max()` are built-in functions. You can either save the output as a `tuple` or unpack into multiple variables. You'll see built-in functions that return `tuple` as output later in this chapter.
 
->![warning](./images/warning.svg) The use of both [min()](https://docs.python.org/3/library/functions.html#min) and [max()](https://docs.python.org/3/library/functions.html#max) in the above example is for illustration purpose only. As an exercise, write a custom logic that iterates only once over the input sequence and calculates both minimum/maximum simultaneously.
+>![warning](./images/warning.svg) The use of both [min()](https://docs.python.org/3/library/functions.html#min) and [max()](https://docs.python.org/3/library/functions.html#max) in the above example is for illustration purpose only. As an **exercise**, write a custom logic that iterates only once over the input sequence and calculates both minimum/maximum simultaneously.
 
 ## Iteration
 
@@ -2400,18 +2411,16 @@ square of 6 is 36
 square of 9 is 81
 ```
 
-In the above example, you get one element per each iteration. If you need the **index** of the elements as well, you can use the `enumerate()` built-in function. You'll get a `tuple` value per each iteration, containing index (starting with `0` by default) and the value at that index. Here's some examples:
+In the above example, you get one element per each iteration. If you need the **index** of the elements as well, you can use the [enumerate()](https://docs.python.org/3/library/functions.html#enumerate) built-in function. You'll get a `tuple` value per each iteration, containing index (starting with `0` by default) and the value at that index. Here's some examples:
 
 ```ruby
 >>> nums = (42, 3.14, -2)
-
 >>> for t in enumerate(nums):
 ...     print(t)
 ... 
 (0, 42)
 (1, 3.14)
 (2, -2)
-
 >>> for idx, val in enumerate(nums):
 ...     print(f'{idx}: {val:>5}')
 ... 
@@ -2420,17 +2429,17 @@ In the above example, you get one element per each iteration. If you need the **
 2:    -2
 ```
 
->![info](./images/info.svg) The `enumerate()` built-in function has a `start=0` default valued argument. As an exercise, change the above snippet to start the index from `1` instead of `0`.
+>![info](./images/info.svg) The `enumerate()` built-in function has a `start=0` default valued argument. As an **exercise**, change the above snippet to start the index from `1` instead of `0`.
 
 ## Arbitrary number of arguments
 
 As seen before, the `print()` function can accept zero or more values separated by a comma. Here's a portion of the documentation as a refresher:
 
-```bash
+```ruby
 print(value, ..., sep=' ', end='\n', file=sys.stdout, flush=False)
 ```
 
-You can write your own functions to accept arbitrary number of arguments as well. The syntax is similar to the sequence unpacking examples seen earlier in the chapter. A `*` prefix to an argument name will allow it to accept zero or more values. Such an argument will be packed as a `tuple` data type and it should always be specified after positional arguments (if any). Idiomatically, `args` is used as the `tuple` variable name. Here's an example:
+You can write your own functions to accept arbitrary number of arguments as well. The packing syntax is similar to the sequence unpacking examples seen earlier in the chapter. A `*` prefix to an argument name will allow it to accept zero or more values. Such an argument will be packed as a `tuple` data type and it should always be specified after positional arguments (if any). Idiomatically, `args` is used as the variable name. Here's an example:
 
 ```ruby
 >>> def many(a, *args):
@@ -2463,12 +2472,12 @@ Here's a more practical example:
 15
 ```
 
-As an exercise,
+As an **exercise**,
 
 * add a default valued argument `initial` which should be used to initialize `total` instead of `0` in the above `sum_nums()` function. For example, `sum_nums(3, -8)` should give `-5` and `sum_nums(1, 2, 3, 4, 5, initial=5)` should give `20`.
 * what would happen if you call the above function like `sum_nums(initial=5, 2)`?
 * what would happen if you have `nums = (1, 2)` and call the above function like `sum_nums(*nums, total=3)`?
-* in what ways does this function differ from the `sum()` built-in function?
+* in what ways does this function differ from the [sum()](https://docs.python.org/3/library/functions.html#sum) built-in function?
 
 >![info](./images/info.svg) See also [docs.python: Arbitrary Argument Lists](https://docs.python.org/3/tutorial/controlflow.html#arbitrary-argument-lists).
 
@@ -2476,7 +2485,7 @@ As an exercise,
 
 ## zip
 
-Use [zip()](https://docs.python.org/3/library/functions.html#zip) to iterate over two or more iterables simultaneously. Every iteration, you'll get a `tuple` with an item from each of the iterables. Iteration will stop when any of the input iterables is exhausted, use [itertools.zip_longest()](https://docs.python.org/3/library/itertools.html#itertools.zip_longest) if you want to go on until the longest iterable is exhausted.
+Use [zip()](https://docs.python.org/3/library/functions.html#zip) to iterate over two or more iterables simultaneously. Every iteration, you'll get a `tuple` with an item from each of the iterables. Iteration will stop when any of the iterables is exhausted. See [itertools.zip_longest()](https://docs.python.org/3/library/itertools.html#itertools.zip_longest) and [stackoverflow: Zipped Python generators with 2nd one being shorter](https://stackoverflow.com/q/61126284/4082052) for alternatives.
 
 Here's an example:
 
@@ -2491,7 +2500,7 @@ Here's an example:
 11
 ```
 
-As an exercise, write a function that returns the sum of product of corresponding elements of two sequences (for example, the result should be `44` for `(1, 3, 5)` and `(2, 4, 6)`).
+As an **exercise**, write a function that returns the sum of product of corresponding elements of two sequences (for example, the result should be `44` for `(1, 3, 5)` and `(2, 4, 6)`).
 
 ## Tuple methods
 
@@ -2560,11 +2569,17 @@ ValueError: tuple.index(x): x not in tuple
 
 >![info](./images/info.svg) The `list` and `str` sequence types have many more methods and they will be discussed separately in later chapters.
 
+## Specialized container datatypes
+
+* [docs.python: collections](https://docs.python.org/3/library/collections.html) — alternatives to Python’s general purpose built-in containers, `dict`, `list`, `set`, and `tuple`
+* [docs.python: array](https://docs.python.org/3/library/array.html) — compactly represent an array of basic values: characters, integers, floating point numbers
+* [boltons](https://github.com/mahmoud/boltons) — pure-Python utilities which extend the Python standard library
+
 # List
 
-List is a container data type, similar to `tuple` but **mutable**. Lists are typically used to store and manipulate ordered collection of values.
+List is a container data type, similar to `tuple`, with lots of added functionality and **mutable**. Lists are typically used to store and manipulate ordered collection of values.
 
->![info](./images/info.svg) [Tuple and Sequence operations](#tuple-and-sequence-operations) chapter is a prerequisite for this one.
+>![info](./images/info.svg) [Tuple and Sequence operations](#tuple-and-sequence-operations) chapter is a significant prerequisite for this one.
 
 ## Initialization and Slicing
 
@@ -2615,7 +2630,7 @@ Since `list` is a mutable data type, you can modify the object after initializat
 
 This section will discuss some of the `list` methods and operations. See [docs.python: list methods](https://docs.python.org/3/tutorial/datastructures.html#more-on-lists) for documentation. As mentioned earlier, you can use `dir(list)` to view the available methods of an object.
 
-Use the `append()` method to add a single element to the end of a `list` object. If you need to append multiple items, you can pass an iterable to the `extend()` method. As an exercise, check what happens if you pass an iterable to the `append()` method and a non-iterable value to the `extend()` method. What happens if you pass multiple values to both these methods?
+Use the `append()` method to add a single element to the end of a `list` object. If you need to append multiple items, you can pass an iterable to the `extend()` method. As an **exercise**, check what happens if you pass an iterable to the `append()` method and a non-iterable value to the `extend()` method. What happens if you pass multiple values to both these methods?
 
 ```ruby
 >>> books = []
@@ -2708,7 +2723,7 @@ The `pop()` method deletes an element based on its index. Use the `remove()` met
 [2, 4, 6, 10]
 ```
 
-The `clear()` method removes all the elements. You might wonder why not just assign an empty `list`? If you have observed closely, all of the methods seen so far modified the `list` object in-place. This is useful if you are passing a `list` object to a function and expect the function to modify the object itself instead of returning a new object. More on that later.
+The `clear()` method removes all the elements. You might wonder why not just assign an empty `list`? If you have observed closely, all of the methods seen so far modified the `list` object in-place. This is useful if you are passing a `list` object to a function and expect the function to modify the object itself instead of returning a new object. See [Mutability](#mutability) chapter for more details.
 
 ```ruby
 >>> nums = [1.2, -0.2, 0, 2, 4, 23]
@@ -2717,7 +2732,7 @@ The `clear()` method removes all the elements. You might wonder why not just ass
 []
 ```
 
-You've already seen how to add element(s) at the end of a `list` using `append()` and `extend()` methods. The `insert()` method is the opposite of `pop()` method. You can provide a value to be inserted at the given index. As an exercise, check what happens if you pass a `list` value. Also, what happens if you pass more than one value?
+You've already seen how to add element(s) at the end of a `list` using `append()` and `extend()` methods. The `insert()` method is the opposite of `pop()` method. You can provide a value to be inserted at the given index. As an **exercise**, check what happens if you pass a `list` value. Also, what happens if you pass more than one value?
 
 ```ruby
 >>> books = ['Sourdough', 'Sherlock Holmes', 'To Kill a Mocking Bird']
@@ -2726,7 +2741,7 @@ You've already seen how to add element(s) at the end of a `list` using `append()
 ['Sourdough', 'Sherlock Holmes', 'The Martian', 'To Kill a Mocking Bird']
 ```
 
-The `reverse()` method reverses a `list` in-place. If you use slicing notation, you'll get a new object.
+`reverse()` method reverses a `list` in-place. With slicing notation, you get a new object.
 
 ```ruby
 >>> primes = [2, 3, 5, 7, 11]
@@ -2802,13 +2817,13 @@ The `key` argument accepts the name of a built-in/user-defined function (i.e. fu
 ['fuliginous', 'morello', 'crusado', 'seam', 'irk']
 ```
 
-If the custom user-defined function required is just a single expression, you can create anonymous functions with [lambda expressions](https://docs.python.org/3/tutorial/controlflow.html#lambda-expressions) instead of a full-fledged function. As an exercise, read [docs.python HOWTOs: Sorting](https://docs.python.org/3/howto/sorting.html) and implement the below examples using `operator` module instead of `lambda` expressions.
+If the custom user-defined function required is just a single expression, you can create anonymous functions with [lambda expressions](https://docs.python.org/3/tutorial/controlflow.html#lambda-expressions) instead of a full-fledged function. As an **exercise**, read [docs.python HOWTOs: Sorting](https://docs.python.org/3/howto/sorting.html) and implement the below examples using `operator` module instead of `lambda` expressions.
 
 ```ruby
 # based on second element of each item
->>> items = [('car', 20), ('jeep', 3), ('cycle', 5)]
+>>> items = [('bus', 10), ('car', 20), ('jeep', 3), ('cycle', 5)]
 >>> sorted(items, key=lambda e: e[1], reverse=True)
-[('car', 20), ('cycle', 5), ('jeep', 3)]
+[('car', 20), ('bus', 10), ('cycle', 5), ('jeep', 3)]
 
 # based on number of words, assuming space as the word separator
 >>> dishes = ('Poha', 'Aloo tikki', 'Baati', 'Khichdi', 'Makki roti')
@@ -2831,7 +2846,7 @@ You can use sequence types like `list` or `tuple` to specify multiple sorting co
 ['Aloo tikki', 'Makki roti', 'Baati', 'Khichdi', 'Poha']
 ```
 
-As an exercise, given `nums = [1, 4, 5, 2, 51, 3, 6, 22]`, determine and implement the sorting condition based on the required output shown below:
+As an **exercise**, given `nums = [1, 4, 5, 2, 51, 3, 6, 22]`, determine and implement the sorting condition based on the required output shown below:
 
 * `[4, 2, 6, 22, 1, 5, 51, 3]`
 * `[2, 4, 6, 22, 1, 3, 5, 51]`
@@ -2874,7 +2889,7 @@ The `shuffle()` method randomizes the elements of a `list` in-place.
 ['car', 3, -3.14, 'jeep', 'hi', 20]
 ```
 
-Use the `sample()` method to get a `list` of specified number of random elements. As an exercise, see what happens if you pass a slice size greater than the number of elements present in the input sequence.
+Use the `sample()` method to get a `list` of specified number of random elements. As an **exercise**, see what happens if you pass a slice size greater than the number of elements present in the input sequence.
 
 ```ruby
 >>> random.sample((4, 5, 2, 76), k=3)
@@ -3033,9 +3048,9 @@ This is true even for slices of a sequence containing mutable objects. Also, as 
 ([1, 3, 2, 10], [1.2, -0.2, 0, 'apple'], [100, 'ball'])
 ```
 
-As an exercise, use `id()` function to verify that the identity of last two elements of `nums_2d` variable in the above example is the same as the identity of both the elements of `last_two` variable.
+As an **exercise**, use `id()` function to verify that the identity of last two elements of `nums_2d` variable in the above example is the same as the identity of both the elements of `last_two` variable.
 
-## Slicing notation copy
+## Slicing notation shallow copy
 
 If you wish to copy whole/part of a `list` object such that changing the copy version doesn't affect the original `list`, the solution will depend on the presence of mutable elements.
 
@@ -3061,7 +3076,7 @@ True
 [3, 'apple', 100.23, 'fig']
 ```
 
-On the other hand, if the `list` has mutable objects, using slice notation won't stop the copy from modifying the original.
+On the other hand, if the sequence has mutable objects, a shallow copy made using slicing notation won't stop the copy from modifying the original.
 
 ```ruby
 >>> nums_2d = [[1, 3, 2, 10], [1.2, -0.2, 0, 2], [100, 200]]
@@ -3077,7 +3092,7 @@ On the other hand, if the `list` has mutable objects, using slice notation won't
 
 ## copy.deepcopy
 
-The [copy](https://docs.python.org/3/library/copy.html#module-copy) built-in module has a `deepcopy()` method if you wish to recursively create new copy of all the elements of a mutable object.
+The [copy](https://docs.python.org/3/library/copy.html#module-copy) built-in module has a `deepcopy()` method if you wish to recursively create new copies of all the elements of a mutable object.
 
 ```ruby
 >>> import copy
@@ -3093,11 +3108,11 @@ The [copy](https://docs.python.org/3/library/copy.html#module-copy) built-in mod
 [[1, 3, 2, 10], [1.2, -0.2, 0, 2], [100, 200]]
 ```
 
-As an exercise, create a deepcopy of only the first two elements of `nums_2d` object from the above example.
+As an **exercise**, create a deepcopy of only the first two elements of `nums_2d` object from the above example.
 
 # Dict
 
-Dictionaries can be thought of as a collection of **key-value** pairs or a **named list of items**. It used to be unordered, but recent Python versions ensure that the insertion order is maintained.
+Dictionaries can be thought of as a collection of **key-value** pairs or a **named list of items**. It used to be unordered, but recent Python versions ensure that the insertion order is maintained. See [this tutorial](https://sharats.me/posts/the-python-dictionary/) for a more detailed discussion on `dict` usage.
 
 ## Initialization and accessing elements
 
@@ -3224,7 +3239,7 @@ fig:100
 ['banana', 'papaya', 'mango', 'fig']
 ```
 
-As an exercise,
+As an **exercise**,
 
 * given `fruits` dictionary as defined in the above code snippet, what do you think will happen when you use `a, *b, c = fruits`?
 * given `nums = [1, 4, 6, 22, 3, 5, 4, 3, 6, 2, 1, 51, 3, 1]`, keep only first occurrences of a value from this list without changing the order of elements. You can do it with `dict` features presented so far. `[1, 4, 6, 22, 3, 5, 2, 51]` should be the output. See [Using dict to eliminate duplicates while retaining order](https://twitter.com/raymondh/status/944125570534621185) if you are not able to solve it.
@@ -3291,10 +3306,10 @@ The `update()` method allows you to add/update items from another dictionary or 
 >>> marks
 {'Rahul': 86, 'Ravi': 100, 'Rohit': 75, 'Rajan': 79, 'Jo': 89, 'Joe': 75}
 
->>> fruits = dict(banana=12, papaya=5, mango=10, fig=100)
->>> fruits.update([('onion', 3), ('pea', 10)])
+>>> fruits = dict(papaya=5, mango=10, fig=100)
+>>> fruits.update([('tomato', 3), ('banana', 10)])
 >>> fruits
-{'banana': 12, 'papaya': 5, 'mango': 10, 'fig': 100, 'onion': 3, 'pea': 10}
+{'papaya': 5, 'mango': 10, 'fig': 100, 'tomato': 3, 'banana': 10}
 ```
 
 The `|` operator is similar to the `update()` method, except that you get a new `dict` object instead of in-place modification.
@@ -3310,7 +3325,7 @@ The `|` operator is similar to the `update()` method, except that you get a new 
 
 ## Arbitrary keyword arguments
 
-To accept arbitrary number of keyword arguments, use `**var_name` in the function definition. This has to be declared the last, after all the other types of arguments. Idiomatically, `**kwargs` is used as the variable name. See [stackoverflow: Decorators demystified](https://stackoverflow.com/questions/739654/how-to-make-function-decorators-and-chain-them-together/1594484#1594484) for a practical use case of arbitrary keyword arguments.
+To accept arbitrary number of keyword arguments, use `**var_name` in the function definition. This has to be declared the last, after all the other types of arguments. Idiomatically, `**kwargs` is used as the variable name. See [stackoverflow: Decorators demystified](https://stackoverflow.com/a/1594484/4082052) for a practical use case of arbitrary keyword arguments.
 
 ```ruby
 >>> def many(**kwargs):
@@ -3339,7 +3354,7 @@ Turning it around, when you have a function defined with keyword arguments, you 
 
 # Set
 
-`set` is a mutable, unordered collection of objects. `frozenset` is similar to `set`, but immutable. See [docs.python: set, frozenset](https://docs.python.org/3/library/stdtypes.html#set-types-set-frozenset) for more details.
+`set` is a mutable, unordered collection of objects. `frozenset` is similar to `set`, but immutable. See [docs.python: set, frozenset](https://docs.python.org/3/library/stdtypes.html#set-types-set-frozenset) for documentation.
 
 ## Initialization
 
@@ -3386,7 +3401,7 @@ True
 False
 ```
 
-Here's some examples for `set` operations like union, intersection, etc. You can either use methods or operators, both will give you a new `set` object instead of in-place modification. The difference is that these methods can accept any iterable, not restricted to `set` objects.
+Here's some examples for `set` operations like union, intersection, etc. You can either use methods or operators, both will give you a new `set` object instead of in-place modification. The difference is that `set` methods can accept any iterable, not restricted to `set` objects.
 
 ```ruby
 >>> color_1 = {'teal', 'light blue', 'green', 'yellow'}
@@ -3408,12 +3423,12 @@ Here's some examples for `set` operations like union, intersection, etc. You can
 {'dark green', 'black'}
 
 # items present in one of the sets, but not both
-# i.e. union of above two operations: color_1 ^ color_2
+# i.e. union of previous two operations: color_1 ^ color_2
 >>> color_1.symmetric_difference(color_2)
 {'green', 'dark green', 'black', 'teal'}
 ```
 
-As mentioned in [Dict](#dict) chapter, methods like `keys()`, `values()` and `items()` return a set-like object. You can apply `set` operators on them.
+As mentioned in [Dict](#dict-methods-and-operations) chapter, methods like `keys()`, `values()` and `items()` return a set-like object. You can apply `set` operators on them.
 
 ```ruby
 >>> marks_1 = dict(Rahul=86, Ravi=92, Rohit=75)
@@ -3516,7 +3531,7 @@ TypeError: sequence item 0: expected str instance, int found
 'This :: is :: a :: sample :: string'
 ```
 
-As an exercise, check what happens if you pass multiple string values separated by comma to `join()` instead of an iterable.
+As an **exercise**, check what happens if you pass multiple string values separated by comma to `join()` instead of an iterable.
 
 ## Transliteration
 
@@ -3552,7 +3567,7 @@ The [string module](https://docs.python.org/3/library/string.html) has a collect
 'Hi there! How are you? All fine here.'
 ```
 
-As an exercise, read the documentation for features covered in this section. See also [stackoverflow: character translation examples](https://stackoverflow.com/questions/555705/character-translation-using-python-like-the-tr-command).
+As an **exercise**, read the documentation for features covered in this section. See also [stackoverflow: character translation examples](https://stackoverflow.com/q/555705/4082052).
 
 ## Removing leading/trailing characters
 
@@ -3582,6 +3597,7 @@ The `removeprefix()` and `removesuffix()` methods will delete a substring from t
 # difference between remove and strip
 >>> 'cared'.removesuffix('de')
 'cared'
+# strip uses given argument as set of characters to be removed in any order
 >>> 'cared'.rstrip('de')
 'car'
 ```
@@ -3637,7 +3653,7 @@ True
 False
 ```
 
-Here's some examples with `isnumeric()` and `isascii()` methods. As an exercise, read the documentation for the rest of the **is** methods.
+Here's some examples with `isnumeric()` and `isascii()` methods. As an **exercise**, read the documentation for the rest of the **is** methods.
 
 ```ruby
 # checks if string has numeric characters only, at least one
@@ -3740,7 +3756,7 @@ The `split()` method splits a string based on the given substring and returns a 
 
 ## replace
 
-Use `replace()` method for substitution operation. Optional third argument allows you to specify number of replacements to be made.
+Use `replace()` method for substitution operations. Optional third argument allows you to specify number of replacements to be made.
 
 ```ruby
 >>> phrase = '2 be or not 2 be'
@@ -3777,7 +3793,7 @@ What's so special about regular expressions and why would you need it? It is a m
 >>> re.findall(r'[^:]+', ip)
 ['car', 'jeep']
 
-# replace only whole words 'par' and 'hand' with 'X'
+# replace only whole words 'par' OR 'hand' with 'X'
 # \b is an anchor to restrict the matching to the start/end of words
 >>> ip = 'par spare part hand handy unhanded'
 >>> re.sub(r'\b(par|hand)\b', 'X', ip)
@@ -4005,7 +4021,7 @@ Here's a fibonacci generator:
 
 For a more detailed discussion and related features, see:
 
-* [stackoverflow: What does the yield keyword do?](https://stackoverflow.com/questions/231767/what-does-the-yield-keyword-do)
+* [stackoverflow: What does the yield keyword do?](https://stackoverflow.com/q/231767/4082052)
 * [Yield and Generators Explained](https://jeffknupp.com/blog/2013/04/07/improve-your-python-yield-and-generators-explained/)
 * [docs.python: itertools](https://docs.python.org/3/library/itertools.html)
 
@@ -4015,9 +4031,9 @@ Comprehension syntax inside `()` characters creates an iterator, known as **gene
 
 ```ruby
 >>> nums = [100, 53, 32, 0, 11, 5, 2]
->>> (n * n for n in nums)
-<generator object <genexpr> at 0x7fd90e7b22e0>
 >>> g = (n * n for n in nums)
+>>> g
+<generator object <genexpr> at 0x7fd90e7b22e0>
 >>> next(g)
 10000
 
@@ -4149,7 +4165,7 @@ with open('ip.txt', 'r', encoding='ascii') as f:
         print(op_line)
 ```
 
-Recall that `as` keyword was introduced in the [try-except](#try-except) section. Here's the output of the above program:
+Recall that `as` keyword was seen before in [Different ways of importing](#different-ways-of-importing) and [try-except](#try-except) sections. Here's the output of the above program:
 
 ```bash
 $ python3.9 read_file.py
@@ -4158,7 +4174,7 @@ Today is sunny.
 Have a nice day.
 ```
 
->![info](./images/info.svg) See [The Magic of Python Context Managers](https://towardsdatascience.com/the-magic-of-python-context-managers-adb92ace1dd0) for more details.
+>![info](./images/info.svg) See [The Magic of Python Context Managers](https://towardsdatascience.com/the-magic-of-python-context-managers-adb92ace1dd0) for more examples and details.
 
 ## read, readline and readlines
 
@@ -4169,7 +4185,7 @@ The `read()` method gives you entire remaining contents of the file as a single 
 'hi there\ntoday is sunny\nhave a nice day\n'
 
 >>> fh = open('ip.txt')
-# 'readline' is similar to 'next'
+# readline() is similar to next()
 # but returns empty string instead of StopIteration exception
 >>> fh.readline()
 'hi there\n'
@@ -4268,7 +4284,7 @@ Quoting from [docs.python: pathlib](https://docs.python.org/3/library/pathlib.ht
 [PosixPath('programs/read_file.py'), PosixPath('programs/write_file.py')]
 ```
 
-See [pathlib module: taming the file system](https://realpython.com/python-pathlib/) and [stackoverflow: How can I iterate over files in a given directory?](https://stackoverflow.com/questions/10377998/how-can-i-iterate-over-files-in-a-given-directory) for more details and examples.
+See [pathlib module: taming the file system](https://realpython.com/python-pathlib/) and [stackoverflow: How can I iterate over files in a given directory?](https://stackoverflow.com/q/10377998/4082052) for more details and examples.
 
 There are specialized modules for structured data processing as well, for example:
 
@@ -4371,21 +4387,21 @@ ls: cannot access 'xyz.txt': No such file or directory
 
 The first argument to `run()` method is the command to be executed. This can be either be a single string or a sequence of strings (if you need to pass arguments to the command being executed). By default, command output is displayed on the screen. Return value is a `CompletedProcess` object, which has relevant information for the command that was executed such as the exit status. 
 
-As an exercise, read [subprocess.run documentation](https://docs.python.org/3/library/subprocess.html#subprocess.run) and modify the above `ls` example to:
+As an **exercise**, read [subprocess.run documentation](https://docs.python.org/3/library/subprocess.html#subprocess.run) and modify the above `ls` example to:
 
 * redirect the `stderr` stream to `/dev/null`
 * automatically raise an exception when the exit status is non-zero
 
 See also:
 
-* [stackoverflow: How to execute a program or call a system command from Python?](https://stackoverflow.com/questions/89228/how-to-execute-a-program-or-call-a-system-command-from-python)
-* [stackoverflow: difference between subprocess and os.system](https://stackoverflow.com/questions/4813238/difference-between-subprocess-popen-and-os-system)
-* [stackoverflow: How to use subprocess command with pipes](https://stackoverflow.com/questions/13332268/how-to-use-subprocess-command-with-pipes)
+* [stackoverflow: How to execute a program or call a system command from Python?](https://stackoverflow.com/q/89228/4082052)
+* [stackoverflow: difference between subprocess and os.system](https://stackoverflow.com/q/4813238/4082052)
+* [stackoverflow: How to use subprocess command with pipes](https://stackoverflow.com/q/13332268/4082052)
 * [stackoverflow: subprocess FAQ](https://stackoverflow.com/questions/tagged/subprocess%2bpython?tab=Votes)
 
 ## shell=True
 
-You can also construct a single string command, similar to `os.system()`, if you set `shell` keyword argument to `True`. While this is convenient, use it only if you have total control over the command being executed such as your personal scripts. Otherwise, it can lead to security issues, see [stackoverflow: why not use shell=True](https://stackoverflow.com/questions/13491392/why-not-just-use-shell-true-in-subprocess-popen-in-python) for details.
+You can also construct a single string command, similar to `os.system()`, if you set `shell` keyword argument to `True`. While this is convenient, use it only if you have total control over the command being executed such as your personal scripts. Otherwise, it can lead to security issues, see [stackoverflow: why not use shell=True](https://stackoverflow.com/q/13491392/4082052) for details.
 
 Quoting from [docs.python: subprocess Frequently Used Arguments](https://docs.python.org/3/library/subprocess.html#frequently-used-arguments):
 
@@ -4407,7 +4423,7 @@ ip.txt
 1,2,3,4,5,6,7,8,9,10
 ```
 
-If `shell=True` cannot be used but shell features as mentioned above is needed, you can use modules like `os`, `glob`, `shutil` and so on as applicable. See also [docs.python: Replacing Older Functions with the subprocess Module](https://docs.python.org/3/library/subprocess.html#replacing-older-functions-with-the-subprocess-module).
+If `shell=True` cannot be used but shell features as quoted above are needed, you can use modules like `os`, `glob`, `shutil` and so on as applicable. See also [docs.python: Replacing Older Functions with the subprocess Module](https://docs.python.org/3/library/subprocess.html#replacing-older-functions-with-the-subprocess-module).
 
 ```ruby
 >>> p = subprocess.run(('echo', os.getenv('HOME')))
@@ -4492,7 +4508,7 @@ $ python3.9 sum_two_nums.py 2 abc
 Error: Please provide exactly two numbers as arguments
 ```
 
-As an exercise, modify the above program to handle `TypeError` exceptions. Instead of the output shown below, inform the user about the error using `sys.exit()` method. 
+As an **exercise**, modify the above program to handle `TypeError` exceptions. Instead of the output shown below, inform the user about the error using `sys.exit()` method. 
 
 ```bash
 $ python3.9 sum_two_nums.py 2 [1]
@@ -4502,7 +4518,7 @@ Traceback (most recent call last):
 TypeError: unsupported operand type(s) for +: 'int' and 'list'
 ```
 
-As another exercise, accept one or more numbers as input arguments. Calculate and display the following details about the input — sum, product and average.
+As another **exercise**, accept one or more numbers as input arguments. Calculate and display the following details about the input — sum, product and average.
 
 ## In-place editing with fileinput
 
@@ -4683,5 +4699,5 @@ async.txt
 out.put.txt
 ```
 
-As an exercise, add `-o, --output` optional argument to store the output in a file for the above program.
+As an **exercise**, add `-o, --output` optional argument to store the output in a file for the above program.
 
