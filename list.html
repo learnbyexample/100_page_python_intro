@@ -38,7 +38,7 @@
                     Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
                         link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
                     });
-                </script><div id=content class=content><main><div class=sidetoc><nav class=pagetoc></nav></div><h1><a class=header href=#list id=list>List</a></h1><p>List is a container data type, similar to <code>tuple</code> but <strong>mutable</strong>. Lists are typically used to store and manipulate ordered collection of values.<blockquote><p><img src=./images/info.svg alt=info> <a href=./tuple-and-sequence-operations.html#tuple-and-sequence-operations>Tuple and Sequence operations</a> chapter is a prerequisite for this one.</blockquote><h2><a class=header href=#initialization-and-slicing id=initialization-and-slicing>Initialization and Slicing</a></h2><p>Lists are declared as a comma separated values within <code>[]</code> square brackets. Unlike <code>tuple</code> there's no ambiguity in using <code>[]</code> characters, so there's no special requirement of trailing comma for a single element <code>list</code> object. You can use a trailing comma if you wish, which is helpful to easily change a <code>list</code> declared across multiple lines.<pre><code class=language-python># 1D example
+                </script><div id=content class=content><main><div class=sidetoc><nav class=pagetoc></nav></div><h1><a class=header href=#list id=list>List</a></h1><p>List is a container data type, similar to <code>tuple</code>, with lots of added functionality and <strong>mutable</strong>. Lists are typically used to store and manipulate ordered collection of values.<blockquote><p><img src=./images/info.svg alt=info> <a href=./tuple-and-sequence-operations.html#tuple-and-sequence-operations>Tuple and Sequence operations</a> chapter is a significant prerequisite for this one.</blockquote><h2><a class=header href=#initialization-and-slicing id=initialization-and-slicing>Initialization and Slicing</a></h2><p>Lists are declared as a comma separated values within <code>[]</code> square brackets. Unlike <code>tuple</code> there's no ambiguity in using <code>[]</code> characters, so there's no special requirement of trailing comma for a single element <code>list</code> object. You can use a trailing comma if you wish, which is helpful to easily change a <code>list</code> declared across multiple lines.<pre><code class=language-python># 1D example
 >>> vowels = ['a', 'e', 'i', 'o', 'u']
 >>> vowels[0]
 'a'
@@ -134,7 +134,7 @@
 >>> even_numbers.remove(8)
 >>> even_numbers
 [2, 4, 6, 10]
-</code></pre><p>The <code>clear()</code> method removes all the elements. You might wonder why not just assign an empty <code>list</code>? If you have observed closely, all of the methods seen so far modified the <code>list</code> object in-place. This is useful if you are passing a <code>list</code> object to a function and expect the function to modify the object itself instead of returning a new object. More on that later.<pre><code class=language-python>>>> nums = [1.2, -0.2, 0, 2, 4, 23]
+</code></pre><p>The <code>clear()</code> method removes all the elements. You might wonder why not just assign an empty <code>list</code>? If you have observed closely, all of the methods seen so far modified the <code>list</code> object in-place. This is useful if you are passing a <code>list</code> object to a function and expect the function to modify the object itself instead of returning a new object. See <a href=./mutability.html#mutability>Mutability</a> chapter for more details.<pre><code class=language-python>>>> nums = [1.2, -0.2, 0, 2, 4, 23]
 >>> nums.clear()
 >>> nums
 []
@@ -142,7 +142,7 @@
 >>> books.insert(2, 'The Martian')
 >>> books
 ['Sourdough', 'Sherlock Holmes', 'The Martian', 'To Kill a Mocking Bird']
-</code></pre><p>The <code>reverse()</code> method reverses a <code>list</code> in-place. If you use slicing notation, you'll get a new object.<pre><code class=language-python>>>> primes = [2, 3, 5, 7, 11]
+</code></pre><p><code>reverse()</code> method reverses a <code>list</code> in-place. With slicing notation, you get a new object.<pre><code class=language-python>>>> primes = [2, 3, 5, 7, 11]
 >>> primes.reverse()
 >>> primes
 [11, 7, 5, 3, 2]
@@ -193,9 +193,9 @@ True
 >>> sorted(words, key=len, reverse=True)
 ['fuliginous', 'morello', 'crusado', 'seam', 'irk']
 </code></pre><p>If the custom user-defined function required is just a single expression, you can create anonymous functions with <a href=https://docs.python.org/3/tutorial/controlflow.html#lambda-expressions>lambda expressions</a> instead of a full-fledged function. As an <strong>exercise</strong>, read <a href=https://docs.python.org/3/howto/sorting.html>docs.python HOWTOs: Sorting</a> and implement the below examples using <code>operator</code> module instead of <code>lambda</code> expressions.<pre><code class=language-python># based on second element of each item
->>> items = [('car', 20), ('jeep', 3), ('cycle', 5)]
+>>> items = [('bus', 10), ('car', 20), ('jeep', 3), ('cycle', 5)]
 >>> sorted(items, key=lambda e: e[1], reverse=True)
-[('car', 20), ('cycle', 5), ('jeep', 3)]
+[('car', 20), ('bus', 10), ('cycle', 5), ('jeep', 3)]
 
 # based on number of words, assuming space as the word separator
 >>> dishes = ('Poha', 'Aloo tikki', 'Baati', 'Khichdi', 'Makki roti')

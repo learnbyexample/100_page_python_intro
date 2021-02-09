@@ -135,9 +135,9 @@ StopIteration
 >>> list(fibonacci(10))
 [0, 1, 1, 2, 3, 5, 8, 13, 21, 34]
 </code></pre><p>For a more detailed discussion and related features, see:<ul><li><a href=https://stackoverflow.com/q/231767/4082052>stackoverflow: What does the yield keyword do?</a><li><a href=https://jeffknupp.com/blog/2013/04/07/improve-your-python-yield-and-generators-explained/>Yield and Generators Explained</a><li><a href=https://docs.python.org/3/library/itertools.html>docs.python: itertools</a></ul><h2><a class=header href=#generator-expressions id=generator-expressions>Generator expressions</a></h2><p>Comprehension syntax inside <code>()</code> characters creates an iterator, known as <strong>generator expressions</strong>. Using a generator expression is memory efficient and faster than comprehensions whenever you need a single use iterable. If you use comprehension, you'll be wasting memory to save the values in a container, only to be discarded once they are processed by a <strong>reduce</strong> operation such as the <code>sum()</code> function in the below examples.<pre><code class=language-python>>>> nums = [100, 53, 32, 0, 11, 5, 2]
->>> (n * n for n in nums)
-&LTgenerator object &LTgenexpr> at 0x7fd90e7b22e0>
 >>> g = (n * n for n in nums)
+>>> g
+&LTgenerator object &LTgenexpr> at 0x7fd90e7b22e0>
 >>> next(g)
 10000
 

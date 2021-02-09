@@ -90,6 +90,7 @@ TypeError: sequence item 0: expected str instance, int found
 # difference between remove and strip
 >>> 'cared'.removesuffix('de')
 'cared'
+# strip uses given argument as set of characters to be removed in any order
 >>> 'cared'.rstrip('de')
 'car'
 </code></pre><h2><a class=header href=#dealing-with-case id=dealing-with-case>Dealing with case</a></h2><p>Here's five different methods for changing the case of characters. Word level transformation is determined by consecutive occurrences of alphabets, not limited to separation by whitespace characters.<pre><code class=language-python>>>> sentence = 'thIs iS a saMple StrIng'
@@ -189,7 +190,7 @@ read
 
 >>> 'apple<=>grape<=>mango<=>fig'.split('<=>', maxsplit=1)
 ['apple', 'grape<=>mango<=>fig']
-</code></pre><h2><a class=header href=#replace id=replace>replace</a></h2><p>Use <code>replace()</code> method for substitution operation. Optional third argument allows you to specify number of replacements to be made.<pre><code class=language-python>>>> phrase = '2 be or not 2 be'
+</code></pre><h2><a class=header href=#replace id=replace>replace</a></h2><p>Use <code>replace()</code> method for substitution operations. Optional third argument allows you to specify number of replacements to be made.<pre><code class=language-python>>>> phrase = '2 be or not 2 be'
 
 >>> phrase.replace('2', 'to')
 'to be or not to be'
@@ -210,7 +211,7 @@ read
 >>> re.findall(r'[^:]+', ip)
 ['car', 'jeep']
 
-# replace only whole words 'par' and 'hand' with 'X'
+# replace only whole words 'par' OR 'hand' with 'X'
 # \b is an anchor to restrict the matching to the start/end of words
 >>> ip = 'par spare part hand handy unhanded'
 >>> re.sub(r'\b(par|hand)\b', 'X', ip)

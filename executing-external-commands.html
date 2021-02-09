@@ -89,7 +89,7 @@ ip.txt
 >>> p = subprocess.run('seq -s, 10 > out.txt', shell=True)
 >>> p = subprocess.run('cat out.txt', shell=True)
 1,2,3,4,5,6,7,8,9,10
-</code></pre><p>If <code>shell=True</code> cannot be used but shell features as mentioned above is needed, you can use modules like <code>os</code>, <code>glob</code>, <code>shutil</code> and so on as applicable. See also <a href=https://docs.python.org/3/library/subprocess.html#replacing-older-functions-with-the-subprocess-module>docs.python: Replacing Older Functions with the subprocess Module</a>.<pre><code class=language-python>>>> p = subprocess.run(('echo', os.getenv('HOME')))
+</code></pre><p>If <code>shell=True</code> cannot be used but shell features as quoted above are needed, you can use modules like <code>os</code>, <code>glob</code>, <code>shutil</code> and so on as applicable. See also <a href=https://docs.python.org/3/library/subprocess.html#replacing-older-functions-with-the-subprocess-module>docs.python: Replacing Older Functions with the subprocess Module</a>.<pre><code class=language-python>>>> p = subprocess.run(('echo', os.getenv('HOME')))
 /home/learnbyexample
 </code></pre><h2><a class=header href=#changing-shell id=changing-shell>Changing shell</a></h2><p>By default, <code>/bin/sh</code> is the shell used for POSIX systems. You can change that by setting the <code>executable</code> argument to the shell of your choice.<pre><code class=language-python>>>> p = subprocess.run('diff <(seq 3) <(seq 4)', shell=True)
 /bin/sh: 1: Syntax error: "(" unexpected

@@ -74,7 +74,7 @@
 ([1.2, -0.2, 0, 'apple'], [100, 'ball'])
 >>> nums_2d
 ([1, 3, 2, 10], [1.2, -0.2, 0, 'apple'], [100, 'ball'])
-</code></pre><p>As an <strong>exercise</strong>, use <code>id()</code> function to verify that the identity of last two elements of <code>nums_2d</code> variable in the above example is the same as the identity of both the elements of <code>last_two</code> variable.<h2><a class=header href=#slicing-notation-copy id=slicing-notation-copy>Slicing notation copy</a></h2><p>If you wish to copy whole/part of a <code>list</code> object such that changing the copy version doesn't affect the original <code>list</code>, the solution will depend on the presence of mutable elements.<p>Here's an example where all the elements are immutable. In this case, using slice notation is safe for copying.<pre><code class=language-python>>>> items = [3, 'apple', 100.23, 'fig']
+</code></pre><p>As an <strong>exercise</strong>, use <code>id()</code> function to verify that the identity of last two elements of <code>nums_2d</code> variable in the above example is the same as the identity of both the elements of <code>last_two</code> variable.<h2><a class=header href=#slicing-notation-shallow-copy id=slicing-notation-shallow-copy>Slicing notation shallow copy</a></h2><p>If you wish to copy whole/part of a <code>list</code> object such that changing the copy version doesn't affect the original <code>list</code>, the solution will depend on the presence of mutable elements.<p>Here's an example where all the elements are immutable. In this case, using slice notation is safe for copying.<pre><code class=language-python>>>> items = [3, 'apple', 100.23, 'fig']
 >>> items_copy = items[:]
 
 >>> id(items)
@@ -91,7 +91,7 @@ True
 [1003, 'apple', 100.23, 'fig']
 >>> items
 [3, 'apple', 100.23, 'fig']
-</code></pre><p>On the other hand, if the <code>list</code> has mutable objects, using slice notation won't stop the copy from modifying the original.<pre><code class=language-python>>>> nums_2d = [[1, 3, 2, 10], [1.2, -0.2, 0, 2], [100, 200]]
+</code></pre><p>On the other hand, if the sequence has mutable objects, a shallow copy made using slicing notation won't stop the copy from modifying the original.<pre><code class=language-python>>>> nums_2d = [[1, 3, 2, 10], [1.2, -0.2, 0, 2], [100, 200]]
 >>> nums_2d_copy = nums_2d[:]
 
 >>> nums_2d_copy[0][0] = 'oops'
@@ -100,7 +100,7 @@ True
 [['oops', 3, 2, 10], [1.2, -0.2, 0, 2], [100, 200]]
 >>> nums_2d
 [['oops', 3, 2, 10], [1.2, -0.2, 0, 2], [100, 200]]
-</code></pre><h2><a class=header href=#copydeepcopy id=copydeepcopy>copy.deepcopy</a></h2><p>The <a href=https://docs.python.org/3/library/copy.html#module-copy>copy</a> built-in module has a <code>deepcopy()</code> method if you wish to recursively create new copy of all the elements of a mutable object.<pre><code class=language-python>>>> import copy
+</code></pre><h2><a class=header href=#copydeepcopy id=copydeepcopy>copy.deepcopy</a></h2><p>The <a href=https://docs.python.org/3/library/copy.html#module-copy>copy</a> built-in module has a <code>deepcopy()</code> method if you wish to recursively create new copies of all the elements of a mutable object.<pre><code class=language-python>>>> import copy
 
 >>> nums_2d = [[1, 3, 2, 10], [1.2, -0.2, 0, 2], [100, 200]]
 >>> nums_2d_deepcopy = copy.deepcopy(nums_2d)

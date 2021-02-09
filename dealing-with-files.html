@@ -72,15 +72,15 @@ with open('ip.txt', 'r', encoding='ascii') as f:
     for ip_line in f:
         op_line = ip_line.rstrip('\n').capitalize() + '.'
         print(op_line)
-</code></pre><p>Recall that <code>as</code> keyword was introduced in the <a href=./exception-handling.html#try-except>try-except</a> section. Here's the output of the above program:<pre><code class=language-bash>$ python3.9 read_file.py
+</code></pre><p>Recall that <code>as</code> keyword was seen before in <a href=./importing-and-creating-modules.html#different-ways-of-importing>Different ways of importing</a> and <a href=./exception-handling.html#try-except>try-except</a> sections. Here's the output of the above program:<pre><code class=language-bash>$ python3.9 read_file.py
 Hi there.
 Today is sunny.
 Have a nice day.
-</code></pre><blockquote><p><img src=./images/info.svg alt=info> See <a href=https://towardsdatascience.com/the-magic-of-python-context-managers-adb92ace1dd0>The Magic of Python Context Managers</a> for more details.</blockquote><h2><a class=header href=#read-readline-and-readlines id=read-readline-and-readlines>read, readline and readlines</a></h2><p>The <code>read()</code> method gives you entire remaining contents of the file as a single string. The <code>readline()</code> method gives next line of text and <code>readlines()</code> gives all the remaining lines as a <code>list</code> of strings.<pre><code class=language-python>>>> open('ip.txt').read()
+</code></pre><blockquote><p><img src=./images/info.svg alt=info> See <a href=https://towardsdatascience.com/the-magic-of-python-context-managers-adb92ace1dd0>The Magic of Python Context Managers</a> for more examples and details.</blockquote><h2><a class=header href=#read-readline-and-readlines id=read-readline-and-readlines>read, readline and readlines</a></h2><p>The <code>read()</code> method gives you entire remaining contents of the file as a single string. The <code>readline()</code> method gives next line of text and <code>readlines()</code> gives all the remaining lines as a <code>list</code> of strings.<pre><code class=language-python>>>> open('ip.txt').read()
 'hi there\ntoday is sunny\nhave a nice day\n'
 
 >>> fh = open('ip.txt')
-# 'readline' is similar to 'next'
+# readline() is similar to next()
 # but returns empty string instead of StopIteration exception
 >>> fh.readline()
 'hi there\n'

@@ -38,7 +38,7 @@
                     Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
                         link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
                     });
-                </script><div id=content class=content><main><div class=sidetoc><nav class=pagetoc></nav></div><h1><a class=header href=#dict id=dict>Dict</a></h1><p>Dictionaries can be thought of as a collection of <strong>key-value</strong> pairs or a <strong>named list of items</strong>. It used to be unordered, but recent Python versions ensure that the insertion order is maintained. See <a href=https://sharats.me/posts/the-python-dictionary/>this tutorial</a> for a more detailed post on <code>dict</code> usage.<h2><a class=header href=#initialization-and-accessing-elements id=initialization-and-accessing-elements>Initialization and accessing elements</a></h2><p>A <code>dict</code> data type is declared within <code>{}</code> characters and each item requires two values — an immutable data type for key, followed by <code>:</code> character and finally a value of any data type. The elements are separated by a comma character, just like the other container types.<p>To access an element, the syntax is <code>dict_variable[key]</code>. Retrieving an item takes a constant amount of time, irrespective of the size of the <code>dict</code> (see <a href=https://greenteapress.com/thinkpython2/html/thinkpython2022.html#sec255>Hashtables</a> for details). Dictionaries are mutable, so you can change an item's value, add items, remove items, etc.<pre><code class=language-python>>>> marks = {'Rahul': 86, 'Ravi': 92, 'Rohit': 75, 'Rajan': 79}
+                </script><div id=content class=content><main><div class=sidetoc><nav class=pagetoc></nav></div><h1><a class=header href=#dict id=dict>Dict</a></h1><p>Dictionaries can be thought of as a collection of <strong>key-value</strong> pairs or a <strong>named list of items</strong>. It used to be unordered, but recent Python versions ensure that the insertion order is maintained. See <a href=https://sharats.me/posts/the-python-dictionary/>this tutorial</a> for a more detailed discussion on <code>dict</code> usage.<h2><a class=header href=#initialization-and-accessing-elements id=initialization-and-accessing-elements>Initialization and accessing elements</a></h2><p>A <code>dict</code> data type is declared within <code>{}</code> characters and each item requires two values — an immutable data type for key, followed by <code>:</code> character and finally a value of any data type. The elements are separated by a comma character, just like the other container types.<p>To access an element, the syntax is <code>dict_variable[key]</code>. Retrieving an item takes a constant amount of time, irrespective of the size of the <code>dict</code> (see <a href=https://greenteapress.com/thinkpython2/html/thinkpython2022.html#sec255>Hashtables</a> for details). Dictionaries are mutable, so you can change an item's value, add items, remove items, etc.<pre><code class=language-python>>>> marks = {'Rahul': 86, 'Ravi': 92, 'Rohit': 75, 'Rajan': 79}
 
 >>> marks['Rohit']
 75
@@ -157,10 +157,10 @@ fig     : 100
 >>> marks
 {'Rahul': 86, 'Ravi': 100, 'Rohit': 75, 'Rajan': 79, 'Jo': 89, 'Joe': 75}
 
->>> fruits = dict(banana=12, papaya=5, mango=10, fig=100)
->>> fruits.update([('onion', 3), ('pea', 10)])
+>>> fruits = dict(papaya=5, mango=10, fig=100)
+>>> fruits.update([('tomato', 3), ('banana', 10)])
 >>> fruits
-{'banana': 12, 'papaya': 5, 'mango': 10, 'fig': 100, 'onion': 3, 'pea': 10}
+{'papaya': 5, 'mango': 10, 'fig': 100, 'tomato': 3, 'banana': 10}
 </code></pre><p>The <code>|</code> operator is similar to the <code>update()</code> method, except that you get a new <code>dict</code> object instead of in-place modification.<pre><code class=language-python>>>> d1 = {'banana': 12, 'papaya': 5, 'mango': 20}
 >>> d2 = {'mango': 10, 'fig': 100}
 

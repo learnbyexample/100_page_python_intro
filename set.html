@@ -38,7 +38,7 @@
                     Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
                         link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
                     });
-                </script><div id=content class=content><main><div class=sidetoc><nav class=pagetoc></nav></div><h1><a class=header href=#set id=set>Set</a></h1><p><code>set</code> is a mutable, unordered collection of objects. <code>frozenset</code> is similar to <code>set</code>, but immutable. See <a href=https://docs.python.org/3/library/stdtypes.html#set-types-set-frozenset>docs.python: set, frozenset</a> for more details.<h2><a class=header href=#initialization id=initialization>Initialization</a></h2><p>Sets are declared as a collection of objects separated by a comma within <code>{}</code> curly brace characters. The <a href=https://docs.python.org/3/library/functions.html#func-set>set()</a> function can be used to initialize an empty <code>set</code> and to convert iterables.<pre><code class=language-python>>>> empty_set = set()
+                </script><div id=content class=content><main><div class=sidetoc><nav class=pagetoc></nav></div><h1><a class=header href=#set id=set>Set</a></h1><p><code>set</code> is a mutable, unordered collection of objects. <code>frozenset</code> is similar to <code>set</code>, but immutable. See <a href=https://docs.python.org/3/library/stdtypes.html#set-types-set-frozenset>docs.python: set, frozenset</a> for documentation.<h2><a class=header href=#initialization id=initialization>Initialization</a></h2><p>Sets are declared as a collection of objects separated by a comma within <code>{}</code> curly brace characters. The <a href=https://docs.python.org/3/library/functions.html#func-set>set()</a> function can be used to initialize an empty <code>set</code> and to convert iterables.<pre><code class=language-python>>>> empty_set = set()
 >>> empty_set
 set()
 
@@ -64,7 +64,7 @@ TypeError: unhashable type: 'list'
 True
 >>> 'orange' in colors
 False
-</code></pre><p>Here's some examples for <code>set</code> operations like union, intersection, etc. You can either use methods or operators, both will give you a new <code>set</code> object instead of in-place modification. The difference is that these methods can accept any iterable, not restricted to <code>set</code> objects.<pre><code class=language-python>>>> color_1 = {'teal', 'light blue', 'green', 'yellow'}
+</code></pre><p>Here's some examples for <code>set</code> operations like union, intersection, etc. You can either use methods or operators, both will give you a new <code>set</code> object instead of in-place modification. The difference is that <code>set</code> methods can accept any iterable, not restricted to <code>set</code> objects.<pre><code class=language-python>>>> color_1 = {'teal', 'light blue', 'green', 'yellow'}
 >>> color_2 = {'light blue', 'black', 'dark green', 'yellow'}
 
 # union of two sets: color_1 | color_2
@@ -83,10 +83,10 @@ False
 {'dark green', 'black'}
 
 # items present in one of the sets, but not both
-# i.e. union of above two operations: color_1 ^ color_2
+# i.e. union of previous two operations: color_1 ^ color_2
 >>> color_1.symmetric_difference(color_2)
 {'green', 'dark green', 'black', 'teal'}
-</code></pre><p>As mentioned in <a href=./dict.html#dict>Dict</a> chapter, methods like <code>keys()</code>, <code>values()</code> and <code>items()</code> return a set-like object. You can apply <code>set</code> operators on them.<pre><code class=language-python>>>> marks_1 = dict(Rahul=86, Ravi=92, Rohit=75)
+</code></pre><p>As mentioned in <a href=./dict.html#dict-methods-and-operations>Dict</a> chapter, methods like <code>keys()</code>, <code>values()</code> and <code>items()</code> return a set-like object. You can apply <code>set</code> operators on them.<pre><code class=language-python>>>> marks_1 = dict(Rahul=86, Ravi=92, Rohit=75)
 >>> marks_2 = dict(Jo=89, Rohit=78, Joe=75, Ravi=100)
 
 >>> marks_1.keys() & marks_2.keys()
