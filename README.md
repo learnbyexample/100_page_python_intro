@@ -10,7 +10,7 @@ This book is a short, introductory guide for the Python programming language. Th
     <img src="./images/py_intro.png" width="320px" height="400px" />
 </p>
 
-The book also includes exercises to test your understanding.
+The book also includes exercises to test your understanding, which is presented together as a single file in this repo — [Exercises.md](./exercises/Exercises.md)
 
 See [Version_changes.md](./Version_changes.md) to keep track of changes made to the book.
 
@@ -82,6 +82,7 @@ Twitter: https://twitter.com/learn_byexample
     * [LibreOffice Draw](https://www.libreoffice.org/discover/draw/) — title/author text
 * [pngquant](https://pngquant.org/) and [svgcleaner](https://github.com/RazrFalcon/svgcleaner) for optimizing images
 * [Warning](https://commons.wikimedia.org/wiki/File:Warning_icon.svg) and [Info](https://commons.wikimedia.org/wiki/File:Info_icon_002.svg) icons by [Amada44](https://commons.wikimedia.org/wiki/User:Amada44) under public domain
+* **Dean Clark** and **Elijah** for catching a few typos
 * [mdBook](https://github.com/rust-lang/mdBook) — for web version of the book
     * [mdBook-pagetoc](https://github.com/JorelAli/mdBook-pagetoc) — for adding table of contents for each chapter
     * [minify-html](https://github.com/wilsonzlin/minify-html) — for minifying html files

@@ -245,7 +245,7 @@
 * Given `primes = (2, 3, 5, 7, 11)`:
     * what happens if you use `primes[5]` or `primes[-6]`?
     * what happens if you use `primes[:5]` or `primes[-6:]`?
-    * is it possible to get the same output as `primes[::-1]` by using an explicit number for `stop` value? If not, why not?
+    * is it possible to get the same output as `primes[::-1]` by using an explicit number for the `stop` value? If not, why not?
 * What do you think will happen for these cases, given `nums = (1, 2)`:
     * `a, b, c = nums`
     * `a, *b, c = nums`
