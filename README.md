@@ -20,9 +20,15 @@ See [Version_changes.md](./Version_changes.md) to keep track of changes made to 
 
 You can purchase the book using these links:
 
-* https://gumroad.com/l/100pagepythonintro
+* https://learnbyexample.gumroad.com/l/100pagepythonintro
 * https://leanpub.com/100pagepythonintro
-* See https://learnbyexample.github.io/books/ for list of other books
+
+You can also get the book as part of **Learn by example Python bundle**:
+
+* https://learnbyexample.gumroad.com/l/python-bundle
+* https://leanpub.com/b/python-bundle
+ 
+See https://learnbyexample.github.io/books/ for list of other books
 
 For a preview of the book, see [sample chapters](./sample_chapters/100_page_python_intro_sample.pdf)
 
