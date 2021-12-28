@@ -39,6 +39,14 @@ For web version of the book, visit https://learnbyexample.github.io/100_page_pyt
 
 <br>
 
+# Testimonials
+
+>It's very thorough, written with care, and presented in a way that makes sense. Even as an intermediate Python programmer, I found use in this book.
+>
+> — feedback by [Andrew Healey](https://healeycodes.com/) on [Hacker News](https://news.ycombinator.com/item?id=26082464)
+
+<br>
+
 # Feedback
 
 [Open an issue](https://github.com/learnbyexample/100_page_python_intro/issues) if you spot any typo/errors.
