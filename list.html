@@ -1,8 +1,5 @@
-<!DOCTYPE HTML><html lang=en class="sidebar-visible no-js light"><head><meta charset=UTF-8><title>List - 100 Page Python Intro</title><meta content="text/html; charset=utf-8"http-equiv=Content-Type><meta name=description content="Short, introductory guide for the Python programming language"><meta name=viewport content="width=device-width, initial-scale=1"><meta name=theme-color content=#ffffff><link rel=icon href=favicon.svg><link rel="shortcut icon"href=favicon.png><link rel=stylesheet href=css/variables.css><link rel=stylesheet href=css/general.css><link rel=stylesheet href=css/chrome.css><link rel=stylesheet href=FontAwesome/css/font-awesome.css><link rel=stylesheet href=fonts/fonts.css><link rel=stylesheet href=highlight.css><link rel=stylesheet href=tomorrow-night.css><link rel=stylesheet href=ayu-highlight.css><link rel=stylesheet href=style.css><body><script>
-            var path_to_root = "";
-            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
-        </script><script>
-            try {
+<!doctypehtml><html class="sidebar-visible no-js light"lang=en><head><meta charset=UTF-8><title>List - 100 Page Python Intro</title><meta content="text/html; charset=utf-8"http-equiv=Content-Type><meta content="Short, introductory guide for the Python programming language"name=description><meta content=width=device-width,initial-scale=1 name=viewport><meta content=#ffffff name=theme-color><meta content="100 Page Python Intro"property=og:title><meta content=website property=og:type><meta content="Short, introductory guide for the Python programming language"property=og:description><meta content=https://learnbyexample.github.io/100_page_python_intro/ property=og:url><meta content=https://raw.githubusercontent.com/learnbyexample/100_page_python_intro/main/images/py_intro_ls.png property=og:image><meta content=1280 property=og:image:width><meta content=720 property=og:image:height><meta content=summary_large_image property=twitter:card><meta content=@learn_byexample property=twitter:site><link href=favicon.svg rel=icon><link rel="shortcut icon"href=favicon.png><link href=css/variables.css rel=stylesheet><link href=css/general.css rel=stylesheet><link href=css/chrome.css rel=stylesheet><link href=FontAwesome/css/font-awesome.css rel=stylesheet><link href=fonts/fonts.css rel=stylesheet><link href=highlight.css rel=stylesheet><link href=tomorrow-night.css rel=stylesheet><link href=ayu-highlight.css rel=stylesheet><link href=style.css rel=stylesheet><body><script>var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";</script><script>try {
                 var theme = localStorage.getItem('mdbook-theme');
                 var sidebar = localStorage.getItem('mdbook-sidebar');
 
@@ -13,32 +10,25 @@
                 if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
                     localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
                 }
-            } catch (e) { }
-        </script><script>
-            var theme;
+            } catch (e) { }</script><script>var theme;
             try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
             if (theme === null || theme === undefined) { theme = default_theme; }
             var html = document.querySelector('html');
             html.classList.remove('no-js')
             html.classList.remove('light')
             html.classList.add(theme);
-            html.classList.add('js');
-        </script><script>
-            var html = document.querySelector('html');
+            html.classList.add('js');</script><script>var html = document.querySelector('html');
             var sidebar = 'hidden';
             if (document.body.clientWidth >= 1080) {
                 try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
                 sidebar = sidebar || 'visible';
             }
             html.classList.remove('sidebar-visible');
-            html.classList.add("sidebar-" + sidebar);
-        </script><nav id=sidebar class=sidebar aria-label="Table of contents"><div class=sidebar-scrollbox><ol class=chapter><li class="chapter-item expanded affix"><a href=cover.html>Cover</a><li class="chapter-item expanded affix"><a href=buy.html>Buy PDF/EPUB versions</a><li class="chapter-item expanded"><a href=preface.html><strong aria-hidden=true>1.</strong> Preface</a><li class="chapter-item expanded"><a href=introduction.html><strong aria-hidden=true>2.</strong> Introduction</a><li class="chapter-item expanded"><a href=numeric-data-types.html><strong aria-hidden=true>3.</strong> Numeric data types</a><li class="chapter-item expanded"><a href=strings-and-user-input.html><strong aria-hidden=true>4.</strong> Strings and user input</a><li class="chapter-item expanded"><a href=defining-functions.html><strong aria-hidden=true>5.</strong> Defining functions</a><li class="chapter-item expanded"><a href=control-structures.html><strong aria-hidden=true>6.</strong> Control structures</a><li class="chapter-item expanded"><a href=importing-and-creating-modules.html><strong aria-hidden=true>7.</strong> Importing and creating modules</a><li class="chapter-item expanded"><a href=installing-modules-and-virtual-environments.html><strong aria-hidden=true>8.</strong> Installing modules and Virtual environments</a><li class="chapter-item expanded"><a href=exception-handling.html><strong aria-hidden=true>9.</strong> Exception handling</a><li class="chapter-item expanded"><a href=debugging.html><strong aria-hidden=true>10.</strong> Debugging</a><li class="chapter-item expanded"><a href=testing.html><strong aria-hidden=true>11.</strong> Testing</a><li class="chapter-item expanded"><a href=tuple-and-sequence-operations.html><strong aria-hidden=true>12.</strong> Tuple and Sequence operations</a><li class="chapter-item expanded"><a href=list.html class=active><strong aria-hidden=true>13.</strong> List</a><li class="chapter-item expanded"><a href=mutability.html><strong aria-hidden=true>14.</strong> Mutability</a><li class="chapter-item expanded"><a href=dict.html><strong aria-hidden=true>15.</strong> Dict</a><li class="chapter-item expanded"><a href=set.html><strong aria-hidden=true>16.</strong> Set</a><li class="chapter-item expanded"><a href=text-processing.html><strong aria-hidden=true>17.</strong> Text processing</a><li class="chapter-item expanded"><a href=comprehensions-and-generator-expressions.html><strong aria-hidden=true>18.</strong> Comprehensions and Generator expressions</a><li class="chapter-item expanded"><a href=dealing-with-files.html><strong aria-hidden=true>19.</strong> Dealing with files</a><li class="chapter-item expanded"><a href=executing-external-commands.html><strong aria-hidden=true>20.</strong> Executing external commands</a><li class="chapter-item expanded"><a href=command-line-arguments.html><strong aria-hidden=true>21.</strong> Command line arguments</a></li><br><hr><li class="chapter-item expanded"><i id=git-repository-button class="fa fa-github"></i><a href=https://github.com/learnbyexample/100_page_python_intro>   Source code</a><li class="chapter-item expanded"><i id=home-button class="fa fa-home"></i><a href=https://learnbyexample.github.io/>   My Blog</a><li class="chapter-item expanded"><i id=book-button class="fa fa-book"></i><a href=https://learnbyexample.github.io/books/>   My Books</a><li class="chapter-item expanded"><i id=mail-button class="fa fa-envelope"></i><a href=https://learnbyexample.gumroad.com/l/learnbyexample-weekly>   learnbyexample weekly</a></ol></div><div id=sidebar-resize-handle class=sidebar-resize-handle></div></nav><div id=page-wrapper class=page-wrapper><div class=page><div id=menu-bar-hover-placeholder></div><div id=menu-bar class="menu-bar sticky bordered"><div class=left-buttons><button id=sidebar-toggle class=icon-button type=button title="Toggle Table of Contents"aria-label="Toggle Table of Contents"aria-controls=sidebar><i class="fa fa-bars"></i></button><button id=theme-toggle class=icon-button type=button title="Change theme"aria-label="Change theme"aria-haspopup=true aria-expanded=false aria-controls=theme-list><i class="fa fa-paint-brush"></i></button><ul id=theme-list class=theme-popup aria-label=Themes role=menu><li role=none><button role=menuitem class=theme id=light>Light (default)</button><li role=none><button role=menuitem class=theme id=rust>Rust</button><li role=none><button role=menuitem class=theme id=coal>Coal</button><li role=none><button role=menuitem class=theme id=navy>Navy</button><li role=none><button role=menuitem class=theme id=ayu>Ayu</button></ul><button id=search-toggle class=icon-button type=button title="Search. (Shortkey: s)"aria-label="Toggle Searchbar"aria-expanded=false aria-keyshortcuts=S aria-controls=searchbar><i class="fa fa-search"></i></button></div><h1 class=menu-title>100 Page Python Intro</h1><div class=right-buttons><a href=https://learnbyexample.github.io title=Blog aria-label=Blog> <i id=home-button class="fa fa-home"></i> </a><a href=https://github.com/learnbyexample/100_page_python_intro title="Git repository"aria-label="Git repository"> <i id=git-repository-button class="fa fa-github"></i> </a></div></div><div id=search-wrapper class=hidden><form id=searchbar-outer class=searchbar-outer><input type=search id=searchbar name=searchbar placeholder="Search this book ..."aria-controls=searchresults-outer aria-describedby=searchresults-header></form><div id=searchresults-outer class="searchresults-outer hidden"><div id=searchresults-header class=searchresults-header></div><ul id=searchresults></ul></div></div><script>
-                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+            html.classList.add("sidebar-" + sidebar);</script><nav aria-label="Table of contents"class=sidebar id=sidebar><div class=sidebar-scrollbox><ol class=chapter><li class="chapter-item expanded affix"><a href=cover.html>Cover</a><li class="chapter-item expanded affix"><a href=buy.html>Buy PDF/EPUB versions</a><li class="chapter-item expanded"><a href=preface.html><strong aria-hidden=true>1.</strong> Preface</a><li class="chapter-item expanded"><a href=introduction.html><strong aria-hidden=true>2.</strong> Introduction</a><li class="chapter-item expanded"><a href=numeric-data-types.html><strong aria-hidden=true>3.</strong> Numeric data types</a><li class="chapter-item expanded"><a href=strings-and-user-input.html><strong aria-hidden=true>4.</strong> Strings and user input</a><li class="chapter-item expanded"><a href=defining-functions.html><strong aria-hidden=true>5.</strong> Defining functions</a><li class="chapter-item expanded"><a href=control-structures.html><strong aria-hidden=true>6.</strong> Control structures</a><li class="chapter-item expanded"><a href=importing-and-creating-modules.html><strong aria-hidden=true>7.</strong> Importing and creating modules</a><li class="chapter-item expanded"><a href=installing-modules-and-virtual-environments.html><strong aria-hidden=true>8.</strong> Installing modules and Virtual environments</a><li class="chapter-item expanded"><a href=exception-handling.html><strong aria-hidden=true>9.</strong> Exception handling</a><li class="chapter-item expanded"><a href=debugging.html><strong aria-hidden=true>10.</strong> Debugging</a><li class="chapter-item expanded"><a href=testing.html><strong aria-hidden=true>11.</strong> Testing</a><li class="chapter-item expanded"><a href=tuple-and-sequence-operations.html><strong aria-hidden=true>12.</strong> Tuple and Sequence operations</a><li class="chapter-item expanded"><a class=active href=list.html><strong aria-hidden=true>13.</strong> List</a><li class="chapter-item expanded"><a href=mutability.html><strong aria-hidden=true>14.</strong> Mutability</a><li class="chapter-item expanded"><a href=dict.html><strong aria-hidden=true>15.</strong> Dict</a><li class="chapter-item expanded"><a href=set.html><strong aria-hidden=true>16.</strong> Set</a><li class="chapter-item expanded"><a href=text-processing.html><strong aria-hidden=true>17.</strong> Text processing</a><li class="chapter-item expanded"><a href=comprehensions-and-generator-expressions.html><strong aria-hidden=true>18.</strong> Comprehensions and Generator expressions</a><li class="chapter-item expanded"><a href=dealing-with-files.html><strong aria-hidden=true>19.</strong> Dealing with files</a><li class="chapter-item expanded"><a href=executing-external-commands.html><strong aria-hidden=true>20.</strong> Executing external commands</a><li class="chapter-item expanded"><a href=command-line-arguments.html><strong aria-hidden=true>21.</strong> Command line arguments</a></li><br><hr><li class="chapter-item expanded"><i class="fa fa-github"id=git-repository-button></i><a href=https://github.com/learnbyexample/100_page_python_intro>   Source code</a><li class="chapter-item expanded"><i class="fa fa-home"id=home-button></i><a href=https://learnbyexample.github.io/>   My Blog</a><li class="chapter-item expanded"><i class="fa fa-book"id=book-button></i><a href=https://learnbyexample.github.io/books/>   My Books</a><li class="chapter-item expanded"><i class="fa fa-envelope"id=mail-button></i><a href=https://learnbyexample.gumroad.com/l/learnbyexample-weekly>   learnbyexample weekly</a><li class="chapter-item expanded"><i class="fa fa-twitter"id=twitter-button></i><a href=https://twitter.com/learn_byexample>   Twitter</a></ol></div><div class=sidebar-resize-handle id=sidebar-resize-handle></div></nav><div class=page-wrapper id=page-wrapper><div class=page><div id=menu-bar-hover-placeholder></div><div class="menu-bar sticky bordered"id=menu-bar><div class=left-buttons><button aria-label="Toggle Table of Contents"title="Toggle Table of Contents"aria-controls=sidebar class=icon-button id=sidebar-toggle type=button><i class="fa fa-bars"></i></button><button aria-label="Change theme"title="Change theme"aria-controls=theme-list aria-expanded=false aria-haspopup=true class=icon-button id=theme-toggle type=button><i class="fa fa-paint-brush"></i></button><ul aria-label=Themes class=theme-popup id=theme-list role=menu><li role=none><button class=theme id=light role=menuitem>Light (default)</button><li role=none><button class=theme id=rust role=menuitem>Rust</button><li role=none><button class=theme id=coal role=menuitem>Coal</button><li role=none><button class=theme id=navy role=menuitem>Navy</button><li role=none><button class=theme id=ayu role=menuitem>Ayu</button></ul><button aria-label="Toggle Searchbar"title="Search. (Shortkey: s)"aria-controls=searchbar aria-expanded=false aria-keyshortcuts=S class=icon-button id=search-toggle type=button><i class="fa fa-search"></i></button></div><h1 class=menu-title>100 Page Python Intro</h1><div class=right-buttons><a aria-label=Blog href=https://learnbyexample.github.io title=Blog> <i class="fa fa-home"id=home-button></i> </a><a aria-label=Twitter href=https://twitter.com/learn_byexample title=Twitter> <i class="fa fa-twitter"id=twitter-button></i> </a><a aria-label="Git repository"title="Git repository"href=https://github.com/learnbyexample/100_page_python_intro> <i class="fa fa-github"id=git-repository-button></i> </a></div></div><div class=hidden id=search-wrapper><form class=searchbar-outer id=searchbar-outer><input placeholder="Search this book ..."aria-controls=searchresults-outer aria-describedby=searchresults-header id=searchbar name=searchbar type=search></form><div class="searchresults-outer hidden"id=searchresults-outer><div class=searchresults-header id=searchresults-header></div><ul id=searchresults></ul></div></div><script>document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
                     document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
                     Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
                         link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
-                    });
-                </script><div id=content class=content><main><div class=sidetoc><nav class=pagetoc></nav></div><h1 id=list><a class=header href=#list>List</a></h1><p>List is a container data type, similar to <code>tuple</code>, with lots of added functionality and <strong>mutable</strong>. Lists are typically used to store and manipulate ordered collection of values.<blockquote><p><img src=./images/info.svg alt=info> <a href=./tuple-and-sequence-operations.html#tuple-and-sequence-operations>Tuple and Sequence operations</a> chapter is a significant prerequisite for this one.</blockquote><h2 id=initialization-and-slicing><a class=header href=#initialization-and-slicing>Initialization and Slicing</a></h2><p>Lists are declared as a comma separated values within <code>[]</code> square brackets. Unlike <code>tuple</code> there's no ambiguity in using <code>[]</code> characters, so there's no special requirement of trailing comma for a single element <code>list</code> object. You can use a trailing comma if you wish, which is helpful to easily change a <code>list</code> declared across multiple lines.<pre><code class=language-python># 1D example
+                    });</script><div class=content id=content><main><div class=sidetoc><nav class=pagetoc></nav></div><h1 id=list><a class=header href=#list>List</a></h1><p>List is a container data type, similar to <code>tuple</code>, with lots of added functionality. You can modify a <code>list</code> container and thus it is a <strong>mutable</strong> data type. Lists are typically used to store and manipulate ordered collection of values.<h2 id=initialization-and-slicing><a class=header href=#initialization-and-slicing>Initialization and Slicing</a></h2><p>Lists are declared as a comma separated values within square <code>[]</code> brackets. Unlike <code>tuple</code> there's no ambiguity in using <code>[]</code> characters, so there's no special requirement of trailing comma to declare a single element container. You can use a trailing comma if you wish, which is helpful to easily change a <code>list</code> declared across multiple lines.<pre><code class=language-python># 1D example
 >>> vowels = ['a', 'e', 'i', 'o', 'u']
 >>> vowels[0]
 'a'
@@ -47,14 +37,14 @@
 'u'
 
 # 2D example
->>> student = ['learnbyexample', 2021, ['Linux', 'Vim', 'Python']]
+>>> student = ['learnbyexample', 2024, ['Linux', 'Vim', 'Python']]
 >>> student[1]
-2021
+2024
 >>> student[2]
 ['Linux', 'Vim', 'Python']
 >>> student[2][-1]
 'Python'
-</code></pre><p>Since <code>list</code> is a mutable data type, you can modify the object after initialization. You can either change a single element or use slicing notation to modify multiple elements.<pre><code class=language-python>>>> nums = [1, 4, 6, 22, 3, 5]
+</code></pre><p>Since <code>list</code> is a mutable data type, you can modify the container after initialization. You can either change a single element or use slicing notation to modify multiple elements.<pre><code class=language-python>>>> nums = [1, 4, 6, 22, 3, 5]
 
 >>> nums[0] = 100
 >>> nums
@@ -64,14 +54,14 @@
 >>> nums
 [100, 4, 6, -1, -2, -3]
 
-# list will automatically shrink/expand as needed
+# list will automatically shrink or expand as needed
 >>> nums[1:4] = [2000]
 >>> nums
 [100, 2000, -2, -3]
 >>> nums[1:2] = [3.14, 4.13, 6.78]
 >>> nums
 [100, 3.14, 4.13, 6.78, -2, -3]
-</code></pre><h2 id=list-methods-and-operations><a class=header href=#list-methods-and-operations>List methods and operations</a></h2><p>This section will discuss some of the <code>list</code> methods and operations. See <a href=https://docs.python.org/3/tutorial/datastructures.html#more-on-lists>docs.python: list methods</a> for documentation. As mentioned earlier, you can use <code>dir(list)</code> to view the available methods of an object.<p>Use the <code>append()</code> method to add a single element to the end of a <code>list</code> object. If you need to append multiple items, you can pass an iterable to the <code>extend()</code> method. As an <strong>exercise</strong>, check what happens if you pass an iterable to the <code>append()</code> method and a non-iterable value to the <code>extend()</code> method. What happens if you pass multiple values to both these methods?<pre><code class=language-python>>>> books = []
+</code></pre><h2 id=list-methods-and-operations><a class=header href=#list-methods-and-operations>List methods and operations</a></h2><p>This section will discuss some of the <code>list</code> methods and operations. See <a href=https://docs.python.org/3/tutorial/datastructures.html#more-on-lists>docs.python: list methods</a> for documentation. As mentioned earlier, you can use <code>dir(list)</code> to view the available methods.<p>Use the <code>append()</code> method to add a single element to the end of a <code>list</code> object. If you need to append multiple items, you can pass an iterable to the <code>extend()</code> method. As an <strong>exercise</strong>, check what happens if you pass an iterable to the <code>append()</code> method and a non-iterable value to the <code>extend()</code> method. What happens if you pass multiple values to both these methods?<pre><code class=language-python>>>> books = []
 >>> books.append('Cradle')
 >>> books.append('Mistborn')
 >>> books
@@ -105,9 +95,9 @@
 >>> primes
 [2, 3, 7]
 
->>> student = ['learnbyexample', 2021, ['Linux', 'Vim', 'Python']]
+>>> student = ['learnbyexample', 2024, ['Linux', 'Vim', 'Python']]
 >>> student.pop(1)
-2021
+2024
 >>> student[-1].pop(1)
 'Vim'
 >>> student
@@ -116,10 +106,10 @@
 ['Linux', 'Python']
 >>> student
 ['learnbyexample']
-</code></pre><p>To remove multiple elements using slicing notation, use the <code>del</code> statement. Unlike the <code>pop()</code> method, there is no return value.<pre><code class=language-python>>>> nums = [1.2, -0.2, 0, 2, 4, 23]
+</code></pre><p>The <code>del</code> statement is helpful to remove multiple elements using the slicing notation. Unlike the <code>pop()</code> method, there is no return value.<pre><code class=language-python>>>> nums = [1.2, -0.2, 0, 567, 9082, 23]
 >>> del nums[0]
 >>> nums
-[-0.2, 0, 2, 4, 23]
+[-0.2, 0, 567, 9082, 23]
 >>> del nums[2:4]
 >>> nums
 [-0.2, 0, 23]
@@ -133,11 +123,11 @@
 >>> even_numbers.remove(8)
 >>> even_numbers
 [2, 4, 6, 10]
-</code></pre><p>The <code>clear()</code> method removes all the elements. You might wonder why not just assign an empty <code>list</code>? If you have observed closely, all of the methods seen so far modified the <code>list</code> object in-place. This is useful if you are passing a <code>list</code> object to a function and expect the function to modify the object itself instead of returning a new object. See <a href=./mutability.html#mutability>Mutability</a> chapter for more details.<pre><code class=language-python>>>> nums = [1.2, -0.2, 0, 2, 4, 23]
+</code></pre><p>The <code>clear()</code> method removes all the elements. You might wonder why not just assign an empty <code>list</code>? If you have observed closely, all of the methods seen so far modified the <code>list</code> object in-place. This is useful if you are passing a <code>list</code> object to a function and expect the function to modify the object itself instead of returning a new object. See the <a href=./mutability.html#mutability>Mutability</a> chapter for more details.<pre><code class=language-python>>>> nums = [1.2, -0.2, 0, 2, 4, 23]
 >>> nums.clear()
 >>> nums
 []
-</code></pre><p>You've already seen how to add element(s) at the end of a <code>list</code> using <code>append()</code> and <code>extend()</code> methods. The <code>insert()</code> method is the opposite of <code>pop()</code> method. You can provide a value to be inserted at the given index. As an <strong>exercise</strong>, check what happens if you pass a <code>list</code> value. Also, what happens if you pass more than one value?<pre><code class=language-python>>>> books = ['Sourdough', 'Sherlock Holmes', 'To Kill a Mocking Bird']
+</code></pre><p>You've already seen how to add elements at the end of a <code>list</code> using the <code>append()</code> and <code>extend()</code> methods. The <code>insert()</code> method helps you place an object at the given index. As an <strong>exercise</strong>, check what happens if you pass a <code>list</code> value. What happens if you pass more than one object?<pre><code class=language-python>>>> books = ['Sourdough', 'Sherlock Holmes', 'To Kill a Mocking Bird']
 >>> books.insert(2, 'The Martian')
 >>> books
 ['Sourdough', 'Sherlock Holmes', 'The Martian', 'To Kill a Mocking Bird']
@@ -150,7 +140,7 @@
 [2, 3, 5, 7, 11]
 >>> primes
 [11, 7, 5, 3, 2]
-</code></pre><p>Here's some examples with comparison operators. Quoting from <a href=https://docs.python.org/3/reference/expressions.html#value-comparisons>documentation</a>:<blockquote><p>For two collections to compare equal, they must be of the same type, have the same length, and each pair of corresponding elements must compare equal (for example, <code>[1,2] == (1,2)</code> is false because the type is not the same).<p>Collections that support order comparison are ordered the same as their first unequal elements (for example, <code>[1,2,x] <= [1,2,y]</code> has the same value as <code>x <= y</code>). If a corresponding element does not exist, the shorter collection is ordered first (for example, <code>[1,2] < [1,2,3]</code> is true).</blockquote><pre><code class=language-python>>>> primes = [2, 3, 5, 7, 11]
+</code></pre><p>Here are some examples with comparison operators. Quoting from <a href=https://docs.python.org/3/reference/expressions.html#value-comparisons>documentation</a>:<blockquote><p>For two collections to compare equal, they must be of the same type, have the same length, and each pair of corresponding elements must compare equal (for example, <code>[1,2] == (1,2)</code> is false because the type is not the same).<p>Collections that support order comparison are ordered the same as their first unequal elements (for example, <code>[1,2,x] <= [1,2,y]</code> has the same value as <code>x <= y</code>). If a corresponding element does not exist, the shorter collection is ordered first (for example, <code>[1,2] < [1,2,3]</code> is true).</blockquote><pre><code class=language-python>>>> primes = [2, 3, 5, 7, 11]
 >>> nums = [2, 3, 5, 11, 7]
 >>> primes == nums
 False
@@ -182,7 +172,7 @@ True
 
 >>> sorted('fuliginous')
 ['f', 'g', 'i', 'i', 'l', 'n', 'o', 's', 'u', 'u']
-</code></pre><p>The <code>key</code> argument accepts the name of a built-in/user-defined function (i.e. function object) for custom sorting. If two elements are deemed equal based on the result of the function, the original order will be maintained (known as <strong>stable sorting</strong>). Here's some examples:<pre><code class=language-python># based on the absolute value of an element
+</code></pre><p>The <code>key</code> argument accepts the name of a function (i.e. the object) for custom sorting. If two elements are deemed equal based on the result of the function, the original order will be maintained (known as <strong>stable sorting</strong>). Here are some examples:<pre><code class=language-python># based on the absolute value of an element
 # note that the input order is maintained for all three values of "4"
 >>> sorted([-1, -4, 309, 4.0, 34, 0.2, 4], key=abs)
 [0.2, -1, -4, 4.0, 4, 34, 309]
@@ -191,16 +181,16 @@ True
 >>> words = ('morello', 'irk', 'fuliginous', 'crusado', 'seam')
 >>> sorted(words, key=len, reverse=True)
 ['fuliginous', 'morello', 'crusado', 'seam', 'irk']
-</code></pre><p>If the custom user-defined function required is just a single expression, you can create anonymous functions with <a href=https://docs.python.org/3/tutorial/controlflow.html#lambda-expressions>lambda expressions</a> instead of a full-fledged function. As an <strong>exercise</strong>, read <a href=https://docs.python.org/3/howto/sorting.html>docs.python HOWTOs: Sorting</a> and implement the below examples using <code>operator</code> module instead of <code>lambda</code> expressions.<pre><code class=language-python># based on second element of each item
+</code></pre><p>If the custom user-defined function required is just a single expression, you can create anonymous functions with <a href=https://docs.python.org/3/tutorial/controlflow.html#lambda-expressions>lambda expressions</a> instead of a full-fledged function. As an <strong>exercise</strong>, read <a href=https://docs.python.org/3/howto/sorting.html>docs.python HOWTOs: Sorting</a> and implement the below examples using the <code>operator</code> module instead of <code>lambda</code> expressions.<pre><code class=language-python># based on the second element of each item
 >>> items = [('bus', 10), ('car', 20), ('jeep', 3), ('cycle', 5)]
 >>> sorted(items, key=lambda e: e[1], reverse=True)
 [('car', 20), ('bus', 10), ('cycle', 5), ('jeep', 3)]
 
-# based on number of words, assuming space as the word separator
+# based on the number of words, assuming space as the word separator
 >>> dishes = ('Poha', 'Aloo tikki', 'Baati', 'Khichdi', 'Makki roti')
 >>> sorted(dishes, key=lambda s: s.count(' '), reverse=True)
 ['Aloo tikki', 'Makki roti', 'Poha', 'Baati', 'Khichdi']
-</code></pre><p>You can use sequence types like <code>list</code> or <code>tuple</code> to specify multiple sorting conditions. Make sure to read the sequence comparison examples from previous section before trying to understand the following examples.<pre><code class=language-python>>>> dishes = ('Poha', 'Aloo tikki', 'Baati', 'Khichdi', 'Makki roti')
+</code></pre><p>You can use sequence types like <code>list</code> or <code>tuple</code> to specify multiple sorting conditions. Make sure to read the sequence comparison examples from the previous section before trying to understand the following examples.<pre><code class=language-python>>>> dishes = ('Poha', 'Aloo tikki', 'Baati', 'Khichdi', 'Makki roti')
 
 # word-count and dish-names, both descending order
 >>> sorted(dishes, key=lambda s: (s.count(' '), s), reverse=True)
@@ -210,14 +200,14 @@ True
 # the main trick is to negate the numerical value
 >>> sorted(dishes, key=lambda s: (-s.count(' '), s))
 ['Aloo tikki', 'Makki roti', 'Baati', 'Khichdi', 'Poha']
-</code></pre><p>As an <strong>exercise</strong>, given <code>nums = [1, 4, 5, 2, 51, 3, 6, 22]</code>, determine and implement the sorting condition based on the required output shown below:<ul><li><code>[4, 2, 6, 22, 1, 5, 51, 3]</code><li><code>[2, 4, 6, 22, 1, 3, 5, 51]</code><li><code>[22, 6, 4, 2, 51, 5, 3, 1]</code></ul><p>Here's some examples with <code>min()</code> and <code>max()</code> functions.<pre><code class=language-python>>>> nums = [321, 0.5, 899.232, 5.3, 2, 1, -1]
+</code></pre><p>As an <strong>exercise</strong>, given <code>nums = [1, 4, 5, 2, 51, 3, 6, 22]</code>, determine and implement the sorting condition based on the required output shown below:<ul><li><code>[4, 2, 6, 22, 1, 5, 51, 3]</code><li><code>[2, 4, 6, 22, 1, 3, 5, 51]</code><li><code>[22, 6, 4, 2, 51, 5, 3, 1]</code></ul><p>Here are some examples with the <code>min()</code> and <code>max()</code> functions.<pre><code class=language-python>>>> nums = [321, 0.5, 899.232, 5.3, 2, 1, -1]
 >>> min(nums)
 -1
 >>> max(nums)
 899.232
 >>> min(nums, key=abs)
 0.5
-</code></pre><h2 id=random-items><a class=header href=#random-items>Random items</a></h2><p>You have already seen a few examples with <code>random</code> module in earlier chapters. This section will show a few examples with methods that act on sequence data types.<p>First up, getting a random element from a non-empty sequence using the <code>choice()</code> method.<pre><code class=language-python>>>> import random
+</code></pre><h2 id=random-items><a class=header href=#random-items>Random items</a></h2><p>You have already seen a few examples for the <code>random</code> module in earlier chapters. This section will show examples for methods that act on sequence data types.<p>First up, getting a random element from a non-empty sequence using the <code>choice()</code> method.<pre><code class=language-python>>>> import random
 
 >>> random.choice([4, 5, 2, 76])
 76
@@ -233,7 +223,7 @@ True
 
 >>> random.sample(range(1000), k=5)
 [490, 26, 9, 745, 919]
-</code></pre><h2 id=map-filter-and-reduce><a class=header href=#map-filter-and-reduce>Map, Filter and Reduce</a></h2><p>Many operations on container objects can be defined in terms of these three concepts. For example, if you want to sum the square of all even numbers:<ul><li>separating out even numbers is <strong>Filter</strong> (i.e. only elements that satisfy a condition are retained)<li>square of such numbers is <strong>Map</strong> (i.e. each element is transformed by a mapping function)<li>final sum is <strong>Reduce</strong> (i.e. you get one value out of multiple values)</ul><p>One or more of these operations may be absent depending on the problem statement. A function for the first of these steps could look like:<pre><code class=language-python>>>> def get_evens(iterable):
+</code></pre><h2 id=map-filter-and-reduce><a class=header href=#map-filter-and-reduce>Map, Filter and Reduce</a></h2><p>Many operations on container objects can be defined in terms of these three concepts. For example, if you want to sum the square of all even numbers:<ul><li>separating out even numbers is <strong>Filter</strong> (i.e. only elements that satisfy a condition are retained)<li>square of such numbers is <strong>Map</strong> (i.e. each element is transformed by a mapping function)<li>final sum is <strong>Reduce</strong> (i.e. you get one value out of many)</ul><p>One or more of these operations may be absent depending on the problem statement. A function for the first of these steps could look like:<pre><code class=language-python>>>> def get_evens(iterable):
 ...     op = []
 ...     for n in iterable:
 ...         if n % 2 == 0:
@@ -260,12 +250,14 @@ True
 ... 
 >>> sum_sqr_evens([100, 53, 32, 0, 11, 5, 2])
 11028
-</code></pre><blockquote><p><img src=./images/info.svg alt=info> Python also provides <a href=https://docs.python.org/3/library/functions.html#map>map()</a>, <a href=https://docs.python.org/3/library/functions.html#filter>filter()</a> and <a href=https://docs.python.org/3/library/functools.html#functools.reduce>functools.reduce()</a> for such problems. But, see <a href=./comprehensions-and-generator-expressions.html#comprehensions-and-generator-expressions>Comprehensions and Generator expressions</a> chapter before deciding to use them.</blockquote><p>Here's some examples with <a href=https://docs.python.org/3/library/functions.html#sum>sum()</a>, <a href=https://docs.python.org/3/library/functions.html#all>all()</a> and <a href=https://docs.python.org/3/library/functions.html#any>any()</a> built-in reduce functions.<pre><code class=language-python>>>> sum([321, 0.5, 899.232, 5.3, 2, 1, -1])
+</code></pre><blockquote><p><img alt=info src=./images/info.svg> Python also provides <a href=https://docs.python.org/3/library/functions.html#map>map()</a>, <a href=https://docs.python.org/3/library/functions.html#filter>filter()</a> and <a href=https://docs.python.org/3/library/functools.html#functools.reduce>functools.reduce()</a> for such problems. See the <a href=./comprehensions-and-generator-expressions.html#comprehensions-and-generator-expressions>Comprehensions and Generator expressions</a> chapter before deciding to use them.</blockquote><p>Here are some examples with the <a href=https://docs.python.org/3/library/functions.html#sum>sum()</a>, <a href=https://docs.python.org/3/library/functions.html#all>all()</a> and <a href=https://docs.python.org/3/library/functions.html#any>any()</a> built-in reduce functions.<pre><code class=language-python>>>> sum([321, 0.5, 899.232, 5.3, 2, 1, -1])
 1228.032
 
 >>> conditions = [True, False, True]
+# True only if all the elements are Truthy
 >>> all(conditions)
 False
+# True if at least one element is Truthy
 >>> any(conditions)
 True
 >>> conditions[1] = True
@@ -277,11 +269,9 @@ True
 False
 >>> any(nums)
 True
-</code></pre><h2 id=exercises><a class=header href=#exercises>Exercises</a></h2><ul><li><p>Write a function that returns the product of a sequence of numbers. Empty sequence or sequence containing non-numerical values should raise <code>TypeError</code>.</p> <ul><li><code>product([-4, 2.3e12, 77.23, 982, 0b101])</code> should give <code>-3.48863356e+18</code><li><code>product(range(2, 6))</code> should give <code>120</code><li><code>product(())</code> and <code>product(['a', 'b'])</code> should raise <code>TypeError</code></ul><li><p>Write a function that removes dunder names from <code>dir()</code> output.</p> <pre><code class=language-ruby>>>> remove_dunder(list)
+</code></pre><h2 id=exercises><a class=header href=#exercises>Exercises</a></h2><ul><li><p>Write a function that returns the product of a sequence of numbers. Empty sequence or sequence containing non-numerical values should raise <code>TypeError</code>.</p> <ul><li><code>product([-4, 2.3e12, 77.23, 982, 0b101])</code> should give <code>-3.48863356e+18</code><li><code>product(range(2, 6))</code> should give <code>120</code><li><code>product(())</code> and <code>product(['a', 'b'])</code> should raise <code>TypeError</code></ul><li><p>Write a function that removes dunder names from the <code>dir()</code> output.</p> <pre><code class=language-ruby>>>> remove_dunder(list)
 ['append', 'clear', 'copy', 'count', 'extend', 'index',
  'insert', 'pop', 'remove', 'reverse', 'sort']
 >>> remove_dunder(tuple)
 ['count', 'index']
-</code></pre></ul></main><nav class=nav-wrapper aria-label="Page navigation"><a rel=prev href=tuple-and-sequence-operations.html class="mobile-nav-chapters previous"title="Previous chapter"aria-label="Previous chapter"aria-keyshortcuts=Left> <i class="fa fa-angle-left"></i> </a><a rel=next href=mutability.html class="mobile-nav-chapters next"title="Next chapter"aria-label="Next chapter"aria-keyshortcuts=Right> <i class="fa fa-angle-right"></i> </a><div style="clear: both"></div></nav></div></div><nav class=nav-wide-wrapper aria-label="Page navigation"><a rel=prev href=tuple-and-sequence-operations.html class="nav-chapters previous"title="Previous chapter"aria-label="Previous chapter"aria-keyshortcuts=Left> <i class="fa fa-angle-left"></i> </a><a rel=next href=mutability.html class="nav-chapters next"title="Next chapter"aria-label="Next chapter"aria-keyshortcuts=Right> <i class="fa fa-angle-right"></i> </a></nav></div><script>
-            window.playground_copyable = true;
-        </script><script src=elasticlunr.min.js charset=utf-8></script><script src=mark.min.js charset=utf-8></script><script src=searcher.js charset=utf-8></script><script src=clipboard.min.js charset=utf-8></script><script src=highlight.js charset=utf-8></script><script src=book.js charset=utf-8></script><script src=sidebar.js></script>
+</code></pre></ul></main><nav aria-label="Page navigation"class=nav-wrapper><a aria-label="Previous chapter"class="mobile-nav-chapters previous"title="Previous chapter"aria-keyshortcuts=Left href=tuple-and-sequence-operations.html rel=prev> <i class="fa fa-angle-left"></i> </a><a aria-label="Next chapter"class="mobile-nav-chapters next"title="Next chapter"aria-keyshortcuts=Right href=mutability.html rel=next> <i class="fa fa-angle-right"></i> </a><div style="clear: both"></div></nav></div></div><nav aria-label="Page navigation"class=nav-wide-wrapper><a aria-label="Previous chapter"class="nav-chapters previous"title="Previous chapter"aria-keyshortcuts=Left href=tuple-and-sequence-operations.html rel=prev> <i class="fa fa-angle-left"></i> </a><a aria-label="Next chapter"class="nav-chapters next"title="Next chapter"aria-keyshortcuts=Right href=mutability.html rel=next> <i class="fa fa-angle-right"></i> </a></nav></div><script>window.playground_copyable = true;</script><script charset=utf-8 src=elasticlunr.min.js></script><script charset=utf-8 src=mark.min.js></script><script charset=utf-8 src=searcher.js></script><script charset=utf-8 src=clipboard.min.js></script><script charset=utf-8 src=highlight.js></script><script charset=utf-8 src=book.js></script><script src=sidebar.js></script>
