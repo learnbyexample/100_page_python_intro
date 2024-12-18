@@ -23,12 +23,12 @@
 
 # Strings and user input
 
-* Read about **Bytes** literals from [docs.python: String and Bytes literals](https://docs.python.org/3/reference/lexical_analysis.html#strings). See also [stackoverflow: What is the difference between a string and a byte string?](https://stackoverflow.com/q/6224052/4082052)
-* If you check out [docs.python: int() function](https://docs.python.org/3/library/functions.html#int), you'll see that the `int()` function accepts an optional argument. As an example, write a program that asks the user for hexadecimal number as input. Then, use `int()` function to convert the input string to an integer (you'll need the second argument for this). Add `5` and display the result in hexadecimal format.
+* Read about the **Bytes** literal from [docs.python: String and Bytes literals](https://docs.python.org/3/reference/lexical_analysis.html#strings). See also [stackoverflow: What is the difference between a string and a byte string?](https://stackoverflow.com/q/6224052/4082052)
+* If you check out [docs.python: int() function](https://docs.python.org/3/library/functions.html#int), you'll see that the `int()` function accepts an optional argument. Write a program that asks the user for hexadecimal number as input. Then, use the `int()` function to convert the input string to an integer (you'll need the second argument for this). Add `5` and display the result in hexadecimal format.
 * Write a program to accept two input values. First can be either a number or a string value. Second is an integer value, which should be used to display the first value in centered alignment. You can use any character you prefer to surround the value, other than the default space character.
-* What happens if you use a combination of `r`, `f` and other such valid prefix characters while declaring a string literal? What happens if you use raw strings syntax and provide only a single `\` character? Does the documentation describe these cases?
+* What happens if you use a combination of `r`, `f` and other such valid prefix characters while declaring a string literal? For example, `rf'a\{5/2}'`. What happens if you use the raw strings syntax and provide only a single `\` character? Does the documentation describe these cases?
 * Try out at least two format specifiers not discussed in this chapter.
-* Given `a = 5`, get `'{5}'` as the output using **f-strings**.
+* Given `a = 5`, display `'{5}'` as the output using **f-strings**.
 
 <br>
 
@@ -87,7 +87,7 @@
 # Control structures
 
 * What would happen if you use `<` or `<=` or `>` or `>=` operators between numeric and string values?
-* Simplify the function shown below (you wouldn't need any form of ternary operator):
+* Simplify the function shown below to a single statement (ternary operator won't be needed):
 
     ```ruby
     def isodd(n):
@@ -98,6 +98,18 @@
     ```
 
 * Create this arithmetic progression `-2, 1, 4, 7, 10, 13` using the `range()` function.
+* What value would you get during each iteration of `for c in 'hello'`?
+* Rewrite the below program using a `for` loop. Can you think of a scenario where you must use a `while` loop instead of `for`?
+
+    ```ruby
+    count = int(input('Enter a positive integer: '))
+    while count > 0:
+        print(count)
+        count -= 1
+
+    print('Go!')
+    ```
+
 * Use appropriate `range()` logic so that the `if` statement is no longer needed for the snippet shown below.
 
     ```ruby
@@ -107,8 +119,8 @@
         print(f'{num} * 2 = {num * 2}')
     ```
 
-* If you don't already know about **FizzBuzz**, read [Using FizzBuzz to Find Developers who Grok Coding](https://imranontech.com/2007/01/24/using-fizzbuzz-to-find-developers-who-grok-coding/) and implement it in Python. See also [Why Can't Programmers.. Program?](https://blog.codinghorror.com/why-cant-programmers-program/)
-* Print all numbers from `1` to `1000` (inclusive) which reads the same in reversed form in both binary and decimal format. For example, `33` in decimal is `100001` in binary and both of these are palindromic. You can either implement your own logic or search online for palindrome testing in Python.
+* If you don't already know about **FizzBuzz**, check out the problem statement on [rosettacode](https://rosettacode.org/wiki/FizzBuzz) and implement it in Python. See also [Why Can't Programmers.. Program?](https://blog.codinghorror.com/why-cant-programmers-program/)
+* Print all numbers from `1` to `1000` (inclusive) which reads the same in reversed form in both the binary and decimal formats. For example, `33` in decimal is `100001` in binary and both of these are palindromic. You can either implement your own logic or search online for palindrome testing in Python.
 * Write a function that returns the maximum nested depth of curly braces for a given string input. For example, `'{{a+2}*{{b+{c*d}}+e*d}}'` should give `4`. Unbalanced or wrongly ordered braces like `'{a}*b{'` and `'}a+b{'` should return `-1`.
 
 <br>
@@ -116,7 +128,7 @@
 # Importing and creating modules
 
 * For the program shown below:
-    * add docstrings and check the output of `help()` function using `num_funcs`, `num_funcs.fact`, etc as arguments.
+    * add docstrings and check the output of the `help()` function using `num_funcs`, `num_funcs.fact`, etc as arguments.
     * check what would be the output of `num_funcs.fact()` for negative integers and floating-point numbers. Then import the `math` built-in module and repeat the process with `math.factorial()`.
 
     ```ruby
@@ -164,7 +176,7 @@
         return total
     ```
 
-* Write a function `num(ip)` that accepts a single argument and returns the corresponding integer or floating-point number contained in the argument. Only `int`, `float` and `str` should be accepted as valid input data type. Provide custom error message if the input cannot be converted to a valid number. Examples are shown below:
+* Write a function `num(ip)` that accepts a single argument and returns the corresponding integer or floating-point number contained in the argument. Only `int`, `float` and `str` should be accepted as a valid input data type. Provide custom error messages if the input cannot be converted to a valid number. Examples are shown below:
 
     ```ruby
     # int example
@@ -198,7 +210,7 @@
 
 # Testing
 
-* Randomly change the logic of `max_nested_braces` function shown below and see if any of the tests fail.
+* Randomly change the logic of the `max_nested_braces()` function shown below and see if any of the tests fail.
 
     ```ruby
     def max_nested_braces(expr):
@@ -241,7 +253,7 @@
 
 # Tuple and Sequence operations
 
-* Given `chars = tuple('hello')`, see what's the output of the expression `chars[0]` and the statement `chars[0] = 'H'`.
+* Given `chars = tuple('hello')`, what'd be the output of the expression `chars[0]` and the statement `chars[0] = 'H'`?
 * Given `primes = (2, 3, 5, 7, 11)`:
     * what happens if you use `primes[5]` or `primes[-6]`?
     * what happens if you use `primes[:5]` or `primes[-6:]`?
@@ -250,14 +262,14 @@
     * `a, b, c = nums`
     * `a, *b, c = nums`
     * `*a, *b = nums`
-* Instead of the function shown below, write a custom logic that iterates only once over the input sequence and returns both minimum/maximum values.
+* Instead of the function shown below, write a custom logic that iterates only once over the input sequence and calculates both the minimum and maximum values simultaneously.
 
     ```ruby
     def min_max(iterable):
         return min(iterable), max(iterable)
     ```
 
-* Change the below snippet to start the index from `1` instead of `0`.
+* Change the below snippet such that the index starts from `1` instead of `0`.
 
     ```ruby
     nums = (42, 3.14, -2)
@@ -266,9 +278,9 @@
     ```
 
 * For the program shown below:
-    * add a default valued argument `initial` which should be used to initialize `total` instead of `0` in the `sum_nums()` function. For example, `sum_nums(3, -8)` should give `-5` and `sum_nums(1, 2, 3, 4, 5, initial=5)` should give `20`.
-    * what would happen if you call this modified function as `sum_nums(initial=5, 2)`?
-    * what would happen if you have `nums = (1, 2)` and call this function as `sum_nums(*nums, initial=3)`?
+    * add a default valued argument `initial` which should be used to initialize `total` instead of `0` for the `sum_nums()` function. For example, `sum_nums(3, -8)` should give `-5` and `sum_nums(1, 2, 3, 4, 5, initial=5)` should give `20`.
+    * what would happen if you use `sum_nums(initial=5, 2)` to call this function?
+    * what would happen if you have `nums = (1, 2)` and use `sum_nums(*nums, initial=3)` to call the function?
     * in what ways does this function differ from the [sum()](https://docs.python.org/3/library/functions.html#sum) built-in function?
 
     ```ruby
@@ -286,16 +298,16 @@
 # List
 
 * What happens if you pass an iterable to the `append()` method and a non-iterable value to the `extend()` method on a `list` object? Also, what happens if you pass multiple values to both these methods?
-* Check what happens if you pass a `list` value to the `insert()` method. Also, what happens if you pass more than one value?
-* Read [docs.python HOWTOs: Sorting](https://docs.python.org/3/howto/sorting.html) and implement the below examples using `operator` module instead of `lambda` expressions.
+* Check what happens if you pass a `list` value to the `insert()` method. Also, what happens if you pass more than one object?
+* Read [docs.python HOWTOs: Sorting](https://docs.python.org/3/howto/sorting.html) and implement the below examples using the `operator` module instead of `lambda` expressions.
 
     ```ruby
-    # based on second element of each item
+    # based on the second element of each item
     >>> items = [('bus', 10), ('car', 20), ('jeep', 3), ('cycle', 5)]
     >>> sorted(items, key=lambda e: e[1], reverse=True)
     [('car', 20), ('bus', 10), ('cycle', 5), ('jeep', 3)]
 
-    # based on number of words, assuming space as the word separator
+    # based on the number of words, assuming space as the word separator
     >>> dishes = ('Poha', 'Aloo tikki', 'Baati', 'Khichdi', 'Makki roti')
     >>> sorted(dishes, key=lambda s: s.count(' '), reverse=True)
     ['Aloo tikki', 'Makki roti', 'Poha', 'Baati', 'Khichdi']
@@ -305,12 +317,12 @@
     * `[4, 2, 6, 22, 1, 5, 51, 3]`
     * `[2, 4, 6, 22, 1, 3, 5, 51]`
     * `[22, 6, 4, 2, 51, 5, 3, 1]`
-* For `random.sample()` method, see what happens if you pass a slice size greater than the number of elements present in the input sequence.
+* For the `random.sample()` method, see what happens if you pass a slice size greater than the number of elements present in the input sequence.
 * Write a function that returns the product of a sequence of numbers. Empty sequence or sequence containing non-numerical values should raise `TypeError`.
     * `product([-4, 2.3e12, 77.23, 982, 0b101])` should give `-3.48863356e+18`
     * `product(range(2, 6))` should give `120`
     * `product(())` and `product(['a', 'b'])` should raise `TypeError`
-* Write a function that removes dunder names from `dir()` output.
+* Write a function that removes dunder names from the `dir()` output.
 
     ```ruby
     >>> remove_dunder(list)
@@ -324,13 +336,13 @@
 
 # Mutability
 
-* Use `id()` function to verify that the identity of last two elements of `nums_2d` variable in the below example is the same as the identity of both the elements of `last_two` variable.
+* Use the `id()` function to verify that the identity of the last two elements of the `nums_2d` variable in the below example is the same as the identity of both the elements in the `last_two` variable.
 
     ```ruby
     nums_2d = ([1, 3, 2, 10], [1.2, -0.2, 0, 2], [100, 200])
     last_two = nums_2d[-2:]
     ```
-* Create a deepcopy of only the first two elements of `nums_2d` object shown below.
+* Create a deepcopy of only the first two elements of the `nums_2d` object shown below.
 
     ```ruby
     nums_2d = [[1, 3, 2, 10], [1.2, -0.2, 0, 2], [100, 200]]
@@ -341,7 +353,7 @@
 # Dict
 
 * Given `fruits = dict(banana=12, papaya=5, mango=10, fig=100)`, what do you think will happen when you use `a, *b, c = fruits`?
-* Given `nums = [1, 4, 6, 22, 3, 5, 4, 3, 6, 2, 1, 51, 3, 1]`, keep only first occurrences of a value from this list without changing the order of elements. The output should be `[1, 4, 6, 22, 3, 5, 2, 51]`.
+* Given `nums = [1, 4, 6, 22, 3, 5, 4, 3, 6, 2, 1, 51, 3, 1]`, keep only the first occurrences of a value from this list without changing the order of elements. The output should be `[1, 4, 6, 22, 3, 5, 2, 51]`.
 
 <br>
 
@@ -368,7 +380,8 @@
     * built-in function `ord()`
     * [string module](https://docs.python.org/3/library/string.html)
 * From `str` documentation, go through all the methods that start with **is**.
-* Write a function that checks if two strings are anagrams irrespective of case (assume input is made up of alphabets only).
+* Read the documentation for the `str` methods `rsplit()`, `partition()` and `rpartition()`
+* Write a function that checks if two strings are anagrams irrespective of case (assume that the input is made up of alphabets only).
 
     ```ruby
     >>> anagram('god', 'Dog')
@@ -379,7 +392,7 @@
     True
     ```
 
-* Read the documentation and implement these formatting examples with equivalent `str` methods.
+* Read the documentation and implement these formatting examples with the equivalent `str` methods.
 
     ```ruby
     >>> fruit = 'apple'
@@ -421,6 +434,8 @@
     * otherwise, return all slices that have 2 or more characters
 
     ```ruby
+    >>> word_slices('')
+    ['']
     >>> word_slices('i')
     ['i']
     >>> word_slices('to')
@@ -429,14 +444,14 @@
     ['ta', 'tab', 'tabl', 'table', 'ab', 'abl', 'able', 'bl', 'ble', 'le']
     ```
 
-* Square even numbers and cube odd numbers. For example, `[321, 1, -4, 0, 5, 2]` should give you `[33076161, 1, 16, 0, 125, 4]` as the output.
+* Square even numbers and cube odd numbers. For example, `[321, 1, -4, 0, 5, 2]` should give `[33076161, 1, 16, 0, 125, 4]` as the output.
 * Calculate sum of squares of the numbers, only if the square value is less than `50`. Output for `(7.1, 1, -4, 8, 5.1, 12)` should be `43.01`.
 
 <br>
 
 # Dealing with files
 
-* Write a program that reads a known filename `f1.txt` which contains a single column of numbers in Python syntax. Your task is to display the sum of these numbers, which is `10485.14` for the given example.
+* Write a program that reads a known filename `f1.txt` which contains a single column of numbers. Your task is to display the sum of these numbers, which is `10485.14` for the given example.
 
     ```bash
     $ cat f1.txt 
@@ -455,7 +470,7 @@
 
 # Executing external commands
 
-* Read [subprocess.run documentation](https://docs.python.org/3/library/subprocess.html#subprocess.run) and modify the below `ls` example to:
+* Read the [subprocess.run documentation](https://docs.python.org/3/library/subprocess.html#subprocess.run) and modify the below `ls` example to:
     * redirect the `stderr` stream to `/dev/null`
     * automatically raise an exception when the exit status is non-zero
 
@@ -489,15 +504,16 @@
     ```
 
     ```bash
-    $ python3.9 sum_two_nums.py 2 [1]
+    $ python3.13 sum_two_nums.py 2 [1]
     Traceback (most recent call last):
       File "/home/learnbyexample/Python/programs/sum_two_nums.py", line 6, in <module>
         total = ast.literal_eval(num1) + ast.literal_eval(num2)
+                ~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~
     TypeError: unsupported operand type(s) for +: 'int' and 'list'
     ```
 
-* Write a program to accept one or more numbers as cli arguments. Calculate and display the following details about the input — sum, product and average.
-* Add `-o, --output` optional argument to store the output in a file for the program shown below.
+* Write a program that accepts one or more numbers as CLI arguments. Calculate and display the following details about the input — sum, product and average.
+* Add an optional argument `-o, --output` to store the output in a file for the program shown below.
 
     ```ruby
     import argparse, sys
@@ -525,8 +541,11 @@
 
 If you'd like even more exercises to test your understanding, check out these excellent resources:
 
-* [Exercism](https://exercism.io/tracks/python/exercises), [Practicepython](https://www.practicepython.org/) — beginner friendly, difficulty levels of problems are labeled
-* [Codewars](https://www.codewars.com/), [Adventofcode](https://adventofcode.com/), [Projecteuler](https://projecteuler.net/) — more challenging
-* [Checkio](https://py.checkio.org/), [Codingame](https://www.codingame.com/start), [Codecombat](https://codecombat.com/) — gaming based challenges
-* [/r/dailyprogrammer](https://www.reddit.com/r/dailyprogrammer) — not active currently, but there are plenty of past challenges, along with discussions
+* [Exercism](https://exercism.org/tracks/python/exercises), [Hackinscience](https://www.hackinscience.org/exercises/) and [Practicepython](https://www.practicepython.org/) — beginner friendly
+* [PythonExercises](https://github.com/learnbyexample/TUI-apps/tree/main/PythonExercises) — my interactive TUI app
+* [Adventofcode](https://adventofcode.com/), [Codewars](https://www.codewars.com/), [Python Morsels](https://www.pythonmorsels.com/) — for intermediate to advanced level users
+* [Checkio](https://py.checkio.org/), [Codingame](https://www.codingame.com/start) — gaming based challenges
+* [/r/dailyprogrammer](https://old.reddit.com/r/dailyprogrammer) — interesting challenges
+
+See also [Python Programming Exercises, Gently Explained](https://inventwithpython.com/pythongently/) — a free ebook that includes gentle explanations of the problem, the prerequisite coding concepts you'll need to understand the solution, etc.
 
